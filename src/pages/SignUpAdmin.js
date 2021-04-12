@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 
 
-function LoginGuilder() {
+function SignUpAdmin() {
 
     return (
         <Fragment>
-            <h2>Log in as Guilder</h2>
+            <h2>Sign up admin</h2>
         </Fragment>
     );
 }
 
-export default LoginGuilder;
+export default SignUpAdmin;

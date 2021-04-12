@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 
 
-function Navigation() {
+function GuildOverview() {
 
     return (
         <Fragment>
-            <h2>Navigation</h2>
+            <h2>Guilder Overview page</h2>
         </Fragment>
     );
 }
 
-export default Navigation;
+export default GuildOverview;
