@@ -5,7 +5,7 @@ function SignUpGuilder() {
 
     return (
         <Fragment>
-            <h2>Sign up guilder</h2>
+            <div></div>
         </Fragment>
     );
 }

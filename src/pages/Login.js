@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import LogInButton from "../components/LoginButton";
+import LogInButton from "../components/logIn/LoginButton";
+import LogInForm from "../components/forms/LogInForm";
 
 
 function LogIn() {
@@ -7,7 +8,7 @@ function LogIn() {
 
     return (
         <Fragment>
-            <h2>Log in</h2>
+            <LogInForm/>
             <LogInButton/>
         </Fragment>
     );

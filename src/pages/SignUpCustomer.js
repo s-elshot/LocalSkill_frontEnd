@@ -1,12 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 
 function SignUpCustomer() {
 
     return (
-        <Fragment>
-            <h2>Sign up customer</h2>
-        </Fragment>
+        <div>
+        </div>
     );
 }
 

@@ -5,7 +5,7 @@ function SignUpAdmin() {
 
     return (
         <Fragment>
-            <h2>Sign up admin</h2>
+            <div></div>
         </Fragment>
     );
 }

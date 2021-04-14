@@ -1,15 +1,18 @@
 import React, {Fragment} from 'react';
 import SignUpCustomer from "./SignUpCustomer";
 import SignUpGuilder from "./SignUpGuilder";
+import SignUpForm from "../components/forms/SignUpForm";
+import SignUpAdmin from "./SignUpAdmin";
 
 
 function SignUp() {
 
     return (
         <Fragment>
-            <h2>Sign up</h2>
             <SignUpCustomer/>
+            <SignUpAdmin/>
             <SignUpGuilder/>
+            <SignUpForm/>
         </Fragment>
     );
 }
