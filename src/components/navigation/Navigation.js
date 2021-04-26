@@ -4,24 +4,25 @@ import './Navigation.css'
 import {UserContext} from "../../context/UserContext";
 import LogInButton from "../logIn/LoginButton";
 
+
 function Navigation() {
 
     const {signedIn} = useContext(UserContext)
 
     return (
-        <nav>
-            <div className="navContainter">
+        <>
+            <div className="navContainer">
                 <h1>NAVIGATION</h1>
                 <ul className="navUl">
 
                     <li className="navBarUl">
-                        <NavLink to ="/" activeClassName="active-link">HOME PAGE</NavLink>
+                        <NavLink to="/" activeClassName="active-link">HOME PAGE</NavLink>
                     </li>
 
                     {signedIn === false &&
                     <>
                         <li className="navBarUl">
-                            <NavLink to ="/logIn" activeClassName="active-link">LOG IN</NavLink>
+                            <NavLink to="/logIn" activeClassName="active-link">LOG IN</NavLink>
                         </li>
                         <li className="navBarUl">
                             <NavLink to="/signUp" activeClassName="active-link">SIGN UP</NavLink>
@@ -35,15 +36,24 @@ function Navigation() {
                             <li className="navBarUl">
                                 <NavLink to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW PAGE</NavLink>
                             </li>
+
                             <li className="navBarUl">
-                                <NavLink to="/guilderShop" activeClassName="active-link">GUILDERS PRIVATE SHOP</NavLink>
+                                <NavLink to="/profilePage" activeClassName="active-link">PROFILE PAGE</NavLink>
                             </li>
+
                             <li className="navBarUl">
                                 <NavLink to="/shoppingCart" activeClassName="active-link">SHOPPING CART</NavLink>
                             </li>
+
+                            <li className="navBarUl">
+                                <NavLink to="/orders" activeClassName="active-link">ORDERS</NavLink>
+                            </li>
+
                             <li className="navBarUl">
                                 <NavLink to="/loginButton" activeClassName="active-link"><LogInButton/></NavLink>
                             </li>
+
+
                         </>
                         : <Redirect to={"/"}/>
                     }
@@ -51,7 +61,7 @@ function Navigation() {
                 </ul>
             </div>
 
-        </nav>
+        </>
     );
 }
 

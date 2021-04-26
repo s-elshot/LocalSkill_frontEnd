@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import React from "react";
 import Entrance from "./pages/Entrance";
-import GuilderShop from "./pages/GuilderShop";
 import Overview from "./pages/OverView";
 import ShoppingCart from "./pages/ShoppingCart";
 import SignUp from "./pages/SignUp";
@@ -15,6 +14,10 @@ import GuildOverview from "./pages/GuildOverview";
 import SignUpCustomer from "./pages/SignUpCustomer";
 import SignUpGuilder from "./pages/SignUpGuilder";
 import UserContextProvider from "./context/UserContext";
+import CreateProduct from "./pages/CreateProduct";
+import ProfilePage from "./pages/ProfilePage";
+import Orders from "./pages/Orders";
+
 
 
 function App() {
@@ -34,8 +37,8 @@ function App() {
                     {/* basic functionality path*/}
                     <Route exact path={"/"}>
                         <Entrance/>
-
                     </Route>
+
 
                     <Route path={"/overview"}>
                         <Overview/>
@@ -46,8 +49,8 @@ function App() {
                     </Route>
 
                     {/* Shopping pages*/}
-                    <Route exact path={"/guilderShop"}>
-                        <GuilderShop/>
+                    <Route exact path={"/profilePage"}>
+                        <ProfilePage/>
                     </Route>
 
                     <Route path={"/guildOverview"}>
@@ -73,6 +76,14 @@ function App() {
 
                     <Route path={"/shoppingCart"}>
                         <ShoppingCart/>
+                    </Route>
+
+                    <Route path={"/createProduct"}>
+                        <CreateProduct/>
+                    </Route>
+
+                    <Route path={"/orders"}>
+                        <Orders/>
                     </Route>
 
                 </Switch>

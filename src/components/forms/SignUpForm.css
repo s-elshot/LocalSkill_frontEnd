@@ -1,4 +1,19 @@
 /* combine code with css-file sign-up form???*/
+
+.signUpBackground {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /*background-image: url("../../assets/backgrounds/Image.png");*/
+    opacity: 75%;
+    background-repeat: no-repeat;
+}
+
+
+
+
 .signUpForm {
     display: flex;
     flex-direction: column;
@@ -6,10 +21,13 @@
     margin-left: 10px;
     padding: 50px;
     width: 400px;
-    height: 500px;
+    height: 650px;
     position: relative;
+    background: white;
     border-radius: 10px;
-    border-style: dotted ;
+    border: none;
+    /*border-style: dotted ;*/
+
 }
 
 .signUpField {
@@ -32,7 +50,7 @@ input {
 
 }
 
-#confirmButton:hover {
+.confirmButton:hover {
     margin-top: 40px;
     background: black;
     color: white;
@@ -42,7 +60,7 @@ input {
     transition: ease-in .7s;
 }
 
-#signUpError {
+.signUpError {
     color: #f16767;
     font-size: smaller;
     font-family: "Segoe UI Semilight", sans-serif;

@@ -1,6 +1,14 @@
-/*.navContainer {*/
-/*    margin: 0;*/
+/*px solid red;*{*/
+/*  border: 1*/
+
 /*}*/
+.navContainer {
+background: transparent;
+/*position: fixed;*/
+/*top: 10px;*/
+/*z-index: 2;*/
+/*    margin: 0;*/
+}
 
 .navBarUl {
     display: flex;
@@ -18,7 +26,7 @@
 .navUl {
     display: flex;
     flex-direction: row;
-    background-color: #efecec;
+    background-color: #e5e5e5;
 
     border: none;
     list-style-type: none;
