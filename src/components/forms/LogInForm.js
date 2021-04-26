@@ -36,11 +36,7 @@ function LogInForm() {
                                 value: true,
                                 message: 'This field must have input',
                             }
-                            , minLength: {
-                                value: 2,
-                                message: 'At least 2 characters must be used to define the first name',
-                            },
-                            maxLength: {
+                            , maxLength: {
                                 value: 30,
                                 message: 'At most 30 characters can be used to define the first name',
                             }

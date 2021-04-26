@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormInputComponent({type, name, placeHolder,fieldRef, className, errors,}) {
+function FormInputComponent({type,step, name, placeHolder,fieldRef, className, errors,}) {
 
     return (
         <>
@@ -8,6 +8,7 @@ function FormInputComponent({type, name, placeHolder,fieldRef, className, errors
                 <input
                     type={type}
                     name={name}
+                    step={step}
                     className={className}
                     id={name}
                     placeholder={placeHolder}

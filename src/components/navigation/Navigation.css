@@ -19,7 +19,7 @@ background: transparent;
     /*text-transform: uppercase;*/
     letter-spacing: 2px;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
     cursor: pointer;
 }
 
@@ -27,13 +27,12 @@ background: transparent;
     display: flex;
     flex-direction: row;
     background-color: #e5e5e5;
-
     border: none;
     list-style-type: none;
     border-radius: 15px;
     padding: 0 10px;
     margin: 0 10px;
-    width: 1600px;
+    /*width: 1600px;*/
     font-family: "Segoe UI", serif;
     font-size: smaller;
 

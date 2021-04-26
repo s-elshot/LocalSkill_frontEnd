@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import CreateProduct from "./CreateProduct";
+
+import CreateItem from "../components/forms/CreateItem";
 
 
 function ProfilePage() {
@@ -7,7 +8,7 @@ function ProfilePage() {
     return (
         <Fragment>
             <h2>Profile page</h2>
-            <CreateProduct/>
+            <CreateItem/>
         </Fragment>
     );
 }

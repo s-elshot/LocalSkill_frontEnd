@@ -34,11 +34,11 @@ function Navigation() {
                     {signedIn === true
                         ? <>
                             <li className="navBarUl">
-                                <NavLink to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW PAGE</NavLink>
+                                <NavLink to="/profilePage" activeClassName="active-link">PROFILE PAGE</NavLink>
                             </li>
 
                             <li className="navBarUl">
-                                <NavLink to="/profilePage" activeClassName="active-link">PROFILE PAGE</NavLink>
+                                <NavLink to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW PAGE</NavLink>
                             </li>
 
                             <li className="navBarUl">
@@ -52,8 +52,6 @@ function Navigation() {
                             <li className="navBarUl">
                                 <NavLink to="/loginButton" activeClassName="active-link"><LogInButton/></NavLink>
                             </li>
-
-
                         </>
                         : <Redirect to={"/"}/>
                     }

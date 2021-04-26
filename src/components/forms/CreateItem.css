@@ -1,4 +1,5 @@
-.formField {
+
+.createItemFormBase {
     display: flex;
     flex-direction: column;
     /*align-items: center;*/
@@ -9,7 +10,7 @@
     height: 350px;
     position: relative;
     border-radius: 10px;
-    border-style: dotted ;
+    border-style: dotted;
 }
 
 /*.formItems {*/
@@ -18,7 +19,7 @@
 /*    flex-direction: column;*/
 /*}*/
 
-.logInField {
+.createItemField {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 400px;
@@ -58,4 +59,11 @@ input {
     color: #f16767;
     font-size: smaller;
     font-family: "Segoe UI Semilight", sans-serif;
+}
+
+#radioSelector {
+    font-size: smaller;
+    font-family: "Segoe UI Semilight", sans-serif;
+    color: #868484;
+
 }
