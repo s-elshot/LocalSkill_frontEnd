@@ -9,7 +9,7 @@ import FormInputComponent from "./FormInputComponent";
 // import lampMan from "../../assets/backgrounds/Image.png";
 
 
-function SignUpFormGuilder() {
+function SignUpForm() {
 
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
@@ -25,7 +25,7 @@ function SignUpFormGuilder() {
         console.log(data)
         toggleLoading(true)
         try {
-            const result = await axios.post("http://localhost:3000/SignUpForm",
+            const result = await axios.post("http://localhost:3000/customer",
                 {
                     firstName: data.firstName,
                     lastName: data.lastName,
@@ -67,6 +67,7 @@ function SignUpFormGuilder() {
                         <input type="radio" name="type" id="customer"  {...register("user")} value= "CUSTOMER" /> Customer
                         <input type="radio" name="type" id="guilder"  {...register("user")} value= "GUILDER" />Guilder
                     </label>
+
 
 
                     <FormInputComponent
@@ -233,27 +234,27 @@ function SignUpFormGuilder() {
                         errors={errors}
                     />
 
-                    <FormInputComponent
-                        type="text"
-                        className="signUpField"
-                        name="repeatedPassword"
-                        placeHolder="Please repeat your password"
-                        fieldRef={register('repeatedPassword', {
-                            required: {
-                                value: true,
-                                message: 'This field must have input',
-                            },
-                            minLength: {
-                                value: 2,
-                                message: 'At least 2 characters must be used to define the last name',
-                            },
-                            maxLength: {
-                                value: 25,
-                                message: 'At most 25 characters can be used to define the last name',
-                            },
-                        })}
-                        errors={errors}
-                    />
+                    {/*<FormInputComponent*/}
+                    {/*    type="text"*/}
+                    {/*    className="signUpField"*/}
+                    {/*    name="repeatedPassword"*/}
+                    {/*    placeHolder="Please repeat your password"*/}
+                    {/*    fieldRef={register('repeatedPassword', {*/}
+                    {/*        required: {*/}
+                    {/*            value: true,*/}
+                    {/*            message: 'This field must have input',*/}
+                    {/*        },*/}
+                    {/*        minLength: {*/}
+                    {/*            value: 2,*/}
+                    {/*            message: 'At least 2 characters must be used to define the last name',*/}
+                    {/*        },*/}
+                    {/*        maxLength: {*/}
+                    {/*            value: 25,*/}
+                    {/*            message: 'At most 25 characters can be used to define the last name',*/}
+                    {/*        },*/}
+                    {/*    })}*/}
+                    {/*    errors={errors}*/}
+                    {/*/>*/}
 
 
 
@@ -277,4 +278,4 @@ function SignUpFormGuilder() {
     )
 }
 
-export default SignUpFormGuilder
+export default SignUpForm

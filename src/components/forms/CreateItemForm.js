@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-import './CreateItem.css';
+import './CreateItemForm.css';
 import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
@@ -9,7 +9,7 @@ import FormInputComponent from "./FormInputComponent";
 // import lampMan from "../../assets/backgrounds/Image.png";
 
 
-function CreateItem() {
+function CreateItemForm() {
 
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
@@ -27,7 +27,9 @@ function CreateItem() {
         try {
             const result = await axios.post("http://localhost:3000/SignUpForm",
                 {
-                    item: data.item,
+                    type: data.type,
+                    // item: data.item,
+                    picture: data.picture,
                     name: data.name,
                     price: data.price,
                     description: data.description,
@@ -54,12 +56,15 @@ function CreateItem() {
                         <h2 className="formHeader">CREATE ITEM</h2>
 
                         <label htmlFor="product" id="radioSelector">
-                            <input type="radio" name="type" id="product"  {...register("type")} value= "PRODUCT" /> product
-                            <input type="radio" name="type" id="service"  {...register("type")} value= "SERVICE" />service
+                            <input type="radio" name="type" id="product"  {...register("type")}
+                                   value="PRODUCT"/> product
+                            <input type="radio" name="type" id="service"  {...register("type")} value="SERVICE"/>service
                         </label>
-                        {/*<label htmlFor="service" id="radioSelector">*/}
-                        {/*    <input type="radio" name="item" id="service"  {...register("service")} value= "SERVICE" />service*/}
-                        {/*</label>*/}
+
+
+                        <label className="logInField">
+                            <input id="image-file" name="picture" type="file" {...register("image-file")}/>
+                        </label>
 
 
                         <FormInputComponent
@@ -172,4 +177,4 @@ function CreateItem() {
     )
 }
 
-export default CreateItem
+export default CreateItemForm

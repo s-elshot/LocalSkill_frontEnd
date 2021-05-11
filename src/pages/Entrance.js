@@ -12,7 +12,7 @@ function Entrance() {
             <div className="enterBanner">LOCAL SKILL - bringing the hood together</div>
             <span className="enterButtonContainer">
                 <div className="enterButtonLink">LOG IN GUILDER</div>
-                <div className="enterButtonLink">LOG IN CLIENT</div>
+                <div className="enterButtonLink">ENTER VISITOR</div>
                 <div className="enterButtonLink">LOG IN ClIENT</div>
             </span>
         </>

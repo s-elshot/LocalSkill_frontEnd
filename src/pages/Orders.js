@@ -1,11 +1,14 @@
 import React, {Fragment} from 'react';
+import OrderForm from "../components/forms/OrderForm";
+
 
 
 function Orders() {
 
     return (
         <Fragment>
-            <h2>Profile page</h2>
+            <OrderForm/>
+
         </Fragment>
     );
 }
