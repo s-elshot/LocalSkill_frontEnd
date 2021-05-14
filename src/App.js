@@ -20,13 +20,14 @@ import Orders from "./pages/Orders";
 
 
 
+
 function App() {
 
     const data = {}
 
 
     return (
-
+        // <CartContextProvider value={data}>
             <UserContextProvider value={data}>
                 <nav>
                     <Navigation/>
@@ -88,7 +89,7 @@ function App() {
 
                 </Switch>
             </UserContextProvider>
-
+        // </CartContextProvider>
 
     )
 }
