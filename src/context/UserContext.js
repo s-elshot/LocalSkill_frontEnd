@@ -1,4 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react'
+import axios from "axios";
 
 
 export const UserContext = createContext({});
@@ -10,7 +11,18 @@ function UserContextProvider({children}) {
     const [count, setCount] = useState(0);
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
+    const [items, setItems] = useState(null);
 
+    const fetchItems = () => {
+        axios.get("http://localhost:8080/item").then(res => {
+            setItems(res.data)
+        });
+    };
+
+
+    useEffect(() => {
+        fetchItems();
+    }, []);
 
     // DO SOMETHING WITH HISTORY.PUSH?????
     // REDIRECT COMPONENT NOT WORKING YET!!
@@ -18,12 +30,19 @@ function UserContextProvider({children}) {
 
     // DO SOMETHING WITH HISTORY.PUSH?????
     // REDIRECT COMPONENT NOT WORKING YET!!
+
 
     useEffect(() =>{
         cartInvoiceSum();
         // eslint-disable-next-line
         }, [cart]);
 
+    const minusCount = () => {
+        count > 0 ? setCount(count -1 ): setCount(0)
+    }
+    const plusCount = () => {
+        setCount( count + 1)
+    }
 
     const cartInvoiceSum = () => {
         let totalSum = 0;
@@ -44,6 +63,7 @@ function UserContextProvider({children}) {
         let copyOfCart = [...cart]
         copyOfCart = copyOfCart.filter(cartItem => cartItem.id !== item.id)
         setCart(copyOfCart)
+        console.log(cart, cart.length)
     }
 
     const cartItems = cart.map((item, index) => (
@@ -60,20 +80,34 @@ function UserContextProvider({children}) {
     }
 
     const data = {
+        // items data
+        fetchItems: fetchItems,
+        items: items,
+        setItems: setItems,
+
+        // login data
         currentLogIn: signedIn,
         signedIn: signedIn,
+        changeState: changeState,
+        toggleSignedIn: toggleSignedIn,
+
+        // count data
         count: count,
+        setCount: setCount,
+        plusCount: plusCount,
+        minusCount: minusCount,
+
+        // cart data
         cart: cart,
         setCart: setCart,
-        setCount: setCount,
         addToCart: addToCart,
         removeFromCart: removeFromCart,
         cartTotal: cartTotal,
         setCartTotal: setCartTotal,
         cartInvoiceSum: cartInvoiceSum,
         cartItems: cartItems,
-        changeState: changeState,
-        toggleSignedIn: toggleSignedIn,
+
+
     }
 
 

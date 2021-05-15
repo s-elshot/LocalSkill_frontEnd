@@ -7,7 +7,7 @@ import LogInButton from "../logIn/LoginButton";
 
 function Navigation() {
 
-    const {signedIn} = useContext(UserContext)
+    const {signedIn, cart} = useContext(UserContext)
 
     return (
         <>
@@ -27,6 +27,7 @@ function Navigation() {
                         <li className="navBarUl">
                             <NavLink to="/signUp" activeClassName="active-link">SIGN UP</NavLink>
                         </li>
+
                     </>
                     }
 
@@ -38,7 +39,8 @@ function Navigation() {
                             </li>
 
                             <li className="navBarUl">
-                                <NavLink to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW PAGE</NavLink>
+                                <NavLink exact to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW
+                                    PAGE</NavLink>
                             </li>
 
                             <li className="navBarUl">
@@ -47,11 +49,16 @@ function Navigation() {
 
                             <li className="navBarUl">
                                 <NavLink to="/orders" activeClassName="active-link">ORDERS</NavLink>
+                                {cart.length > 0 &&
+                                <>
+                                    <div>{cart.length} items)</div>
+                                </>}
                             </li>
 
                             <li className="navBarUl">
                                 <NavLink to="/loginButton" activeClassName="active-link"><LogInButton/></NavLink>
                             </li>
+
                         </>
                         : <Redirect to={"/"}/>
                     }

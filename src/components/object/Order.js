@@ -1,52 +1,48 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React, {
+    // Fragment,
+    useContext
+    // ,
+    // useEffect,
+    // useState
+} from 'react';
+// import axios from "axios";
+import {UserContext} from "../../context/UserContext";
+
 
 
 
 function Order() {
 
-    const [orders, setOrders] = useState(null);
+    const {
+        cart,
+        cartItems,
+        cartTotal,
+    } = useContext(UserContext)
+    // const [orders, setOrders] = useState(null);
 
-    const fetchOrders = () => {
-        axios.get("http://localhost:8080/order").then(res => { setOrders(res.data)
-        });
-    };
-
-    useEffect(() => {
-        fetchOrders();
-    }, []);
+    // const fetchOrders = () => {
+    //     axios.get("http://localhost:8080/order").then(res => { setOrders(res.data)
+    //     });
+    // };
 
     // useEffect(() => {
-
-    //     async function fetchData() {
-    //         try {
-    //             const {data} = await axios.get("http://localhost:8080/item");
-    //
-    //             console.log(data[0].name)
-    //             console.log(data[0].description)
-    //             console.log(data[0].price)
-    //             console.log(data[0].content)
-    //             setItems(data);
-    //
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //     }
-    //
-    //     fetchData();
+    //     fetchOrders();
     // }, []);
 
 
-    return (
-        orders && orders.map((order, index) => {
-            return <div key={index} >
-                {/*<h3>{item.content}</h3>*/}
-                <h4>Order id: {order.id}</h4>
-                <p>Customer: {order.customer.firstName} {order.customer.lastName}</p>
-                <p>Area code: {order.customer.areaCode}</p>
-            </div>
 
-        })
+
+
+    return (
+        <>
+            <h2 className="formHeader">SHOPPING CART</h2>
+            {cart && cart.map((item, index) => (
+            <div key={index} className="item">
+                {cartItems}
+            </div>))}
+            <h4>currently in your cart:({cart.length} items)</h4>
+            <h2>TOTAL AMOUNT: €{cartTotal}</h2>
+    </>
 
     )
 }

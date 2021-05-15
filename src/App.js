@@ -17,6 +17,7 @@ import UserContextProvider from "./context/UserContext";
 import CreateProduct from "./pages/CreateProduct";
 import ProfilePage from "./pages/ProfilePage";
 import Orders from "./pages/Orders";
+import ItemPost from "./components/object/ItemPost";
 
 
 
@@ -85,6 +86,10 @@ function App() {
 
                     <Route path={"/orders"}>
                         <Orders/>
+                    </Route>
+
+                    <Route path="/item/:id" exact>
+                        <ItemPost/>
                     </Route>
 
                 </Switch>
