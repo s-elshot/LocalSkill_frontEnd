@@ -4,7 +4,7 @@
 /*    width: 100%;*/
 /*    height: 100%;*/
 /*    position: absolute;*/
-/*    background-image: url("./../assets/backgrounds/Enter Screen.png");*/
+/*    background-image: url("./../assets/desktop/Enter Screen.png");*/
 /*    background-repeat: no-repeat;*/
 /*}*/
 .entranceScreenContainer {
@@ -22,6 +22,10 @@
     left: 1400px ;
     position: absolute;
     font-size: 60px;
+}
+
+.jordan {
+    background-color: black;
 }
 
 .enterBanner {

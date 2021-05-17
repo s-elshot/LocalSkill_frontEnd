@@ -6,6 +6,7 @@ import React, {
 // import axios from "axios";
 import {UserContext} from "../../context/UserContext";
 import {NavLink} from "react-router-dom";
+import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg"
 
 
 function Item() {
@@ -17,6 +18,8 @@ function Item() {
         addToCart,
         removeFromCart,
         cartTotal,
+        error,
+        loading,
         // fetchItems,
         // minusCount,
         // plusCount
@@ -40,7 +43,13 @@ function Item() {
 
     return (
         <Fragment>
-
+            {loading &&
+            <>
+                <LoadingIcon className="loader"/>
+                <p>Loading....</p>
+            </>
+            }
+            {error && <div>ERROR: {error}</div>}
 
             {cart.length > 0 &&
             <>
@@ -64,6 +73,25 @@ function Item() {
             />
 
             {/* eslint-disable-next-line array-callback-return */}
+            {/*{items && items.map((item, index) => {*/}
+            {/*    return <div key={index} className="item">*/}
+            {/*        <NavLink exact to={`/Item/${item.id}`}>*/}
+            {/*            {item.name}*/}
+            {/*        </NavLink>*/}
+            {/*        <p>description: {item.description}</p>*/}
+            {/*        /!*{count}*!/*/}
+            {/*        /!*<button onClick={plusCount}>+</button>*!/*/}
+            {/*        /!*<button onClick={minusCount}>-</button>*!/*/}
+            {/*        <p>price: €{item.price}</p>*/}
+
+            {/*        <button onClick={() => addToCart(item)}>add to cart</button>*/}
+
+            {/*        <button onClick={() => removeFromCart(item)}>remove from cart</button>*/}
+
+            {/*    </div>*/}
+
+            {/*})}*/}
+            {/* eslint-disable-next-line array-callback-return */}
             {items && items.filter((val) => {
                 if (searchProductName === "" && searchPrice === 0) {
                     return val;
@@ -78,16 +106,13 @@ function Item() {
                 return <div key={index} className="item">
                     {/*<h3>{item.content}</h3>*/}
                     <NavLink exact to={`/Item/${item.id}`}>
-                        {item.name}
+                        <h3> {item.name}</h3>
                     </NavLink>
                     <p>description: {item.description}</p>
-                    {/*{count}*/}
-                    {/*<button onClick={plusCount}>+</button>*/}
-                    {/*<button onClick={minusCount}>-</button>*/}
                     <p>price: €{item.price}</p>
+                    <p>Kind of product:{item.itemType}</p>
 
                     <button onClick={() => addToCart(item)}>add to cart</button>
-
                     <button onClick={() => removeFromCart(item)}>remove from cart</button>
 
                 </div>

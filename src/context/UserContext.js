@@ -1,5 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
 import axios from "axios";
+// import axios from "axios";
 
 
 export const UserContext = createContext({});
@@ -12,17 +13,54 @@ function UserContextProvider({children}) {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [items, setItems] = useState(null);
+    const [loading, toggleLoading] = useState(false);
+    const [error, setError] = useState(false);
 
-    const fetchItems = () => {
-        axios.get("http://localhost:8080/item").then(res => {
-            setItems(res.data)
-        });
-    };
+    const itemLocation = "http://localhost:8080/item"
+
+    // OLD DATA: REPLACED BY USE EFFECT!
+    // const fetchItems = () => {
+    //     axios.get("http://localhost:8080/item").then(res => {
+    //         setItems(res.data)
+    //     });
+    // };
+    //
+    //
+    // useEffect(() => {
+    //     fetchItems();
+    // }, [items]);
+
+    useEffect(()=> {
+
+        async function getAllItems() {
+            toggleLoading(true)
+            setError(false)
+
+        try {
+            // List of all Pokemon(s)
+            const {data} = await axios.get(itemLocation);
+            setItems(data);
+
+        } catch (e) {
+            setError(e.message);
+        }
+        toggleLoading(false);
+    }
+        getAllItems()
+    }, [itemLocation]);
 
 
-    useEffect(() => {
-        fetchItems();
-    }, []);
+    //
+    //     fetch("http://localhost:8080/item")
+    //         .then(res => {
+    //             return res.json();
+    //         }).then(data =>{
+    //         setItems(data)
+    //     }
+    //
+    // },[])
+
+
 
     // DO SOMETHING WITH HISTORY.PUSH?????
     // REDIRECT COMPONENT NOT WORKING YET!!
@@ -81,7 +119,7 @@ function UserContextProvider({children}) {
 
     const data = {
         // items data
-        fetchItems: fetchItems,
+        // fetchItems: fetchItems,
         items: items,
         setItems: setItems,
 
@@ -90,6 +128,10 @@ function UserContextProvider({children}) {
         signedIn: signedIn,
         changeState: changeState,
         toggleSignedIn: toggleSignedIn,
+
+        // functionality
+        loading: loading,
+        error: error,
 
         // count data
         count: count,

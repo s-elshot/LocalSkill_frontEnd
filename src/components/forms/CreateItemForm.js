@@ -16,26 +16,29 @@ function CreateItemForm() {
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
 
-    // const onSubmit = data => {
-    //     console.log(data)
-    // };
-
 
     async function onSubmit(data) {
         console.log(data)
         toggleLoading(true)
         try {
-            const result = await axios.post("http://localhost:3000/SignUpForm",
-                {
-                    type: data.type,
-                    // item: data.item,
-                    picture: data.picture,
-                    name: data.name,
-                    price: data.price,
-                    description: data.description,
-                    count: data.count,
-                })
-            console.log(result)
+            await axios.post("http://localhost:8080/item",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify,
+                // const result = await axios.post("http://localhost:8080/customer",
+
+                                itemType: data.itemType,
+                                // item: data.item,
+                                // content: data.content,
+                                name: data.name,
+                                price: data.price,
+                                description: data.description,
+                                count: data.count,
+
+            }).then(() => {
+                console.log("New item added")
+
+            })
             toggleRegisterSucces(true)
             setTimeout(() => {
                 history.push("http://localhost:3000");
@@ -47,6 +50,52 @@ function CreateItemForm() {
         toggleLoading(false)
     }
 
+
+    // async function onSubmit(data) {
+    //     console.log(data)
+    //     toggleLoading(true)
+    //     try {
+    //         await axios.post("http://localhost:8080/customer", {
+    //             method: "POST",
+    //             headers: {"Content-Type": "application/json"},
+    //             body: JSON.stringify(customer)
+    //         }).then(() => {
+    //             console.log("New customer added")
+    //         })
+    //         toggleRegisterSucces(true)
+    //         setTimeout(() => {
+    //             history.push("http://localhost:3000");
+    //         }, 2000)
+    //
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    //     toggleLoading(false)
+    // }
+
+
+    //         const result = await axios.post("http://localhost:3000/item",
+    //             {
+    //                 type: data.type,
+    //                 // item: data.item,
+    //                 picture: data.picture,
+    //                 name: data.name,
+    //                 price: data.price,
+    //                 description: data.description,
+    //                 count: data.count,
+    //             })
+    //         console.log(result)
+    //         toggleRegisterSucces(true)
+    //         setTimeout(() => {
+    //             history.push("http://localhost:3000");
+    //         }, 2000)
+    //
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    //     toggleLoading(false)
+    // }
+
     return (
         <>
             <div className="formPositioning">
@@ -56,14 +105,14 @@ function CreateItemForm() {
                         <h2 className="formHeader">CREATE ITEM</h2>
 
                         <label htmlFor="product" id="radioSelector">
-                            <input type="radio" name="type" id="product"  {...register("type")}
+                            <input type="radio" name="itemType" id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
-                            <input type="radio" name="type" id="service"  {...register("type")} value="SERVICE"/>service
+                            <input type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
 
                         <label className="logInField">
-                            <input id="image-file" name="picture" type="file" {...register("image-file")}/>
+                            <input id="content" name="content" type="file" {...register("content")}/>
                         </label>
 
 

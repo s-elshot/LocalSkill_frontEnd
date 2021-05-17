@@ -19,7 +19,7 @@ function OrderForm() {
         console.log(data)
         toggleLoading(true)
         try {
-            const result = await axios.post("http://localhost:3000/customer",
+            const result = await axios.post("http://localhost:8080/customer",
                 {
                     firstName: data.firstName,
                     lastName: data.lastName,

@@ -12,8 +12,8 @@ function ItemPost() {
     } = useContext(UserContext)
 
 
-    const { id } = useParams();
-    const currentPost = posts.find((post) => {
+    const {id} = useParams();
+    const currentItem = posts.find((post) => {
         return post.id === id;
 
     });
@@ -23,19 +23,20 @@ function ItemPost() {
     return (
         <>
             <article>
-                <h1>{currentPost.name}</h1>
-                <p>description: {currentPost.description}</p>
-                <p>price: €{currentPost.price}</p>
+                <h1>{currentItem.name}</h1>
+                <p>description: {currentItem.description}</p>
+                <p>price: €{currentItem.price}</p>
+                <p>item type{currentItem.itemType}</p>
 
-
-                <button onClick={() => addToCart(currentPost)}>add to cart</button>
+                <button onClick={() => addToCart(currentItem)}>add to cart</button>
 
             </article>
             <article>
                 <Link to="/">Terug naar Home</Link>
             </article>
         </>
-    );
+    )
+        ;
 }
 
 export default ItemPost;

@@ -3,7 +3,7 @@ import SignUpCustomer from "./SignUpCustomer";
 import SignUpGuilder from "./SignUpGuilder";
 import SignUpFormCustomer from "../components/forms/SignUpForm";
 import SignUpAdmin from "./SignUpAdmin";
-// import signUpBackGround from "../assets/backgrounds/pexels-photo-4792521.jpeg";
+// import signUpBackGround from "../assets/desktop/pexels-photo-4792521.jpeg";
 
 
 function SignUp() {

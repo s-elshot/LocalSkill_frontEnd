@@ -1,46 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {useForm} from "react-hook-form";
 import './SignUpForm.css';
-import axios from "axios";
+// import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
+import axios from "axios";
 
-
-// import lampMan from "../../assets/backgrounds/Image.png";
 
 
 function SignUpForm() {
 
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
-    const [registerSucces, toggleRegisterSucces] = useState(false)
+    const [registerSucces, toggleRegisterSucces] = useState(false);
+
+
+
     const history = useHistory();
-
-    // const onSubmit = data => {
-    //     console.log(data)
-    // };
-
 
     async function onSubmit(data) {
         console.log(data)
         toggleLoading(true)
         try {
-            const result = await axios.post("http://localhost:3000/customer",
-                {
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    age: data.age,
-                    email: data.email,
-                    areaCode: data.areaCode,
-                    city: data.city,
-                    guild: data.guild,
-                    password: data.password,
+            await axios.post("http://localhost:8080/customer",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify,
+                // const result = await axios.post("http://localhost:8080/customer",
 
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        age: data.age,
+                        emailAdress: data.emailAdress,
+                        areaCode: data.areaCode,
+                        city: data.city,
+                        guild: data.guild,
+                        password: data.password,
+                        userRole: data.userRole
 
+            }).then(() => {
+                console.log("New customer added")
 
-
-                })
-            console.log(result)
+            })
             toggleRegisterSucces(true)
             setTimeout(() => {
                 history.push("http://localhost:3000");
@@ -63,11 +64,11 @@ function SignUpForm() {
                 <fieldset className="signUpForm">
                     <h2 className="formHeader">SIGN UP</h2>
 
-                    <label htmlFor="user" id="radioSelector">
-                        <input type="radio" name="type" id="customer"  {...register("user")} value= "CUSTOMER" /> Customer
-                        <input type="radio" name="type" id="guilder"  {...register("user")} value= "GUILDER" />Guilder
+                    <label htmlFor="userRole" id="radioSelector">
+                        <input type="radio" name="userRole" id="customer"  {...register("userRole")}
+                               value="CUSTOMER"/> Customer
+                        <input type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
                     </label>
-
 
 
                     <FormInputComponent
@@ -114,30 +115,30 @@ function SignUpForm() {
                         errors={errors}
                     />
 
-                    <FormInputComponent
-                        type="number"
-                        className="signUpField"
-                        name="age"
-                        placeHolder="Age"
-                        fieldRef={register('age', {
-                            required: {
-                                value: true,
-                                message: 'This field must have input',
-                            },
-                            min: {
-                                value: 12,
-                                message: 'You must be at least 12 to visit this website',
-                            }
-                        })}
-                        errors={errors}
-                    />
+                    {/*<FormInputComponent*/}
+                    {/*    type="number"*/}
+                    {/*    className="signUpField"*/}
+                    {/*    name="age"*/}
+                    {/*    placeHolder="Age"*/}
+                    {/*    fieldRef={register('age', {*/}
+                    {/*        required: {*/}
+                    {/*            value: true,*/}
+                    {/*            message: 'This field must have input',*/}
+                    {/*        },*/}
+                    {/*        min: {*/}
+                    {/*            value: 12,*/}
+                    {/*            message: 'You must be at least 12 to visit this website',*/}
+                    {/*        }*/}
+                    {/*    })}*/}
+                    {/*    errors={errors}*/}
+                    {/*/>*/}
 
                     <FormInputComponent
                         type="text"
                         className="signUpField"
-                        name="email"
+                        name="emailAdress"
                         placeHolder="Email (for example: Email@gmail.com)"
-                        fieldRef={register('email', {
+                        fieldRef={register('emailAdress', {
                             required: {
                                 value: true,
                                 message: 'This field cant be empty',
@@ -190,6 +191,7 @@ function SignUpForm() {
                         errors={errors}
                     />
 
+
                     <FormInputComponent
                         type="text"
                         className="signUpField"
@@ -213,7 +215,7 @@ function SignUpForm() {
                     />
 
                     <FormInputComponent
-                        type="text"
+                        type="password"
                         className="signUpField"
                         name="password"
                         placeHolder="Please choose a password"
@@ -256,15 +258,18 @@ function SignUpForm() {
                     {/*    errors={errors}*/}
                     {/*/>*/}
 
-
-
+                    {loading === true &&
+                    <span>                    <button
+                        type="submit"
+                        id="confirmButton"
+                        name="submitButton"
+                        disabled={pristine}>
+                        LOADING..
+                    </button></span>
+                    }
 
                     {registerSucces === true &&
-                    <span>Sign up succeeded</span>}
-
-                    {loading === true &&
-                    <span>Loading...</span>}
-
+                    <span>SIGN UP SUCCEEDED</span>}
 
                     <button
                         type="submit"

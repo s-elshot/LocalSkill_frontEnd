@@ -3,6 +3,7 @@ import {NavLink, Redirect} from "react-router-dom";
 import './Navigation.css'
 import {UserContext} from "../../context/UserContext";
 import LogInButton from "../logIn/LoginButton";
+import blackShoppingCart from "../../assets/mobileIcons/Icon awesome-shopping-cart black@2x.png"
 
 
 function Navigation() {
@@ -51,6 +52,7 @@ function Navigation() {
                                 <NavLink to="/orders" activeClassName="active-link">ORDERS</NavLink>
                                 {cart.length > 0 &&
                                 <>
+                                    <img className="navShoppingCart" src={blackShoppingCart} alt="shopping cart"/>
                                     <div>{cart.length} items)</div>
                                 </>}
                             </li>
