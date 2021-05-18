@@ -1,10 +1,7 @@
 import React, { Fragment} from 'react';
-import Item from "../components/object/Item";
+import Item from "../../components/object/Item";
 
-
-
-
-function GuildOverview() {
+function Overview() {
 
 
     return (
@@ -14,4 +11,4 @@ function GuildOverview() {
     );
 }
 
-export default GuildOverview;
+export default Overview;

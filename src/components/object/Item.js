@@ -5,8 +5,12 @@ import React, {
 } from 'react';
 // import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-import {NavLink} from "react-router-dom";
+// import {NavLink} from "react-router-dom";
 import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg"
+// import {NavLink} from "react-router-dom";
+import SingleItemComponent from "./SingleItemComponent";
+
+// import SingleItemComponent from "./SingleItemComponent";
 
 
 function Item() {
@@ -73,25 +77,6 @@ function Item() {
             />
 
             {/* eslint-disable-next-line array-callback-return */}
-            {/*{items && items.map((item, index) => {*/}
-            {/*    return <div key={index} className="item">*/}
-            {/*        <NavLink exact to={`/Item/${item.id}`}>*/}
-            {/*            {item.name}*/}
-            {/*        </NavLink>*/}
-            {/*        <p>description: {item.description}</p>*/}
-            {/*        /!*{count}*!/*/}
-            {/*        /!*<button onClick={plusCount}>+</button>*!/*/}
-            {/*        /!*<button onClick={minusCount}>-</button>*!/*/}
-            {/*        <p>price: €{item.price}</p>*/}
-
-            {/*        <button onClick={() => addToCart(item)}>add to cart</button>*/}
-
-            {/*        <button onClick={() => removeFromCart(item)}>remove from cart</button>*/}
-
-            {/*    </div>*/}
-
-            {/*})}*/}
-            {/* eslint-disable-next-line array-callback-return */}
             {items && items.filter((val) => {
                 if (searchProductName === "" && searchPrice === 0) {
                     return val;
@@ -103,23 +88,28 @@ function Item() {
                     return val;
                 }
             }).map((item, index) => {
-                return <div key={index} className="item">
-                    {/*<h3>{item.content}</h3>*/}
-                    <NavLink exact to={`/Item/${item.id}`}>
-                        <h3> {item.name}</h3>
-                    </NavLink>
-                    <p>description: {item.description}</p>
-                    <p>price: €{item.price}</p>
-                    <p>Kind of product:{item.itemType}</p>
+                return <SingleItemComponent
+                    index={index}
+                    item={item}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                />
 
-                    <button onClick={() => addToCart(item)}>add to cart</button>
-                    <button onClick={() => removeFromCart(item)}>remove from cart</button>
-
-                </div>
+                // <div key={index} className="item">
+                //     {/*<h3>{item.content}</h3>*/}
+                //     <NavLink exact to={`/Item/${item.id}`}>
+                //         <h3> {item.name}</h3>
+                //     </NavLink>
+                //     <p>description: {item.description}</p>
+                //     <p>price: €{item.price}</p>
+                //     <p>Kind of product:{item.itemType}</p>
+                //
+                //     <button onClick={() => addToCart(item)}>add to cart</button>
+                //     <button onClick={() => removeFromCart(item)}>remove from cart</button>
+                //
+                // </div>
 
             })}
-
-
         </Fragment>
     )
 }

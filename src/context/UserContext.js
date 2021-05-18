@@ -15,8 +15,10 @@ function UserContextProvider({children}) {
     const [items, setItems] = useState(null);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [users, setUsers] = useState("");
 
     const itemLocation = "http://localhost:8080/item"
+    const userLocation = "http://localhost:8080/customer"
 
     // OLD DATA: REPLACED BY USE EFFECT!
     // const fetchItems = () => {
@@ -37,7 +39,6 @@ function UserContextProvider({children}) {
             setError(false)
 
         try {
-            // List of all Pokemon(s)
             const {data} = await axios.get(itemLocation);
             setItems(data);
 
@@ -48,6 +49,24 @@ function UserContextProvider({children}) {
     }
         getAllItems()
     }, [itemLocation]);
+
+    useEffect(()=> {
+
+        async function getAllUsers() {
+            toggleLoading(true)
+            setError(false)
+
+            try {
+                const {data} = await axios.get(userLocation);
+                setUsers(data);
+
+            } catch (e) {
+                setError(e.message);
+            }
+            toggleLoading(false);
+        }
+        getAllUsers()
+    }, [userLocation]);
 
 
     //
@@ -122,6 +141,8 @@ function UserContextProvider({children}) {
         // fetchItems: fetchItems,
         items: items,
         setItems: setItems,
+        users: users,
+        setUsers:setUsers,
 
         // login data
         currentLogIn: signedIn,

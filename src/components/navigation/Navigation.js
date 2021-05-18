@@ -13,7 +13,7 @@ function Navigation() {
     return (
         <>
             <div className="navContainer">
-                <h1>NAVIGATION</h1>
+                {/*<h1>NAVIGATION</h1>*/}
                 <ul className="navUl">
 
                     <li className="navBarUl">
@@ -40,21 +40,20 @@ function Navigation() {
                             </li>
 
                             <li className="navBarUl">
-                                <NavLink exact to="/guildOverview" activeClassName="active-link">GUILD OVERVIEW
-                                    PAGE</NavLink>
+                                <NavLink exact to="/overview" activeClassName="active-link">OVERVIEW PAGE</NavLink>
                             </li>
 
                             <li className="navBarUl">
                                 <NavLink to="/shoppingCart" activeClassName="active-link">SHOPPING CART</NavLink>
+                                {cart.length > 0 &&
+                                <>
+                                    <img className="navShoppingCart" src={blackShoppingCart} alt="shopping cart"/>
+                                    <span> {cart.length} </span>
+                                </>}
                             </li>
 
                             <li className="navBarUl">
                                 <NavLink to="/orders" activeClassName="active-link">ORDERS</NavLink>
-                                {cart.length > 0 &&
-                                <>
-                                    <img className="navShoppingCart" src={blackShoppingCart} alt="shopping cart"/>
-                                    <div>{cart.length} items)</div>
-                                </>}
                             </li>
 
                             <li className="navBarUl">

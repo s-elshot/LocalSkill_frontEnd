@@ -10,9 +10,7 @@ import React, {
 import {UserContext} from "../../context/UserContext";
 
 
-
-
-function Order() {
+function ShoppingCartItem() {
 
     const {
         cart,
@@ -31,21 +29,6 @@ function Order() {
     },[])
 
 
-    // const [orders, setOrders] = useState(null);
-
-    // const fetchOrders = () => {
-    //     axios.get("http://localhost:8080/order").then(res => { setOrders(res.data)
-    //     });
-    // };
-
-    // useEffect(() => {
-    //     fetchOrders();
-    // }, []);
-
-
-
-
-
     return (
         <>
             <h2 className="formHeader">SHOPPING CART</h2>
@@ -61,9 +44,8 @@ function Order() {
             <h4>currently in your cart:({cart.length} items)</h4>
             <h2>TOTAL AMOUNT: €{cartTotal}</h2>
     </>
-
     )
 }
 
 
-export default Order;
+export default ShoppingCartItem;

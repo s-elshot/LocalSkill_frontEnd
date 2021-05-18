@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 
 
-function CreateProduct() {
+function SignUpComponent() {
 
     return (
         <Fragment>
-            <h2>Create Product</h2>
+            <div></div>
         </Fragment>
     );
 }
 
-export default CreateProduct;
+export default SignUpComponent;

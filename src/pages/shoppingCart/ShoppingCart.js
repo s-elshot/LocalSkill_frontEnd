@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
-import SearchBarTest from "../components/object/SearchBarTest";
+import ShoppingCartComponent from "../../components/object/ShoppingCartComponent";
+
 
 
 function ShoppingCart() {
 
     return (
         <Fragment>
-            <h2>Shopping Cart</h2>
-            <SearchBarTest/>
+            <ShoppingCartComponent/>
         </Fragment>
     );
 }

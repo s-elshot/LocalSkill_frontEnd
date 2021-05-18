@@ -4,6 +4,7 @@ import posts from "../data/item.json"
 
 import {UserContext} from "../../context/UserContext";
 
+
 function ItemPost() {
     // destructures the id from app.js(navigation - line 91)
 
@@ -17,8 +18,7 @@ function ItemPost() {
         return post.id === id;
 
     });
-    // console.log(items)
-    // console.log(currentPost)
+
 
     return (
         <>
@@ -27,9 +27,7 @@ function ItemPost() {
                 <p>description: {currentItem.description}</p>
                 <p>price: €{currentItem.price}</p>
                 <p>item type{currentItem.itemType}</p>
-
                 <button onClick={() => addToCart(currentItem)}>add to cart</button>
-
             </article>
             <article>
                 <Link to="/">Terug naar Home</Link>

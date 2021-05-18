@@ -4,19 +4,17 @@ import {
     Switch,
 } from 'react-router-dom';
 import React from "react";
-import Entrance from "./pages/Entrance";
-import Overview from "./pages/OverView";
-import ShoppingCart from "./pages/ShoppingCart";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import Entrance from "./pages/entrance/Entrance";
+import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
+import SignUp from "./pages/signUp/SignUp";
+import Login from "./pages/logIn/Login";
 import Navigation from "./components/navigation/Navigation";
-import GuildOverview from "./pages/GuildOverview";
-import SignUpCustomer from "./pages/SignUpCustomer";
-import SignUpGuilder from "./pages/SignUpGuilder";
+import Overview from "./pages/overview/Overview";
+import SignUpCustomer from "./pages/signUp/SignUpCustomer";
+import SignUpGuilder from "./pages/signUp/SignUpGuilder";
 import UserContextProvider from "./context/UserContext";
-import CreateProduct from "./pages/CreateProduct";
-import ProfilePage from "./pages/ProfilePage";
-import Orders from "./pages/Orders";
+import ProfilePage from "./pages/profilePage/ProfilePage";
+import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 
 
@@ -28,22 +26,17 @@ function App() {
 
 
     return (
-        // <CartContextProvider value={data}>
+
             <UserContextProvider value={data}>
-                <nav>
-                    <Navigation/>
-                </nav>
+                {/*<nav>*/}
+                {/*    <Navigation/>*/}
+                {/*</nav>*/}
 
                 <Switch>
 
                     {/* basic functionality path*/}
                     <Route exact path={"/"}>
                         <Entrance/>
-                    </Route>
-
-
-                    <Route path={"/overview"}>
-                        <Overview/>
                     </Route>
 
                     <Route exact path={"/logIn"}>
@@ -55,8 +48,8 @@ function App() {
                         <ProfilePage/>
                     </Route>
 
-                    <Route path={"/guildOverview"}>
-                        <GuildOverview/>
+                    <Route path={"/overview"}>
+                        <Overview/>
                     </Route>
 
                     <Route exact path={"/shoppingCart"}>
@@ -80,10 +73,6 @@ function App() {
                         <ShoppingCart/>
                     </Route>
 
-                    <Route path={"/createProduct"}>
-                        <CreateProduct/>
-                    </Route>
-
                     <Route path={"/orders"}>
                         <Orders/>
                     </Route>
@@ -93,8 +82,13 @@ function App() {
                     </Route>
 
                 </Switch>
+
+                <nav>
+                    <Navigation/>
+                </nav>
+
             </UserContextProvider>
-        // </CartContextProvider>
+
 
     )
 }

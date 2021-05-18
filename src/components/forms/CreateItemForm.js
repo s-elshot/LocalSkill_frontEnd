@@ -37,7 +37,6 @@ function CreateItemForm() {
 
             }).then(() => {
                 console.log("New item added")
-
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
@@ -50,51 +49,6 @@ function CreateItemForm() {
         toggleLoading(false)
     }
 
-
-    // async function onSubmit(data) {
-    //     console.log(data)
-    //     toggleLoading(true)
-    //     try {
-    //         await axios.post("http://localhost:8080/customer", {
-    //             method: "POST",
-    //             headers: {"Content-Type": "application/json"},
-    //             body: JSON.stringify(customer)
-    //         }).then(() => {
-    //             console.log("New customer added")
-    //         })
-    //         toggleRegisterSucces(true)
-    //         setTimeout(() => {
-    //             history.push("http://localhost:3000");
-    //         }, 2000)
-    //
-    //     } catch (e) {
-    //         console.error(e)
-    //     }
-    //     toggleLoading(false)
-    // }
-
-
-    //         const result = await axios.post("http://localhost:3000/item",
-    //             {
-    //                 type: data.type,
-    //                 // item: data.item,
-    //                 picture: data.picture,
-    //                 name: data.name,
-    //                 price: data.price,
-    //                 description: data.description,
-    //                 count: data.count,
-    //             })
-    //         console.log(result)
-    //         toggleRegisterSucces(true)
-    //         setTimeout(() => {
-    //             history.push("http://localhost:3000");
-    //         }, 2000)
-    //
-    //     } catch (e) {
-    //         console.error(e)
-    //     }
-    //     toggleLoading(false)
-    // }
 
     return (
         <>
@@ -204,13 +158,14 @@ function CreateItemForm() {
                             })}
                             errors={errors}
                         />
+                        {loading === true &&
+                        <span>Loading...</span>}
 
 
                         {registerSucces === true &&
-                        <span>Sign up succeeded</span>}
+                        <span>New item created succeeded</span>}
 
-                        {loading === true &&
-                        <span>Loading...</span>}
+
 
 
                         <button
@@ -219,6 +174,7 @@ function CreateItemForm() {
                             name="submitButton"
                             disabled={pristine}> CREATE ITEM
                         </button>
+
                     </fieldset>
                 </form>
             </div>

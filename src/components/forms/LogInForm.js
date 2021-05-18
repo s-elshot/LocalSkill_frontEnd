@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import './LogInForm.css';
 import FormInputComponent from "./FormInputComponent";
 // import formPeople from "../../assets/backgrounds/logIn.png";
+// import lady from "../../assets/mobileIcons/pexels-photo-5915140.png";
 
 
 function LogInForm() {
@@ -18,7 +19,7 @@ function LogInForm() {
 
     return (
         <>
-            {/*<img className="signUpBackground" src={formPeople} alt="people"/>*/}
+            {/*<img className="signUpBackground" src={lady} alt="people"/>*/}
             <form onSubmit={handleSubmit(onSubmit)} className="logInForm">
 
                 <fieldset className="formField">

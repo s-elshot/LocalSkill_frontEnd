@@ -1,16 +1,11 @@
 import React, {Fragment} from 'react';
-import OrderForm from "../components/forms/OrderForm";
-import Order from "../components/object/Order";
-
-
+import OrderForm from "../../components/forms/OrderForm";
 
 function Orders() {
 
     return (
         <Fragment>
-            <Order/>
             <OrderForm/>
-
         </Fragment>
     );
 }
