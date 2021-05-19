@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Link, useParams} from "react-router-dom";
-import posts from "../data/item.json"
+
 
 import {UserContext} from "../../context/UserContext";
 
@@ -9,13 +9,16 @@ function ItemPost() {
     // destructures the id from app.js(navigation - line 91)
 
     const {
+        items,
         addToCart,
     } = useContext(UserContext)
 
 
     const {id} = useParams();
-    const currentItem = posts.find((post) => {
-        return post.id === id;
+    console.log(id,typeof id)
+    const currentItem = items.find((post) => {
+
+        return post.id === parseInt(id);
 
     });
 

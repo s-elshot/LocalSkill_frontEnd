@@ -28,9 +28,9 @@ function App() {
     return (
 
             <UserContextProvider value={data}>
-                {/*<nav>*/}
-                {/*    <Navigation/>*/}
-                {/*</nav>*/}
+                <nav>
+                    <Navigation/>
+                </nav>
 
                 <Switch>
 
@@ -83,9 +83,6 @@ function App() {
 
                 </Switch>
 
-                <nav>
-                    <Navigation/>
-                </nav>
 
             </UserContextProvider>
 

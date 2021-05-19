@@ -1,5 +1,6 @@
 import React, {
-    Fragment, useContext,
+    Fragment, useContext
+    // , useState,
 
     // useState
     // , useEffect
@@ -7,7 +8,7 @@ import React, {
 } from 'react';
 // import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-// import {NavLink} from "react-router-dom";
+
 import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg"
 
 
@@ -20,36 +21,13 @@ function ItemsInPossesion() {
         users,
         error,
         loading,
-
     } = useContext(UserContext)
 
     // const [searchUsers, setSearchUsers] = useState("");
-
-
-
-
-
-
-    console.log(users);
-
-    // const data = {
-    //     title: "title1",
-    //     bar: "asdf",
-    //     innerData: [
-    //         {
-    //             title: "inner-title1",
-    //             foo: "asdf"
-    //         },
-    //         {
-    //             title: "inner-title2",
-    //             foo: "asdf"
-    //         }
-    //     ]
-    // };
-    //
-    // const innerData = JSON.parse(JSON.stringify([data, ...data.innerData], ["title"]))
-    //
-    // console.log(innerData);
+    const userId = 1;
+    const val = users.find(user =>{
+        return user.id=== userId
+    })
 
 
 
@@ -62,28 +40,51 @@ function ItemsInPossesion() {
             }
             {error && <div>ERROR: {error}</div>}
 
-            <h2 className="formHeader">SEARCH</h2>
+            <h2 className="formHeader">CURRENT ITEMS</h2>
             {/*<input type="text" placeholder="Search email adress"*/}
             {/*       onChange={event => {*/}
             {/*           setSearchUsers(users)*/}
-
             {/*           console.log(users)*/}
             {/*           console.log(searchUsers)*/}
+            {/*           console.log(users[0].items[1].name)*/}
+
             {/*       }}/>*/}
 
+            { users &&
+                <div>ITEMS BELONGING TO THE ACCOUNT: {val.emailAdress}
+                    <div>{val.items.map((item, key) => {
+                        return <>
+                            <article>
+                                <h4>{item.name}</h4>
+                                <p>{item.description}</p>
+                                <p>€ {item.price}</p>
+                            </article>
+
+                        </>
+                    })}</div>
+                </div>
+            }
+
             {/*{users && users.map((val, key) => {*/}
+            {/*    */}
+            {/*    */}
             {/*    return <>*/}
-            {/*    <div>{val.emailAdress}</div>*/}
-            {/*    <ul>{val.items((sub)=>*/}
-            {/*    <li>*/}
-            {/*        {sub.name}*/}
-            {/*    </li>*/}
-            {/*    )}*/}
-            {/*    </ul>*/}
+            {/*        <div id={key}>{val.emailAdress}*/}
+            {/*            <div>{val.items.map((item, key)=>{*/}
+            {/*                return<>*/}
+            {/*                <p>{item.name}</p>*/}
+            {/*                </>*/}
+            {/*            })}</div>*/}
+            {/*        </div>*/}
+            {/*    /!*<ul>{val.items((sub)=>*!/*/}
+            {/*    /!*<li>*!/*/}
+            {/*    /!*    {sub.name}*!/*/}
+            {/*    /!*</li>*!/*/}
+            {/*    /!*)}*!/*/}
+            {/*    /!*</ul>*!/*/}
             {/*    </>*/}
             {/*})*/}
             {/*}*/}
-
 
         </Fragment>
     )

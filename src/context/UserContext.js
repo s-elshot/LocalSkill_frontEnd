@@ -20,42 +20,32 @@ function UserContextProvider({children}) {
     const itemLocation = "http://localhost:8080/item"
     const userLocation = "http://localhost:8080/customer"
 
-    // OLD DATA: REPLACED BY USE EFFECT!
-    // const fetchItems = () => {
-    //     axios.get("http://localhost:8080/item").then(res => {
-    //         setItems(res.data)
-    //     });
-    // };
-    //
-    //
-    // useEffect(() => {
-    //     fetchItems();
-    // }, [items]);
 
-    useEffect(()=> {
+    useEffect(() => {
 
         async function getAllItems() {
             toggleLoading(true)
             setError(false)
 
-        try {
-            const {data} = await axios.get(itemLocation);
-            setItems(data);
+            try {
+                const {data} = await axios.get(itemLocation);
+                setItems(data);
 
-        } catch (e) {
-            setError(e.message);
+            } catch (e) {
+                setError(e.message);
+            }
+            toggleLoading(false);
         }
-        toggleLoading(false);
-    }
+
         getAllItems()
     }, [itemLocation]);
 
-    useEffect(()=> {
+
+    useEffect(() => {
 
         async function getAllUsers() {
             toggleLoading(true)
             setError(false)
-
             try {
                 const {data} = await axios.get(userLocation);
                 setUsers(data);
@@ -80,7 +70,6 @@ function UserContextProvider({children}) {
     // },[])
 
 
-
     // DO SOMETHING WITH HISTORY.PUSH?????
     // REDIRECT COMPONENT NOT WORKING YET!!
 
@@ -89,16 +78,16 @@ function UserContextProvider({children}) {
     // REDIRECT COMPONENT NOT WORKING YET!!
 
 
-    useEffect(() =>{
+    useEffect(() => {
         cartInvoiceSum();
         // eslint-disable-next-line
-        }, [cart]);
+    }, [cart]);
 
     const minusCount = () => {
-        count > 0 ? setCount(count -1 ): setCount(0)
+        count > 0 ? setCount(count - 1) : setCount(0)
     }
     const plusCount = () => {
-        setCount( count + 1)
+        setCount(count + 1)
     }
 
     const cartInvoiceSum = () => {
@@ -142,7 +131,7 @@ function UserContextProvider({children}) {
         items: items,
         setItems: setItems,
         users: users,
-        setUsers:setUsers,
+        setUsers: setUsers,
 
         // login data
         currentLogIn: signedIn,

@@ -13,7 +13,7 @@ function Navigation() {
     return (
         <>
             <div className="navContainer">
-                {/*<h1>NAVIGATION</h1>*/}
+                <h1>NAVIGATION</h1>
                 <ul className="navUl">
 
                     <li className="navBarUl">

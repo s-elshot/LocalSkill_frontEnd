@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import './CreateItemForm.css';
 import axios from "axios";
-import {useHistory} from "react-router-dom"
+
 import FormInputComponent from "./FormInputComponent";
 
 
@@ -14,7 +14,7 @@ function CreateItemForm() {
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false)
-    const history = useHistory();
+
 
 
     async function onSubmit(data) {
@@ -26,7 +26,6 @@ function CreateItemForm() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
                 // const result = await axios.post("http://localhost:8080/customer",
-
                                 itemType: data.itemType,
                                 // item: data.item,
                                 // content: data.content,
@@ -34,13 +33,12 @@ function CreateItemForm() {
                                 price: data.price,
                                 description: data.description,
                                 count: data.count,
-
             }).then(() => {
                 console.log("New item added")
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000");
+                history.push("http://localhost:3000/");
             }, 2000)
 
         } catch (e) {
@@ -163,7 +161,7 @@ function CreateItemForm() {
 
 
                         {registerSucces === true &&
-                        <span>New item created succeeded</span>}
+                        <span>New item creation succeeded</span>}
 
 
 
