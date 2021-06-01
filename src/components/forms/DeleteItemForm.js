@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 
-import './CreateItemForm.css';
+import './CreateItemForm.module.css';
 import axios from "axios";
 import {NavLink, useHistory} from "react-router-dom"
 

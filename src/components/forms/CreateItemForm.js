@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-import './CreateItemForm.css';
+import styles from './CreateItemForm.module.css';
 import axios from "axios";
 
 import FormInputComponent from "./FormInputComponent";
@@ -54,25 +54,25 @@ function CreateItemForm() {
             <div className="formPositioning">
                 <form onSubmit={handleSubmit(onSubmit)} className="logInForm">
 
-                    <fieldset className="formField">
-                        <h2 className="formHeader">CREATE ITEM</h2>
+                    <fieldset className={styles.formField}>
+                        <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
                         <label htmlFor="product" id="radioSelector">
-                            <input type="radio" name="itemType" id="product"  {...register("itemType")}
+                            <input className={styles.createInput} type="radio" name="itemType" id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
-                            <input type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
+                            <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
 
-                        <label className="logInField">
-                            <input id="content" name="content" type="file" {...register("content")}/>
+                        <label className={styles.logInField}>
+                            <input className={styles.createInput} id="content" name="content" type="file" {...register("content")}/>
                         </label>
 
 
                         <FormInputComponent
                             type="text"
                             name="name"
-                            className="logInField"
+                            className={styles.logInField}
                             placeHolder="Item name"
                             fieldRef={register('name', {
                                 required: {
@@ -95,7 +95,7 @@ function CreateItemForm() {
                             type="number"
                             name="price"
                             step="0.01"
-                            className="logInField"
+                            className={styles.logInField}
                             placeHolder="Item price"
                             fieldRef={register('price', {
                                 required: {
@@ -117,7 +117,7 @@ function CreateItemForm() {
                         <FormInputComponent
                             type="text"
                             name="description"
-                            className="logInField"
+                            className={styles.logInField}
                             placeHolder="Item description"
                             fieldRef={register('description', {
                                 required: {
@@ -139,7 +139,7 @@ function CreateItemForm() {
                         <FormInputComponent
                             type="number"
                             name="count"
-                            className="logInField"
+                            className={styles.logInField}
                             placeHolder="Item count"
                             fieldRef={register('count', {
                                 required: {
@@ -168,6 +168,7 @@ function CreateItemForm() {
 
 
                         <button
+                            className={styles.logInField}
                             type="submit"
                             id="confirmButton"
                             name="submitButton"

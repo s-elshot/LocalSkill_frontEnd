@@ -89,6 +89,7 @@ function Item() {
                 }
             }).map((item, index) => {
                 return <SingleItemComponent
+                    key={index}
                     index={index}
                     item={item}
                     addToCart={addToCart}

@@ -8,7 +8,7 @@ import Entrance from "./pages/entrance/Entrance";
 import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
 import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/logIn/Login";
-import WebNavigation from "./components/navigation/WebNavigation";
+// import WebNavigation from "./components/navigation/WebNavigation";
 import Overview from "./pages/overview/Overview";
 import SignUpCustomer from "./pages/signUp/SignUpCustomer";
 import SignUpGuilder from "./pages/signUp/SignUpGuilder";
@@ -30,7 +30,7 @@ function App() {
 
             <UserContextProvider value={data}>
                 <nav>
-                    <WebNavigation/>
+                    <MobileNavigation/>
                 </nav>
 
                 <Switch>
@@ -84,9 +84,9 @@ function App() {
 
                 </Switch>
 
-                <nav>
-                    <MobileNavigation/>
-                </nav>
+                {/*<nav>*/}
+                {/*    <MobileNavigation/>*/}
+                {/*</nav>*/}
 
             </UserContextProvider>
 

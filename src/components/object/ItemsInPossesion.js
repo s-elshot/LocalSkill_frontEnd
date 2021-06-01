@@ -25,11 +25,10 @@ function ItemsInPossession() {
 
     // const [searchUsers, setSearchUsers] = useState("");
     const userId = 1;
-    const val = users.find(user =>{
-        return user.id=== userId
+    const val = users.find(user => {
+        return user.id === userId
     })
-    
-    
+
 
     return (
         <Fragment>
@@ -50,19 +49,16 @@ function ItemsInPossession() {
 
             {/*       }}/>*/}
 
-            { users &&
-                <div>ITEMS BELONGING TO THE ACCOUNT: {val.emailAdress}
-                    <div>{val.items.map((item, key) => {
-                        return <>
-                            <article>
-                                <h4>{item.name}</h4>
-                                <p>{item.description}</p>
-                                <p>€ {item.price}</p>
-                            </article>
-
-                        </>
-                    })}</div>
-                </div>
+            {users &&
+            <div>ITEMS BELONGING TO THE ACCOUNT: {val.emailAdress}
+                <div>{val.items.map((item, index) => {
+                    return <article key={index}>
+                        <h4>{item.name}</h4>
+                        <p>{item.description}</p>
+                        <p>€ {item.price}</p>
+                    </article>
+                })}</div>
+            </div>
             }
 
             {/*{users && users.map((val, key) => {*/}

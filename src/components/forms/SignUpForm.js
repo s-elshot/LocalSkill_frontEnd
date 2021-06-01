@@ -1,11 +1,12 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import './SignUpForm.css';
 // import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
 import axios from "axios";
-
+import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
+import styles from "./SignUpForm.module.css";
 
 
 function SignUpForm() {
@@ -15,28 +16,27 @@ function SignUpForm() {
     const [registerSucces, toggleRegisterSucces] = useState(false);
 
 
-
     const history = useHistory();
 
     async function onSubmit(data) {
         console.log(data)
         toggleLoading(true)
         try {
-            await axios.post("http://localhost:8080/customer",{
+            await axios.post("http://localhost:8080/customer", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
                 // const result = await axios.post("http://localhost:8080/customer",
 
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        age: data.age,
-                        emailAdress: data.emailAdress,
-                        areaCode: data.areaCode,
-                        city: data.city,
-                        guild: data.guild,
-                        password: data.password,
-                        userRole: data.userRole
+                firstName: data.firstName,
+                lastName: data.lastName,
+                age: data.age,
+                emailAdress: data.emailAdress,
+                areaCode: data.areaCode,
+                city: data.city,
+                guild: data.guild,
+                password: data.password,
+                userRole: data.userRole
 
             }).then(() => {
                 console.log("New customer added")
@@ -57,12 +57,13 @@ function SignUpForm() {
         <>
 
             {/*<img className="signUpBackground" src={lampMan} alt="lampMan"/>*/}
+            <img className={styles.backgroundImage} src={womenWithGlasses} alt={womenWithGlasses}/>
             <form onSubmit={handleSubmit(onSubmit)}
-                  className="signUpFormBase">
+                  className={styles.signUpFormBase}>
 
 
-                <fieldset className="signUpForm">
-                    <h2 className="formHeader">SIGN UP</h2>
+                <fieldset className={styles.signUpForm}>
+                    <h2 className={styles.formHeader}>SIGN UP</h2>
 
                     <label htmlFor="userRole" id="radioSelector">
                         <input type="radio" name="userRole" id="customer"  {...register("userRole")}
@@ -74,7 +75,7 @@ function SignUpForm() {
                     <FormInputComponent
                         type="text"
                         name="firstName"
-                        className="signUpField"
+                        className={styles.signUpField}
                         placeHolder="First name"
                         fieldRef={register('firstName', {
                             required: {
@@ -95,7 +96,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="lastName"
                         placeHolder="Last name"
                         fieldRef={register('lastName', {
@@ -135,7 +136,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="emailAdress"
                         placeHolder="Email (for example: Email@gmail.com)"
                         fieldRef={register('emailAdress', {
@@ -153,7 +154,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="areaCode"
                         placeHolder="AreaCode (for example: 1066SP)"
                         fieldRef={register('areaCode', {
@@ -171,7 +172,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="city"
                         placeHolder="city (for example: Amsterdam)"
                         fieldRef={register('city', {
@@ -194,7 +195,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="guild"
                         placeHolder="Choose your guild"
                         fieldRef={register('guild', {
@@ -216,7 +217,7 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="password"
-                        className="signUpField"
+                        className={styles.signUpField}
                         name="password"
                         placeHolder="Please choose a password"
                         fieldRef={register('password', {
@@ -259,13 +260,14 @@ function SignUpForm() {
                     {/*/>*/}
 
                     {loading === true &&
-                    <span>                    <button
-                        type="submit"
-                        id="confirmButton"
-                        name="submitButton"
-                        disabled={pristine}>
-                        LOADING..
-                    </button></span>
+                    <span>
+                        <button
+                            type="submit"
+                            id="confirmButton"
+                            name="submitButton"
+                            disabled={pristine}>LOADING..
+                        </button>
+                    </span>
                     }
 
                     {registerSucces === true &&

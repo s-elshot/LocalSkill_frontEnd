@@ -75,7 +75,7 @@ function MobileNavigation() {
 
                                     {cart.length > 0 &&
                                     <>
-                                        <span> {cart.length} </span>
+                                        <span className={styles.navText}> {cart.length} </span>
                                     </>}
                                     <div className={styles.navText}>SHOPPING</div>
                                 </NavLink>

@@ -7,6 +7,7 @@
 /*    background-image: url("./../assets/desktop/Enter Screen.png");*/
 /*    background-repeat: no-repeat;*/
 /*}*/
+
 .entranceScreenContainer {
     display: flex;
     flex-direction: column;
@@ -14,15 +15,15 @@
     align-content: center;
 }
 .entrancePhoto {
-background: no-repeat center center fixed;
+    background: no-repeat center center fixed;
 }
 
 .enterText {
     font-family: "Segoe UI", sans-serif;
     color: #dedbdb;
     opacity: 40%;
-    top: 900px;
-    left: 1400px ;
+    left: 15%;
+    right: 15%;
     position: absolute;
     font-size: 60px;
 }
@@ -33,31 +34,36 @@ background: no-repeat center center fixed;
 
 .enterBanner {
     position: absolute;
-    top: 750px;
+    top: 642px;
+    width: 100%;
     align-items: center;
     justify-content: center;
     align-self: center;
     background-color: black;
     font-weight: bolder;
     font-family: "Segoe UI", sans-serif;
-    font-size: 22px;
-    height: 53px;
-    left: 1295px;
-
+    font-size: 20px;
     text-align-all: center;
-
-    width: 643px;
-    padding: 2px;
+    Opacity: 0.7;
+    padding: 15px;
     color: #ffffff;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+
 
 }
 
 .enterButtonContainer {
+    position: absolute;
+    width: 100%;
+    font-weight: bolder;
+    padding: 10px;
+    top: 700px;
     display: flex;
+    color: white;
     justify-content: space-around;
     align-content: center;
+    background-color: #ffffff;
+    opacity: 0.8;
+
 
 
 }
@@ -73,7 +79,6 @@ background: no-repeat center center fixed;
     padding: 3px;
     width: 300px;
     border-radius: 20px;
-
     color: #ffffff;
 
 
