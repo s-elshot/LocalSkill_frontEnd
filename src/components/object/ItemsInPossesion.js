@@ -15,7 +15,7 @@ import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-20
 // import {NavLink} from "react-router-dom";
 
 
-function ItemsInPossesion() {
+function ItemsInPossession() {
 
     const {
         users,
@@ -28,8 +28,8 @@ function ItemsInPossesion() {
     const val = users.find(user =>{
         return user.id=== userId
     })
-
-
+    
+    
 
     return (
         <Fragment>
@@ -91,4 +91,4 @@ function ItemsInPossesion() {
 }
 
 
-export default ItemsInPossesion;
+export default ItemsInPossession;

@@ -8,7 +8,7 @@ import Entrance from "./pages/entrance/Entrance";
 import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
 import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/logIn/Login";
-import Navigation from "./components/navigation/Navigation";
+import WebNavigation from "./components/navigation/WebNavigation";
 import Overview from "./pages/overview/Overview";
 import SignUpCustomer from "./pages/signUp/SignUpCustomer";
 import SignUpGuilder from "./pages/signUp/SignUpGuilder";
@@ -16,6 +16,7 @@ import UserContextProvider from "./context/UserContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
+import MobileNavigation from "./components/navigation/MobileNavigation";
 
 
 
@@ -29,7 +30,7 @@ function App() {
 
             <UserContextProvider value={data}>
                 <nav>
-                    <Navigation/>
+                    <WebNavigation/>
                 </nav>
 
                 <Switch>
@@ -83,6 +84,9 @@ function App() {
 
                 </Switch>
 
+                <nav>
+                    <MobileNavigation/>
+                </nav>
 
             </UserContextProvider>
 

@@ -17,9 +17,7 @@ function ItemPost() {
     const {id} = useParams();
     console.log(id,typeof id)
     const currentItem = items.find((post) => {
-
         return post.id === parseInt(id);
-
     });
 
 

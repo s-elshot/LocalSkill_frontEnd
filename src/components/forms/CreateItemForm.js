@@ -4,6 +4,7 @@ import './CreateItemForm.css';
 import axios from "axios";
 
 import FormInputComponent from "./FormInputComponent";
+import {useHistory} from "react-router-dom";
 
 
 // import lampMan from "../../assets/backgrounds/Image.png";
@@ -14,6 +15,7 @@ function CreateItemForm() {
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false)
+    const history = useHistory();
 
 
 
@@ -25,7 +27,6 @@ function CreateItemForm() {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                // const result = await axios.post("http://localhost:8080/customer",
                                 itemType: data.itemType,
                                 // item: data.item,
                                 // content: data.content,
