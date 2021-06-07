@@ -54,7 +54,7 @@ function SignUpForm() {
     }
 
     return (
-        <>
+        <div className={styles.container}>
 
             {/*<img className="signUpBackground" src={lampMan} alt="lampMan"/>*/}
             <img className={styles.backgroundImage} src={womenWithGlasses} alt={womenWithGlasses}/>
@@ -65,10 +65,10 @@ function SignUpForm() {
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP</h2>
 
-                    <label htmlFor="userRole" id="radioSelector">
-                        <input type="radio" name="userRole" id="customer"  {...register("userRole")}
+                    <label htmlFor="userRole" id="radioSelector" className={styles.radio}>
+                        <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}
                                value="CUSTOMER"/> Customer
-                        <input type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
+                        <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
                     </label>
 
 
@@ -281,7 +281,7 @@ function SignUpForm() {
                     </button>
                 </fieldset>
             </form>
-        </>
+        </div>
     )
 }
 

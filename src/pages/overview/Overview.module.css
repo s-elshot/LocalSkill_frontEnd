@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+
+}
+
+.overviewBackground {
+
+    /*position: fixed;*/
+    /*height: auto;*/
+    /*max-width: 300px;*/
+}
+
+.searchElement {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    color: blueviolet;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    border: none;
+    padding: 15px;
+    margin: 10px;
+
+}
+
+
+.formHeader {
+    color: #e7e7e7;
+    font-size: 35px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.input {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+
+.enterText {
+    font-family: "Segoe UI", sans-serif;
+    color: #000000;
+    /*position: fixed;*/
+    opacity: 80%;
+    left: 35%;
+    right: 35%;
+    font-size: 20px;
+    align-self: center;
+}
+
+.button {
+
+    border: none;
+    background: #a59e9e;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.img {
+    width: 6%;
+    height: auto;
+}

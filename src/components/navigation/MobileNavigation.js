@@ -23,7 +23,7 @@ function MobileNavigation() {
 
                     <li className={styles.mobNavUl}>
 
-                        <NavLink to="/" activeClassName="active-link">
+                        <NavLink to="/homePage" activeClassName="active-link">
                             <img className={styles.image} src={home} alt={home}/>
                             <div className={styles.navText}>HOME</div>
                         </NavLink>

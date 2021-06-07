@@ -8,6 +8,12 @@
 /*    background-repeat: no-repeat;*/
 /*}*/
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
 .entranceScreenContainer {
     display: flex;
     flex-direction: column;
@@ -20,12 +26,12 @@
 
 .enterText {
     font-family: "Segoe UI", sans-serif;
-    color: #dedbdb;
-    opacity: 40%;
-    left: 15%;
-    right: 15%;
-    position: absolute;
-    font-size: 60px;
+    color: #000000;
+    top: 100px;
+    align-self: center;
+    position: relative;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .jordan {
@@ -44,7 +50,7 @@
     font-family: "Segoe UI", sans-serif;
     font-size: 20px;
     text-align-all: center;
-    Opacity: 0.7;
+    Opacity: 70%;
     padding: 15px;
     color: #ffffff;
 

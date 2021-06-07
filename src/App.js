@@ -17,6 +17,7 @@ import ProfilePage from "./pages/profilePage/ProfilePage";
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
+import Home from "./pages/home/Home";
 
 
 
@@ -29,6 +30,7 @@ function App() {
     return (
 
             <UserContextProvider value={data}>
+
                 <nav>
                     <MobileNavigation/>
                 </nav>
@@ -38,6 +40,10 @@ function App() {
                     {/* basic functionality path*/}
                     <Route exact path={"/"}>
                         <Entrance/>
+                    </Route>
+
+                    <Route exact path={"/homePage"}>
+                        <Home/>
                     </Route>
 
                     <Route exact path={"/logIn"}>

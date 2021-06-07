@@ -1,19 +1,16 @@
-import React from 'react';
-import Item from "../../components/object/Item";
-import styles from "./Overview.module.css"
-import find from "../../assets/mobileIcons/Icon awesome-search@2x.png"
-// import overviewPic from "../../assets/desktop/backgrounds/Mask Group 1.png"
+import styles from "./home.module.css"
+import homePic from "../../assets/desktop/backgrounds/cropped_pexels-photo-5915140@2x.png";
+import React from "react";
+import find from "../../assets/mobileIcons/Icon awesome-search@2x.png";
 import OverviewComponent from "../../components/object/overviewComponent";
 
-function Overview() {
+function Home() {
 
     return (
         <div className={styles.container}>
-
-            {/*<img className={styles.overViewBackground} src={overviewPic} alt={overviewPic}/>*/}
+            <img className={styles.backgroundImage} src={homePic} alt={homePic}/>
             <h1 className={styles.enterText}>LOCAL SKILL</h1>
-
-            <h2 className={styles.formHeader}>SEARCH</h2>
+            <h1 className={styles.formHeader}>SEARCH</h1>
 
             <fieldset className={styles.searchElement}>
                 <input className={styles.input} type="text" placeholder="Search products / services"/>
@@ -34,11 +31,8 @@ function Overview() {
                 link="/signUp"
                 linkText="Sign up as a guilder today"
             />
-
-            <Item/>
-
         </div>
     );
 }
 
-export default Overview;
+export default Home;
