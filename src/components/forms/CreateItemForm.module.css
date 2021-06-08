@@ -1,18 +1,34 @@
-.formField {
+.container {
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
-    margin-top: 50px;
-    margin-left: 10px;
-    padding: 50px;
-    width: 400px;
-    height: 650px;
-    position: relative;
-    background: white;
-    border-radius: 10px;
-    border: none;
-    /*border-style: dotted ;*/
 }
+
+.signUpBackground {
+   margin: 0px;
+}
+
+.formBase {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+.formSet {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: -10%;
+    padding: 60px;
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-style: none;
+    z-index: 10;
+    filter: blur(2x);
+    opacity: 0.9;
+}
+
 
 .formHeader {
     color: #868484;
@@ -23,13 +39,33 @@
 .logInField {
     margin-top: 15px;
     margin-bottom: 15px;
-    width: 400px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
+    transition: transform 300ms ease-out;
 }
 
-.createItemField {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 400px;
+.logInField:hover {
+    transform: scale(1.05);
+}
+
+/*.createItemField {*/
+/*    margin-top: 15px;*/
+/*    margin-bottom: 15px;*/
+/*    width: 400px;*/
+/*}*/
+
+.radio {
+    color: #868484;
+}
+
+.contentUpload {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 50px
+
+
+
 }
 
 .createInput {
@@ -39,16 +75,15 @@
 
 
 
-#confirmButton {
+.confirmButton {
     margin-top: 40px;
     background: white;
     border-style: solid;
     border-color: black;
     border-width: 1px;
-
 }
 
-#confirmButton:hover {
+.confirmButton:hover {
     margin-top: 40px;
     background: black;
     color: white;
@@ -58,11 +93,7 @@
     transition: ease-in .7s;
 }
 
-#signUpError {
-    color: #f16767;
-    font-size: smaller;
-    font-family: "Segoe UI Semilight", sans-serif;
-}
+
 
 #radioSelector {
     font-size: smaller;

@@ -16,6 +16,7 @@ function Overview() {
             <h2 className={styles.formHeader}>SEARCH</h2>
 
             <fieldset className={styles.searchElement}>
+                <h2 className={styles.formHeader}>SEARCH</h2>
                 <input className={styles.input} type="text" placeholder="Search products / services"/>
                 <input className={styles.input} type="text" placeholder="Insert your price"/>
                 <button className={styles.button} type="submit"><img className={styles.img} src={find} alt={find}/></button>

@@ -27,7 +27,7 @@
     font-family: "Segoe UI", sans-serif;
     color: #ffffff;
     position: absolute;
-    top: 400px;
+    top: 250px;
     z-index: 10;
     left: 7%;
     font-weight: bolder;
@@ -63,7 +63,7 @@
     display: flex;
     position: absolute;
     opacity: 0.9;
-    top: 465px;
+    top: 330px;
     flex-direction: column;
     align-self: center;
     align-content: center;

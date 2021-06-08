@@ -13,17 +13,25 @@ function Entrance() {
 
 
     return (
-            <div className={styles.container}>
-                <h1 className={styles.enterText}>LOCAL SKILL</h1>
-                <img className={styles.entrancePhoto} src={photographer} alt="entrance"/>
-                <div className={styles.enterBanner}>LOCAL SKILL - bringing the hood together</div>
+        <div className={styles.container}>
+            <h1 className={styles.enterText}>LOCAL SKILL</h1>
+            <img className={styles.entrancePhoto} src={photographer} alt="entrance"/>
+            <div className={styles.enterBanner}><b>LOCAL SKILL</b> - bringing the hood together</div>
 
-                <span className={styles.enterButtonContainer}>
-                    <NavLink to="/signUp" activeClassName="entranceLink">SIGN UP</NavLink>
-                    <NavLink to="/overview" activeClassName="entranceLink">ENTER</NavLink>
-                    <NavLink to="/logIn" activeClassName="entranceLink">LOG IN</NavLink>
-                </span>
-            </div>
+            <div className={styles.enterButtonContainer}>
+                        <NavLink to="/signUp" activeClassName={styles.entranceLinkContainer}>
+                            <p className={styles.entranceLink}>SIGN UP</p>
+                        </NavLink>
+
+                        <NavLink to="/overview" activeClassName={styles.entranceLinkContainer}>
+                            <p className={styles.entranceLink}>ENTER</p>
+                        </NavLink>
+
+                        <NavLink to="/logIn" activeClassName={styles.entranceLinkContainer}>
+                            <p className={styles.entranceLink}>LOG IN</p>
+                        </NavLink>
+                </div>
+        </div>
     );
 }
 

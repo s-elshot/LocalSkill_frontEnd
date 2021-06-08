@@ -1,9 +1,9 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import './LogInForm.css';
+import styles from './LogInForm.module.css';
 import FormInputComponent from "./FormInputComponent";
 // import formPeople from "../../assets/backgrounds/logIn.png";
-// import lady from "../../assets/mobileIcons/pexels-photo-5915140.png";
+import guy from "../../assets/desktop/backgrounds/logIn.png";
 
 
 function LogInForm() {
@@ -16,21 +16,20 @@ function LogInForm() {
 
 
 
-
     return (
-        <>
-            {/*<img className="signUpBackground" src={lady} alt="people"/>*/}
-            <form onSubmit={handleSubmit(onSubmit)} className="logInForm">
+        <div className={styles.container}>
+            <img className={styles.signUpBackGround} src={guy} alt={guy}/>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.logInFormBase}>
 
-                <fieldset className="formField">
-                    <h2 className="formHeader">LOG IN</h2>
+                <fieldset className={styles.formField}>
+                    <h2 className={styles.formHeader}>LOG IN</h2>
 
 
 
                     <FormInputComponent
                         type="text"
                         name="formUserName"
-                        className="logInField"
+                        className={styles.logInField}
                         placeHolder="Username"
                         fieldRef={register('formUserName', {
                             required: {
@@ -49,7 +48,7 @@ function LogInForm() {
                     <FormInputComponent
                         type="password"
                         name="formPassword"
-                        className="logInField"
+                        className={styles.logInField}
                         placeHolder="Password"
                         fieldRef={register('formPassword', {
                             required: {
@@ -71,7 +70,7 @@ function LogInForm() {
                     <FormInputComponent
                         type="password"
                         name="repeatFormPassword"
-                        className="logInField"
+                        className={styles.logInField}
                         placeHolder="Repeat your password"
                         fieldRef={register('repeatFormPassword', {
                             required: {
@@ -92,16 +91,14 @@ function LogInForm() {
 
                     <button
                         type="submit"
-                        className="logInField"
+                        className={styles.confirmButton}
                         id="confirmButton"
                         name="submitButton"
                         disabled={pristine}> LOG IN
                     </button>
                 </fieldset>
             </form>
-
-
-        </>
+        </div>
     )
 }
 

@@ -5,6 +5,7 @@ import axios from "axios";
 
 import FormInputComponent from "./FormInputComponent";
 import {useHistory} from "react-router-dom";
+import guy from "../../assets/desktop/backgrounds/pexels-profile.png";
 
 
 // import lampMan from "../../assets/backgrounds/Image.png";
@@ -39,7 +40,7 @@ function CreateItemForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000/");
+                history.push("http://localhost:3000/profilePage");
             }, 2000)
 
         } catch (e) {
@@ -51,20 +52,21 @@ function CreateItemForm() {
 
     return (
         <>
-            <div className="formPositioning">
-                <form onSubmit={handleSubmit(onSubmit)} className="logInForm">
+            <div className={styles.container}>
+                <img className={styles.signUpBackGround} src={guy} alt={guy}/>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles.formBase}>
 
-                    <fieldset className={styles.formField}>
+                    <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        <label htmlFor="product" id="radioSelector">
+                        <label htmlFor="product" id="radioSelector" className={styles.radio}>
                             <input className={styles.createInput} type="radio" name="itemType" id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
                             <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
 
-                        <label className={styles.logInField}>
+                        <label className={styles.contentUpload}>
                             <input className={styles.createInput} id="content" name="content" type="file" {...register("content")}/>
                         </label>
 
@@ -168,7 +170,7 @@ function CreateItemForm() {
 
 
                         <button
-                            className={styles.logInField}
+                            className={styles.confirmButton}
                             type="submit"
                             id="confirmButton"
                             name="submitButton"
@@ -176,6 +178,7 @@ function CreateItemForm() {
                         </button>
 
                     </fieldset>
+
                 </form>
             </div>
         </>

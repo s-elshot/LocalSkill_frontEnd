@@ -34,14 +34,14 @@
 .signUpForm {
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-left: 10%;
     margin-right: -10%;
-    padding: 80px;
+    padding: 60px;
     width: 80%;
     background-color: #ffffff;
     /*height: 600px;*/
-    border-radius: 10px;
+    border-radius: 20px;
     border-style: none;
     z-index: 10;
     /*background-color: white;*/
@@ -53,23 +53,20 @@
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
     transition: transform 300ms ease-out;
 }
 .radio {
     color: #868484;
 }
 
-.input {
-    border: none;
-    border-bottom: 1px solid #525050;
-
-}
 .signUpField:hover {
     transform: scale(1.05);
 }
 
 
-#confirmButton {
+.confirmButton {
     margin-top: 40px;
     background: white;
     border-style: solid;
@@ -78,7 +75,7 @@
 
 }
 
-#confirmButton:hover {
+.confirmButton:hover {
     margin-top: 40px;
     background: black;
     color: white;
@@ -88,8 +85,3 @@
     transition: ease-in .7s;
 }
 
-#signUpError {
-    color: #f16767;
-    font-size: smaller;
-    font-family: "Segoe UI Semilight", sans-serif;
-}

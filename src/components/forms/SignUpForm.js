@@ -264,6 +264,7 @@ function SignUpForm() {
                         <button
                             type="submit"
                             id="confirmButton"
+                            className={styles.confirmButton}
                             name="submitButton"
                             disabled={pristine}>LOADING..
                         </button>
@@ -275,6 +276,7 @@ function SignUpForm() {
 
                     <button
                         type="submit"
+                        className={styles.confirmButton}
                         id="confirmButton"
                         name="submitButton"
                         disabled={pristine}> SIGN UP

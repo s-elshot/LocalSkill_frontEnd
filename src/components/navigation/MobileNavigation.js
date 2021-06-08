@@ -55,7 +55,7 @@ function MobileNavigation() {
                     {signedIn === true
                         ? <>
                             <li className={styles.mobNavUl}>
-                                <NavLink to="/profilePage" activeClassName="active-link">
+                                <NavLink to="/profile" activeClassName="active-link">
                                     <img className={styles.image} src={account} alt={account}/>
                                     <div className={styles.navText}>PROFILE</div>
                                 </NavLink>
@@ -97,7 +97,7 @@ function MobileNavigation() {
                             </li>
 
                             <li className={styles.mobNavUl}>
-                                <NavLink to="/loginButton" activeClassName="active-link">
+                                <NavLink to="/" activeClassName="active-link">
                                     <img className={styles.image} src={logout} alt={logout}/>
                                     {/*<LogInButton/>*/}
                                 </NavLink>

@@ -57,6 +57,7 @@ function ItemsInPossession() {
                         <p>{item.description}</p>
                         <p>€ {item.price}</p>
                     </article>
+
                 })}</div>
             </div>
             }

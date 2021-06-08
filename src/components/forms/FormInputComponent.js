@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from "./FormInputComponent.module.css"
 function FormInputComponent({type,step, name, placeHolder,fieldRef, className, errors,}) {
 
     return (
@@ -14,7 +14,7 @@ function FormInputComponent({type,step, name, placeHolder,fieldRef, className, e
                     placeholder={placeHolder}
                     {...fieldRef}
                 />
-                {errors[name] && <span id="signUpError"> {errors[name].message}</span>}
+                {errors[name] && <span id="signUpError" className={styles.error}> {errors[name].message}</span>}
             </label>
         </>
     )

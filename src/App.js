@@ -13,11 +13,16 @@ import Overview from "./pages/overview/Overview";
 import SignUpCustomer from "./pages/signUp/SignUpCustomer";
 import SignUpGuilder from "./pages/signUp/SignUpGuilder";
 import UserContextProvider from "./context/UserContext";
-import ProfilePage from "./pages/profilePage/ProfilePage";
+
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
 import Home from "./pages/home/Home";
+import Profile from "./pages/profilePage/Profile";
+import CreateItemForm from "./pages/profilePage/createItem/CreateItemForm";
+import UserDetails from "./pages/profilePage/userDetails/UserDetails";
+import ItemsInPossesion from "./pages/profilePage/itemsInPossesion/ItemsInPossesion";
+import OrdersInPossesion from "./pages/profilePage/orders/OrdersInPossesion";
 
 
 
@@ -50,11 +55,29 @@ function App() {
                         <Login/>
                     </Route>
 
-                    {/* Shopping pages*/}
-                    <Route exact path={"/profilePage"}>
-                        <ProfilePage/>
+                    {/* Profile pages*/}
+
+                    <Route exact path={"/profile"}>
+                        <Profile/>
                     </Route>
 
+                    <Route exact path={"/profile/orders"}>
+                        <OrdersInPossesion/>
+                    </Route>
+
+                    <Route exact path={"/profile/createItem"}>
+                        <CreateItemForm/>
+                    </Route>
+
+                    <Route exact path={"/profile/itemsInPossession"}>
+                        <ItemsInPossesion/>
+                    </Route>
+
+                    <Route exact path={"/profile/userDetails"}>
+                        <UserDetails/>
+                    </Route>
+
+                    {/* Shopping pages*/}
                     <Route path={"/overview"}>
                         <Overview/>
                     </Route>
@@ -83,6 +106,7 @@ function App() {
                     <Route path={"/orders"}>
                         <Orders/>
                     </Route>
+
 
                     <Route path="/item/:id" exact>
                         <ItemPost/>

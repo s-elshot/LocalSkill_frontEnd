@@ -1,0 +1,90 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.signUpBackGround {
+    height: auto;
+    width: auto;
+    z-index: 1;
+}
+
+.logInFormBase {
+    /*top:80px;*/
+    position: fixed;
+    /*margin-left: 2%;*/
+    z-index: 10;
+    /*background: red;*/
+    width: 100%;
+
+
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: -10%;
+    padding: 60px;
+    width: 80%;
+    background-color: #ffffff;
+    /*height: 600px;*/
+    border-radius: 20px;
+    border-style: none;
+    z-index: 10;
+    /*background-color: white;*/
+    filter: blur(2x);
+    opacity: 0.85;
+}
+
+/*.formItems {*/
+/*    display: flex;*/
+/*    align-items: flex-start;*/
+/*    flex-direction: column;*/
+/*}*/
+
+.logInField {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
+    transition: transform 300ms ease-out;
+}
+
+.logInField:hover {
+    transform: scale(1.05);
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #525050;
+}
+
+.formHeader {
+    color: #868484;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.confirmButton {
+    margin-top: 40px;
+    background: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+
+}
+
+.confirmButton:hover {
+    margin-top: 40px;
+    background: black;
+    color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    transition: ease-in .7s;
+}
+
