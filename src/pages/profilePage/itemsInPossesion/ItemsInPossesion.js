@@ -8,8 +8,11 @@ import React, {
 } from 'react';
 // import axios from "axios";
 import {UserContext} from "../../../context/UserContext";
-
+import styles from "./ItemsInPossesion.module.css"
+import background from "../../../assets/desktop/backgrounds/pexels-photo-pottery.png"
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
+import {NavLink} from "react-router-dom";
+
 
 
 // import {NavLink} from "react-router-dom";
@@ -24,14 +27,20 @@ function ItemsInPossession() {
     } = useContext(UserContext)
 
     // const [searchUsers, setSearchUsers] = useState("");
-    const userId = 1;
+    const userId = 2;
     const val = users.find(user => {
         return user.id === userId
     })
 
+    function removeItem() {
+        console.log("clicked")
+    }
 
     return (
         <Fragment>
+            <div className={styles.container}>
+            <img src={background} className={styles.background} alt={background}/>
+
             {loading && <>
                 <LoadingIcon className="loader"/>
                 <p>Loading....</p>
@@ -39,7 +48,8 @@ function ItemsInPossession() {
             }
             {error && <div>ERROR: {error}</div>}
 
-            <h2 className="formHeader">CURRENT ITEMS</h2>
+            <fieldset className={styles.profileOutline}>
+            <h2 className={styles.header}>CURRENT ITEMS</h2>
             {/*<input type="text" placeholder="Search email adress"*/}
             {/*       onChange={event => {*/}
             {/*           setSearchUsers(users)*/}
@@ -49,17 +59,24 @@ function ItemsInPossession() {
 
             {/*       }}/>*/}
 
+                {val.guild != null &&
+                <NavLink to={"/profile/createItem"}>
+                    <div className={styles.createButton}>CREATE NEW ITEM +</div>
+                </NavLink>
+                }
             {users &&
-            <div>ITEMS BELONGING TO THE ACCOUNT: {val.emailAdress}
                 <div>{val.items.map((item, index) => {
-                    return <article key={index}>
+                    return <article key={index} className={styles.itemCard}>
                         <h4>{item.name}</h4>
                         <p>{item.description}</p>
                         <p>€ {item.price}</p>
+                        {val.guild != null &&
+                        <button onClick={removeItem}>- remove from account</button>
+                        }
                     </article>
 
                 })}</div>
-            </div>
+
             }
 
             {/*{users && users.map((val, key) => {*/}
@@ -82,7 +99,8 @@ function ItemsInPossession() {
             {/*    </>*/}
             {/*})*/}
             {/*}*/}
-
+            </fieldset>
+            </div>
         </Fragment>
     )
 }

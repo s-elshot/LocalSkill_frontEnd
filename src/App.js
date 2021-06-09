@@ -39,6 +39,9 @@ function App() {
                 <nav>
                     <MobileNavigation/>
                 </nav>
+                {/*<nav>*/}
+                {/*    <WebNavigation/>*/}
+                {/*</nav>*/}
 
                 <Switch>
 

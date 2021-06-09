@@ -32,36 +32,45 @@ function Profile() {
             <div className={styles.container}>
                 <img className={styles.background} src={guy} alt={guy}/>
 
-                <fieldset className={styles.signUpForm}>
+                <fieldset className={styles.profileOutline}>
 
                     {users &&
-                    <div>MY PROFILE INFO:
-                        <ul>
-                            <li>Name: {val.firstName} {val.lastName}</li>
-                            <li>Email:{val.emailAdress}</li>
-                            <li>City: {val.city}</li>
+                    <div>
+                        <h2 className={styles.profileHeader}>YOUR PROFILE</h2>
+
+                        <ul className={styles.listOutline}>
+                            <h2 className={styles.profileName}>{val.firstName} {val.lastName}
+                                {val.guild != null && <> - {val.guild}</> }
+                            </h2>
+                            <li className={styles.listItem}><b>Email:</b> {val.emailAdress}</li>
+                            <li className={styles.listItem}><b>City:</b> {val.city}</li>
                             {val.guild != null &&
-                            <li>Guild: {val.guild}</li>
+                            <li className={styles.listItem}><b>Guild:</b> {val.guild}</li>
                             }
-                            <li>Type account: {val.userRole} {val.lastName}</li>
+                            <li className={styles.listItem}><b>Type account:</b> {val.userRole} </li>
+
+                            <div className={styles.navContainer}>
+                                <NavLink to={"/profile/itemsInPossession"} activeClassName={styles.entranceLinkContainer}>
+                                    {val.guild === null ?
+                                    <p className={styles.entranceLink}>PREVIOUSLY BOUGHT ITEMS</p> :
+                                        <p className={styles.entranceLink}>ITEMS IN POSSESSION</p>
+                                    }
+                                </NavLink>
+
+                                <NavLink to={"/profile/orders"} activeClassName={styles.entranceLinkContainer}>
+                                    <p className={styles.entranceLink}>YOUR ORDERS</p>
+                                </NavLink>
+
+                                <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
+                                    <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
+                                </NavLink>
+                            </div>
 
                         </ul>
                     </div>
                     }
 
-                    <div className={styles.navContainer}>
-                        <NavLink to={"/profile/itemsInPossession"} activeClassName={styles.entranceLinkContainer}>
-                            <p className={styles.entranceLink}>ITEMS IN POSSESSION</p>
-                        </NavLink>
 
-                        <NavLink to={"/profile/orders"} activeClassName={styles.entranceLinkContainer}>
-                            <p className={styles.entranceLink}>YOUR ORDERS</p>
-                        </NavLink>
-
-                        <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
-                            <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
-                        </NavLink>
-                    </div>
                 </fieldset>
             </div>
         </Fragment>

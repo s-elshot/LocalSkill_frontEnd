@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.background {
+    margin: 0px;
+}
+.header {
+    color: #868484;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.itemCard {
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    padding: 20px;
+    margin-top: 15px;
+    box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.75);
+}
+
+.createButton {
+    background-color: #000000;
+    padding: 10px;
+    font-size: 10px;
+   border-radius: 20px;
+    margin-top: 15px;
+    align-content: center;
+    /*font-weight: bold;*/
+    color: #ffffff;
+}
+
+
+.profileOutline {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: -10%;
+    padding: 30px;
+    width: 80%;
+    background-color: #fcfcfc;
+    /*height: 600px;*/
+    border-radius: 20px;
+    border-style: none;
+    z-index: 10;
+    /*background-color: white;*/
+    filter: blur(2x);
+    opacity: 0.91;
+    box-shadow: 0px 6px 18px -9px rgba(0,0,0,20);
+}
+
+.formHeader {
+
+}

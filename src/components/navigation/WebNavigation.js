@@ -37,7 +37,7 @@ function WebNavigation() {
                     {signedIn === true
                         ? <>
                             <li className={styles.navBarUl}>
-                                <NavLink to="/profilePage" activeClassName="active-link">PROFILE PAGE</NavLink>
+                                <NavLink to="/profile" activeClassName="active-link">PROFILE PAGE</NavLink>
                             </li>
 
                             <li className={styles.navBarUl}>

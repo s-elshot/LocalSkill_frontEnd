@@ -7,45 +7,70 @@
     margin: 0px;
 }
 
-.signUpForm {
+.profileOutline {
     position: absolute;
     display: flex;
     flex-direction: column;
+    /*align-items: center;*/
     margin-top: 100px;
     margin-left: 10%;
     margin-right: -10%;
     padding: 30px;
     width: 80%;
-
     background-color: #fcfcfc;
     /*height: 600px;*/
-    border-radius: 10px;
+    border-radius: 20px;
     border-style: none;
     z-index: 10;
     /*background-color: white;*/
     filter: blur(2x);
-    /*opacity: 0.9;*/
+    opacity: 0.91;
     box-shadow: 0px 6px 18px -9px rgba(0,0,0,20);
 }
 
+.listOutline {
+    list-style: none;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    padding: 20px;
+    /*box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.3);*/
+}
+
+.listItem {
+    padding: 5px;
+}
+
+.profileHeader {
+    color: #444343;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+.profileName {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #454545;
+    /*font-size: xx-large;*/
+}
 
 .entranceLink {
     color: #ffffff;
-    margin: 5px;
+    margin-top: 15px;
     padding: 10px;
     font-size: 10px;
+    align-content: center;
     /*font-weight: bolder;*/
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #000000;
 
     /*opacity: 0.70;*/
 }
 
 .navContainer {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*width: 400px;*/
+    align-content: space-evenly;
+
     /*align-self: center;*/
     /*alignment: center;*/
 
