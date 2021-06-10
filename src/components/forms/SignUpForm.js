@@ -65,7 +65,7 @@ function SignUpForm() {
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP</h2>
 
-                    <label htmlFor="userRole" id="radioSelector" className={styles.radio}>
+                    <label htmlFor="userRole" id="radioSelector" className={styles.radio} {...register("userRole", {required: true, message: 'This field must have input' })}>
                         <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}
                                value="CUSTOMER"/> Customer
                         <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder

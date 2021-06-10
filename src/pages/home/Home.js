@@ -1,5 +1,5 @@
 import styles from "./home.module.css"
-import homePic from "../../assets/desktop/backgrounds/cropped_pexels-photo-5915140@2x.png";
+import homePic from "../../assets/desktop/backgrounds/logIn.png";
 import React from "react";
 import find from "../../assets/mobileIcons/Icon awesome-search@2x.png";
 import OverviewComponent from "../../components/object/overviewComponent";

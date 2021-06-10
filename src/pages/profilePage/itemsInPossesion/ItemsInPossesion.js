@@ -9,7 +9,7 @@ import React, {
 // import axios from "axios";
 import {UserContext} from "../../../context/UserContext";
 import styles from "./ItemsInPossesion.module.css"
-import background from "../../../assets/desktop/backgrounds/pexels-photo-pottery.png"
+import background from "../../../assets/desktop/backgrounds/pexels-profile-2.png"
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
 import {NavLink} from "react-router-dom";
 
@@ -48,7 +48,7 @@ function ItemsInPossession() {
             }
             {error && <div>ERROR: {error}</div>}
 
-            <fieldset className={styles.profileOutline}>
+            <fieldset className={styles.outline}>
             <h2 className={styles.header}>CURRENT ITEMS</h2>
             {/*<input type="text" placeholder="Search email adress"*/}
             {/*       onChange={event => {*/}

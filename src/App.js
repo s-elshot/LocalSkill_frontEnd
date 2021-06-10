@@ -27,6 +27,7 @@ import OrdersInPossesion from "./pages/profilePage/orders/OrdersInPossesion";
 
 
 
+
 function App() {
 
     const data = {}
@@ -45,7 +46,8 @@ function App() {
 
                 <Switch>
 
-                    {/* basic functionality path*/}
+                     basic functionality path
+
                     <Route exact path={"/"}>
                         <Entrance/>
                     </Route>
@@ -110,16 +112,17 @@ function App() {
                         <Orders/>
                     </Route>
 
-
                     <Route path="/item/:id" exact>
                         <ItemPost/>
                     </Route>
+
 
                 </Switch>
 
                 {/*<nav>*/}
                 {/*    <MobileNavigation/>*/}
                 {/*</nav>*/}
+
 
             </UserContextProvider>
 

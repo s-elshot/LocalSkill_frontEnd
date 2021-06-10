@@ -1,14 +1,255 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
+import styles from "../userDetails/UserDetails.module.css";
+import background from "../../../assets/desktop/backgrounds/pexels-profile.png";
+import FormInputComponent from "../../../components/forms/FormInputComponent";
+import {useForm} from "react-hook-form";
+import {useHistory} from "react-router-dom";
+import axios from "axios";
+
 
 
 
 
 function UserDetails() {
 
+
+
+    const [loading, toggleLoading] = useState(false)
+    const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
+    const [registerSucces, toggleRegisterSucces] = useState(false);
+
+    const history = useHistory();
+
+    const userId = 2;
+    // const val = users.find(user => {
+    //     return user.id === userId
+    // })
+
+    async function onSubmit(data) {
+        console.log(data)
+        toggleLoading(true)
+        try {
+            await axios.put(`http://localhost:8080/customer/${userId}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify,
+                // const result = await axios.post("http://localhost:8080/customer",
+                firstName: data.firstName,
+                lastName: data.lastName,
+                age: data.age,
+                emailAdress: data.emailAdress,
+                areaCode: data.areaCode,
+                city: data.city,
+                guild: data.guild,
+                password: data.password,
+                userRole: data.userRole
+
+            }).then(() => {
+                console.log("Customer edited")
+
+            })
+            toggleRegisterSucces(true)
+            setTimeout(() => {
+                history.push("http://localhost:3000");
+            }, 2000)
+
+        } catch (e) {
+            console.error(e)
+        }
+        toggleLoading(false)
+    }
+
     return (
         <Fragment>
-            <h1>HI</h1>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur at aut commodi cupiditate debitis delectus deleniti, dolore dolorem earum esse excepturi, harum illum in laboriosam maxime modi molestiae numquam optio perferendis provident quasi quod recusandae reprehenderit similique sint, veritatis vitae. Adipisci alias aliquam aliquid aperiam, aspernatur autem beatae commodi consequatur culpa debitis delectus dolore eum exercitationem expedita explicabo harum id in incidunt iste itaque laudantium libero nam neque nesciunt obcaecati quaerat quibusdam quis sed voluptate, voluptatibus. Aliquid animi atque dolorem esse, est explicabo facere laboriosam natus officia perspiciatis quia sed sint sit vel voluptatum? Aliquid consequatur error illo nam reiciendis. Alias, dicta fuga fugiat ipsum iste magnam nemo odio reprehenderit totam ut. Ab aliquid animi cupiditate doloribus eveniet facere harum illum, ipsum, laudantium necessitatibus nihil officiis perferendis placeat porro, quod ratione repellendus similique! Aliquam amet aperiam at beatae dolore dolorem, et eveniet ex excepturi inventore ipsa ipsam laudantium magni neque nihil nobis pariatur perferendis possimus qui quidem repellat repellendus saepe, tenetur vel vero voluptate voluptatem! Aspernatur blanditiis cum cumque debitis dignissimos dolore doloribus eaque error esse explicabo facilis fuga in incidunt ipsa laboriosam laborum magni maxime modi nulla odio odit officia porro, recusandae rem reprehenderit sapiente soluta sunt suscipit voluptas voluptatum! Accusantium adipisci alias aperiam atque consectetur culpa cum cumque debitis distinctio doloremque dolores ea eius eligendi error eveniet ipsa, ipsam iste laudantium magni natus nemo nostrum numquam porro possimus quae quisquam quo quos ratione reiciendis rem repellat rerum tempore totam ut vitae voluptates voluptatum? At autem, commodi deserunt dolor error exercitationem laboriosam laudantium maxime mollitia nemo, odit officiis reiciendis repellat saepe sequi. Accusantium adipisci distinctio earum est inventore iure maxime minima, minus modi molestias odit optio sunt voluptatem? Assumenda blanditiis commodi distinctio dolor ducimus et hic impedit ipsum magni minus nesciunt nisi non odio officia pariatur perferendis provident quam, qui quia repellat repellendus tempora tenetur, totam unde ut velit voluptatibus. Aperiam architecto deleniti eligendi, explicabo fugiat nesciunt nulla quis tenetur voluptates voluptatibus. Assumenda atque beatae, earum facilis hic magnam nisi nulla obcaecati perferendis quae repellat, rerum sit tempora tempore vel? Cum fugiat itaque nisi voluptatibus. Beatae corporis laudantium quidem reiciendis! Aliquam commodi doloremque eum harum magnam, odio perspiciatis rem! A animi at aut doloribus eius eos error est et eveniet, excepturi facilis id incidunt libero magnam magni maiores minima molestiae natus necessitatibus, nemo omnis optio perferendis porro quas quasi quo repellat repellendus tempora vitae voluptates! Accusamus atque fugiat fugit mollitia nisi nostrum recusandae reiciendis voluptates! Aut consequatur dignissimos dolores explicabo fuga itaque nobis pariatur porro possimus ullam! A aliquam consequuntur deserunt eligendi esse est facere facilis in incidunt labore nemo, nisi nobis officia praesentium quod veniam vitae voluptate! Adipisci at consectetur, dolor earum esse excepturi facere magnam maxime nam nihil perferendis quos recusandae repellendus saepe similique unde ut? Dolorum ipsam sapiente similique velit! A ad consequuntur culpa doloremque dolores incidunt iusto nemo provident quaerat, qui, quia saepe sapiente, veritatis. Alias consequuntur dicta nesciunt unde velit. Beatae, corporis dolore incidunt iure magnam, maiores molestiae neque perferendis perspiciatis porro quae.</div>
+            <div className={styles.container}>
+                <img src={background} className={styles.background} alt={background}/>
+
+                <form onSubmit={handleSubmit(onSubmit)}
+                      className={styles.signUpFormBase}>
+
+
+                    <fieldset className={styles.signUpForm}>
+                        <h2 className={styles.formHeader}>EDIT ACCOUNT</h2>
+
+                        <label htmlFor="userRole" id="radioSelector" className={styles.radio}>
+                            <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}
+                                   value="CUSTOMER"/> Customer
+                            <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
+                        </label>
+
+
+                        <FormInputComponent
+                            type="text"
+                            name="firstName"
+                            className={styles.signUpField}
+                            placeHolder="Edit first name"
+                            fieldRef={register('firstName', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the first name',
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: 'At most 15 characters can be used to define the first name',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        <FormInputComponent
+                            type="text"
+                            className={styles.signUpField}
+                            name="lastName"
+                            placeHolder="Edit last name"
+                            fieldRef={register('lastName', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the last name',
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: 'At most 15 characters can be used to define the last name',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        <FormInputComponent
+                            type="text"
+                            className={styles.signUpField}
+                            name="emailAdress"
+                            placeHolder="Edit email (for example: Email@gmail.com)"
+                            fieldRef={register('emailAdress', {
+                                required: {
+                                    value: true,
+                                    message: 'This field cant be empty',
+                                },
+                                pattern: {
+                                    value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                                    message: 'Please insert a valid email-adress',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        <FormInputComponent
+                            type="text"
+                            className={styles.signUpField}
+                            name="areaCode"
+                            placeHolder="Edit AreaCode (for example: 1066SP)"
+                            fieldRef={register('areaCode', {
+                                required: {
+                                    value: false,
+                                    message: 'This field must have an input',
+                                },
+                                pattern: {
+                                    value: /([0-9]{4}[A-Z]{2})/,
+                                    message: 'Please insert a valid area code (with caps)',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        <FormInputComponent
+                            type="text"
+                            className={styles.signUpField}
+                            name="city"
+                            placeHolder="Edit city (for example: Amsterdam)"
+                            fieldRef={register('city', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the last name',
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: 'At most 15 characters can be used to define the last name',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+
+                        <FormInputComponent
+                            type="text"
+                            className={styles.signUpField}
+                            name="guild"
+                            placeHolder="Edit guild"
+                            fieldRef={register('guild', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the last name',
+                                },
+                                maxLength: {
+                                    value: 25,
+                                    message: 'At most 25 characters can be used to define the last name',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        <FormInputComponent
+                            type="password"
+                            className={styles.signUpField}
+                            name="password"
+                            placeHolder="Edit password"
+                            fieldRef={register('password', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the last name',
+                                },
+                                maxLength: {
+                                    value: 25,
+                                    message: 'At most 25 characters can be used to define the last name',
+                                },
+                            })}
+                            errors={errors}
+                        />
+
+                        {loading === true &&
+                        <span>
+                        <button
+                            type="submit"
+                            id="confirmButton"
+                            className={styles.confirmButton}
+                            name="submitButton"
+                            disabled={pristine}>LOADING..
+                        </button>
+                    </span>
+                        }
+
+                        {registerSucces === true &&
+                        <span>PROFILE EDIT SUCCEEDED</span>}
+
+                        <button
+                            type="submit"
+                            className={styles.confirmButton}
+                            id="confirmButton"
+                            name="submitButton"
+                            disabled={pristine}> CONFIRM ALTERATIONS
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
         </Fragment>
     );
 }

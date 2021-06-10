@@ -59,7 +59,7 @@ function CreateItemForm() {
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        <label htmlFor="product" id="radioSelector" className={styles.radio}>
+                        <label htmlFor="product" id="radioSelector" className={styles.radio} {...register("itemType", {required: true, message: 'This field must have input' })} >
                             <input className={styles.createInput} type="radio" name="itemType" id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
                             <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service

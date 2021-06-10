@@ -1,15 +1,9 @@
-import React, {
-    Fragment, useContext
-    // , useState,
-
-    // useState
-    // , useEffect
-
-} from 'react';
-// import axios from "axios";
+import React, {Fragment, useContext} from 'react';
 import {UserContext} from "../../../context/UserContext";
 
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
+import styles from "./OrdersInPossesion.module.css"
+import background from "../../../assets/desktop/backgrounds/logIn.png";
 
 
 // import {NavLink} from "react-router-dom";
@@ -23,69 +17,71 @@ function ItemsInPossession() {
         loading,
     } = useContext(UserContext)
 
-    // const [searchUsers, setSearchUsers] = useState("");
-    const userId = 2;
+    const userId = 2
     const val = users.find(user => {
         return user.id === userId
     })
 
 
+
     return (
         <Fragment>
-            {loading && <>
-                <LoadingIcon className="loader"/>
-                <p>Loading....</p>
-            </>
-            }
-            {error && <div>ERROR: {error}</div>}
+            <div className={styles.container}>
+                <img src={background} className={styles.background} alt={background}/>
+                {loading && <>
+                    <LoadingIcon className="loader"/>
+                    <p>Loading....</p>
+                </>
+                }
+                {error && <div>ERROR: {error}</div>}
 
-            <h2 className="formHeader">CURRENT ORDERS</h2>
-            {/*<input type="text" placeholder="Search email adress"*/}
-            {/*       onChange={event => {*/}
-            {/*           setSearchUsers(users)*/}
-            {/*           console.log(users)*/}
-            {/*           console.log(searchUsers)*/}
-            {/*           console.log(users[0].items[1].name)*/}
+                <fieldset className={styles.orderOutline}>
+                    <h2 className={styles.header}>ALL ORDERS</h2>
 
-            {/*       }}/>*/}
+                    {(users && val.invoices.length === 0 ?
+                            <>
+                                <article className={styles.orderCard}>
+                                    You don't have any orders yet
+                                </article>
+                            </> :
 
-            {users &&
-            <div>ORDERS BELONGING TO THE ACCOUNT: {val.emailAdress}
-                <div>{val.invoices.map((item, index) => {
-                    return <article key={index}>
-                        <h4>{item.id}</h4>
-                        <p>{item.description}</p>
-                        <p>{item.message}</p>
-                    </article>
+                            <div>{val.invoices.map((order, index) => {
+                                return <article key={index} className={styles.orderCard}>
+                                    <h3>ORDER: {order.id}</h3>
+                                    <p><b>Order description:</b> {order.description}</p>
 
-                })}</div>
+                                    {order.invoiceItems.length != null &&
+                                    <>
+                                        <h4>Items :</h4>
+                                        <div>{order.invoiceItems.map((item, index) => {
+                                            return < article key={index}>
+                                                <fieldset className={styles.orderedItemCard}>
+                                                    <h3>{item.name}</h3>
+                                                    <p className={styles.listItem}>
+                                                        <li>Description: {item.description}</li>
+                                                        <li>Type: {item.itemType}</li>
+                                                        <li>Price: €{item.price}</li>
+                                                    </p>
+                                                </fieldset>
+
+                                            </article>
+
+                                        })}</div>
+                                    </>
+                                    }
+
+                                    {val.message != null &&
+                                    <p><b>POSTED MESSAGES</b> {order.message}</p>
+                                    }
+
+
+                                </article>
+                            })}</div>
+                    )}
+                </fieldset>
             </div>
-            }
-
-            {/*{users && users.map((val, key) => {*/}
-            {/*    */}
-            {/*    */}
-            {/*    return <>*/}
-            {/*        <div id={key}>{val.emailAdress}*/}
-            {/*            <div>{val.items.map((item, key)=>{*/}
-            {/*                return<>*/}
-            {/*                <p>{item.name}</p>*/}
-            {/*                </>*/}
-            {/*            })}</div>*/}
-            {/*        </div>*/}
-            {/*    /!*<ul>{val.items((sub)=>*!/*/}
-            {/*    /!*<li>*!/*/}
-            {/*    /!*    {sub.name}*!/*/}
-            {/*    /!*</li>*!/*/}
-            {/*    /!*)}*!/*/}
-            {/*    /!*</ul>*!/*/}
-            {/*    </>*/}
-            {/*})*/}
-            {/*}*/}
-
         </Fragment>
     )
 }
-
 
 export default ItemsInPossession;

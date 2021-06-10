@@ -20,6 +20,7 @@ function Profile() {
     })
 
 
+
     return (
         <Fragment>
             {loading && <>
@@ -43,6 +44,7 @@ function Profile() {
                                 {val.guild != null && <> - {val.guild}</> }
                             </h2>
                             <li className={styles.listItem}><b>Email:</b> {val.emailAdress}</li>
+                            <li className={styles.listItem}><b>Area Code:</b> {val.areaCode}</li>
                             <li className={styles.listItem}><b>City:</b> {val.city}</li>
                             {val.guild != null &&
                             <li className={styles.listItem}><b>Guild:</b> {val.guild}</li>
@@ -62,7 +64,7 @@ function Profile() {
                                 </NavLink>
 
                                 <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
-                                    <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
+                                    <p className={styles.entranceLink}>EDIT YOUR ACCOUNT ?</p>
                                 </NavLink>
                             </div>
 
