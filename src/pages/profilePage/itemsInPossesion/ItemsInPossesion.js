@@ -11,7 +11,9 @@ import {UserContext} from "../../../context/UserContext";
 import styles from "./ItemsInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/pexels-profile-2.png"
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
+import axios from "axios";
+
 
 
 
@@ -24,6 +26,7 @@ function ItemsInPossession() {
         users,
         error,
         loading,
+        // toggleLoading
     } = useContext(UserContext)
 
     // const [searchUsers, setSearchUsers] = useState("");
@@ -32,9 +35,28 @@ function ItemsInPossession() {
         return user.id === userId
     })
 
-    function removeItem() {
-        console.log("clicked")
+
+    const history = useHistory();
+
+    async function removeItem({id}) {
+
+        // toggleLoading(true)
+        try {
+            await axios.delete(`http://localhost:8080/item/${id}`,{
+                method: "DELETE",
+            }).then(() => {
+                console.log("Item deleted")
+            })
+
+            setTimeout(() => {
+                history.push("http://localhost:3000/profile/itemsInPossession");
+            })
+        } catch (e) {
+            console.error(e)
+        }
+        // toggleLoading(false)
     }
+
 
     return (
         <Fragment>
@@ -42,7 +64,7 @@ function ItemsInPossession() {
             <img src={background} className={styles.background} alt={background}/>
 
             {loading && <>
-                <LoadingIcon className="loader"/>
+                <LoadingIcon className={styles.loader}/>
                 <p>Loading....</p>
             </>
             }
@@ -70,12 +92,15 @@ function ItemsInPossession() {
                         <h4>{item.name}</h4>
                         <p>{item.description}</p>
                         <p>€ {item.price}</p>
-                        {val.guild != null &&
-                        <button onClick={removeItem}>- remove from account</button>
+                        <p>ID: {item.id}</p>
+                        {val.guild != null && <>
+                        <button onClick={()=>removeItem(item)}>DELETE ITEM</button>
+                            </>
                         }
                     </article>
 
-                })}</div>
+                }
+                )}</div>
 
             }
 
@@ -101,6 +126,7 @@ function ItemsInPossession() {
             {/*}*/}
             </fieldset>
             </div>
+
         </Fragment>
     )
 }

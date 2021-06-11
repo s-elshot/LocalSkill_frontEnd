@@ -10,19 +10,17 @@ import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/logIn/Login";
 // import WebNavigation from "./components/navigation/WebNavigation";
 import Overview from "./pages/overview/Overview";
-import SignUpCustomer from "./pages/signUp/SignUpCustomer";
-import SignUpGuilder from "./pages/signUp/SignUpGuilder";
 import UserContextProvider from "./context/UserContext";
-
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profilePage/Profile";
-import CreateItemForm from "./pages/profilePage/createItem/CreateItemForm";
 import UserDetails from "./pages/profilePage/userDetails/UserDetails";
 import ItemsInPossesion from "./pages/profilePage/itemsInPossesion/ItemsInPossesion";
 import OrdersInPossesion from "./pages/profilePage/orders/OrdersInPossesion";
+import DeleteAccount from "./pages/profilePage/deleteAccount/DeleteAccount";
+import CreateItemForm from "./pages/profilePage/itemsInPossesion/CreateItemForm";
 
 
 
@@ -82,6 +80,10 @@ function App() {
                         <UserDetails/>
                     </Route>
 
+                    <Route exact path={"/profile/deleteAccount"}>
+                        <DeleteAccount/>
+                    </Route>
+
                     {/* Shopping pages*/}
                     <Route path={"/overview"}>
                         <Overview/>
@@ -94,18 +96,6 @@ function App() {
                     {/* Sign-up items*/}
                     <Route exact path={"/signUp"}>
                         <SignUp/>
-                    </Route>
-
-                    <Route exact path={"/signUpCustomer"}>
-                        <SignUpCustomer/>
-                    </Route>
-
-                    <Route exact path={"/signUpGuilder"}>
-                        <SignUpGuilder/>
-                    </Route>
-
-                    <Route path={"/shoppingCart"}>
-                        <ShoppingCart/>
                     </Route>
 
                     <Route path={"/orders"}>

@@ -3,9 +3,9 @@ import {useForm} from "react-hook-form";
 import styles from './CreateItemForm.module.css';
 import axios from "axios";
 
-import FormInputComponent from "./FormInputComponent";
+import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useHistory} from "react-router-dom";
-import guy from "../../assets/desktop/backgrounds/pexels-profile.png";
+import guy from "../../../assets/desktop/backgrounds/pexels-profile.png";
 
 
 // import lampMan from "../../assets/backgrounds/Image.png";
@@ -22,6 +22,7 @@ function CreateItemForm() {
 
     async function onSubmit(data) {
         console.log(data)
+        console.log(data.content.name)
         toggleLoading(true)
         try {
             await axios.post("http://localhost:8080/item",{
@@ -30,7 +31,7 @@ function CreateItemForm() {
                 body: JSON.stringify,
                                 itemType: data.itemType,
                                 // item: data.item,
-                                // content: data.content,
+                                content: data.content,
                                 name: data.name,
                                 price: data.price,
                                 description: data.description,

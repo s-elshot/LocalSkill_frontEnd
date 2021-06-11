@@ -6,7 +6,7 @@ import styles from "./OrdersInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/logIn.png";
 
 
-// import {NavLink} from "react-router-dom";
+
 
 
 function ItemsInPossession() {
@@ -16,6 +16,9 @@ function ItemsInPossession() {
         error,
         loading,
     } = useContext(UserContext)
+
+
+
 
     const userId = 2
     const val = users.find(user => {

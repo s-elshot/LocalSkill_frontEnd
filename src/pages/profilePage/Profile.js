@@ -64,8 +64,13 @@ function Profile() {
                                 </NavLink>
 
                                 <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
-                                    <p className={styles.entranceLink}>EDIT YOUR ACCOUNT ?</p>
+                                    <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
                                 </NavLink>
+
+                                <NavLink to="/profile/deleteAccount" activeClassName={styles.entranceLinkContainer}>
+                                    <p className={styles.entranceLink}>DELETE YOUR ACCOUNT</p>
+                                </NavLink>
+
                             </div>
 
                         </ul>
