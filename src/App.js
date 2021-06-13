@@ -21,6 +21,7 @@ import ItemsInPossesion from "./pages/profilePage/itemsInPossesion/ItemsInPosses
 import OrdersInPossesion from "./pages/profilePage/orders/OrdersInPossesion";
 import DeleteAccount from "./pages/profilePage/deleteAccount/DeleteAccount";
 import CreateItemForm from "./pages/profilePage/itemsInPossesion/CreateItemForm";
+import Favorites from "./pages/favorites/Favorites";
 
 
 
@@ -91,6 +92,10 @@ function App() {
 
                     <Route exact path={"/shoppingCart"}>
                         <ShoppingCart/>
+                    </Route>
+
+                    <Route exact path={"/favorites"}>
+                        <Favorites/>
                     </Route>
 
                     {/* Sign-up items*/}

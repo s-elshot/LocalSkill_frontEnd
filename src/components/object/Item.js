@@ -24,6 +24,8 @@ function Item() {
         cartTotal,
         error,
         loading,
+        addToFavorite,
+
         // fetchItems,
         // minusCount,
         // plusCount
@@ -94,21 +96,8 @@ function Item() {
                     item={item}
                     addToCart={addToCart}
                     removeFromCart={removeFromCart}
+                    addToFavorite={addToFavorite}
                 />
-
-                // <div key={index} className="item">
-                //     {/*<h3>{item.content}</h3>*/}
-                //     <NavLink exact to={`/Item/${item.id}`}>
-                //         <h3> {item.name}</h3>
-                //     </NavLink>
-                //     <p>description: {item.description}</p>
-                //     <p>price: €{item.price}</p>
-                //     <p>Kind of product:{item.itemType}</p>
-                //
-                //     <button onClick={() => addToCart(item)}>add to cart</button>
-                //     <button onClick={() => removeFromCart(item)}>remove from cart</button>
-                //
-                // </div>
 
             })}
         </Fragment>

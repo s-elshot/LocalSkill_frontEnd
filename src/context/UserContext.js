@@ -16,6 +16,8 @@ function UserContextProvider({children}) {
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState(false);
     const [users, setUsers] = useState("");
+    const [favorite, setFavorite] = useState([]);
+    const [favoriteTotal, setFavoriteTotal] = useState(0);
 
     const itemLocation = "http://localhost:8080/item"
     const userLocation = "http://localhost:8080/customer"
@@ -77,6 +79,43 @@ function UserContextProvider({children}) {
     // DO SOMETHING WITH HISTORY.PUSH?????
     // REDIRECT COMPONENT NOT WORKING YET!!
 
+    useEffect(() => {
+        favoriteInvoiceSum();
+        // eslint-disable-next-line
+    }, [favorite]);
+
+    const favoriteInvoiceSum = () => {
+        let totalSum = 0;
+        for (let i = 0; i < favorite.length; i++) {
+            totalSum += favorite[i].price
+        }
+        setFavoriteTotal(totalSum)
+    }
+
+    const addToFavorite = (item) => {
+
+        setFavorite([...favorite, item])
+        for (let i = 0; i < favorite.length; i++) {
+        }
+        console.log(favorite, favorite.length)
+    }
+
+    const removeFromFavorite = (item) => {
+        let copyOfFavorite = [...favorite]
+        copyOfFavorite = copyOfFavorite.filter(favoriteItem => favoriteItem.id !== item.id)
+        setFavorite(copyOfFavorite)
+        console.log(favorite, favorite.length)
+    }
+
+    const favoriteItems = favorite.map((item, index) => (
+        <div key={index} className="item">
+            <h4>{item.name}</h4>
+            <p>description: {item.description}</p>
+            <p>price: €{item.price}</p>
+            <button onClick={() => removeFromFavorite(item)}>Remove from favorites</button>
+        </div>
+    ))
+
 
     useEffect(() => {
         cartInvoiceSum();
@@ -112,6 +151,7 @@ function UserContextProvider({children}) {
         console.log(cart, cart.length)
     }
 
+
     const cartItems = cart.map((item, index) => (
         <div key={index} className="item">
             <h4>{item.name}</h4>
@@ -120,6 +160,8 @@ function UserContextProvider({children}) {
             <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
         </div>
     ))
+
+
 
     function changeState() {
         toggleSignedIn(!signedIn)
@@ -132,6 +174,14 @@ function UserContextProvider({children}) {
         setItems: setItems,
         users: users,
         setUsers: setUsers,
+
+        favorite: favorite,
+        setFavorite: setFavorite,
+        addToFavorite: addToFavorite,
+        removeFromFavorite: removeFromFavorite,
+        setFavoriteTotal: setFavoriteTotal,
+        favoriteTotal: favoriteTotal,
+        favoriteItems: favoriteItems,
 
         // login data
         currentLogIn: signedIn,

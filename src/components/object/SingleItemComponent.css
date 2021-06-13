@@ -21,7 +21,14 @@
     min-heigth:200px;
     width: 100%;
 }
+.buttonLayOut {
+    display: flex;
+    align-content: space-between;
 
+}
+.buttonElement {
+    margin: 3px;
+}
 .cardInfo {
     margin-top: -9px;
     border-radius: 10px;

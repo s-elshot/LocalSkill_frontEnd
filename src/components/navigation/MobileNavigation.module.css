@@ -31,15 +31,15 @@
 }
 
 .image {
-    width: 45%;
+    width: 35%;
     height: auto;
 }
 
 .navText{
-
     color: #d9d6d6;
     font-size: smaller;
 }
+
 
 .mobNavUl {
     display: flex;
@@ -66,8 +66,6 @@
 .navBarUl {
     padding: 1px 10px;
     margin: 1px 10px;
-
-
 }
 
 /*.navBarUl:hover {*/
@@ -83,6 +81,7 @@
     width: 20px;
     height: 20px;
 }
+
 
 /*.navBarUl:focus {*/
 /*    border-radius: 30px;*/

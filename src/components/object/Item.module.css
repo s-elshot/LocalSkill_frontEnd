@@ -1,0 +1,6 @@
+.loader {
+    width: 100px;
+    height: 100px;
+    animation: loadingSpin 7s linear infinite;
+}
+
