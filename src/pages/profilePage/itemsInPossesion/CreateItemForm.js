@@ -7,10 +7,6 @@ import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useHistory} from "react-router-dom";
 import guy from "../../../assets/desktop/backgrounds/pexels-profile.png";
 
-
-// import lampMan from "../../assets/backgrounds/Image.png";
-
-
 function CreateItemForm() {
 
     const [loading, toggleLoading] = useState(false)
@@ -18,24 +14,23 @@ function CreateItemForm() {
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
 
-
-
     async function onSubmit(data) {
         console.log(data)
         console.log(data.content.name)
         toggleLoading(true)
         try {
-            await axios.post("http://localhost:8080/item",{
+            await axios.post("http://localhost:8080/item", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                                itemType: data.itemType,
-                                // item: data.item,
-                                content: data.content,
-                                name: data.name,
-                                price: data.price,
-                                description: data.description,
-                                count: data.count,
+                itemType: data.itemType,
+                // item: data.item,
+                content: data.content,
+                name: data.name,
+                price: data.price,
+                description: data.description,
+                count: data.count,
+
             }).then(() => {
                 console.log("New item added")
             })
@@ -50,7 +45,6 @@ function CreateItemForm() {
         toggleLoading(false)
     }
 
-
     return (
         <>
             <div className={styles.container}>
@@ -61,16 +55,17 @@ function CreateItemForm() {
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
                         <label htmlFor="product" id="radioSelector" className={styles.radio}>
-                            <input className={styles.createInput} type="radio" name="itemType" id="product"  {...register("itemType")}
+                            <input className={styles.createInput} type="radio" name="itemType"
+                                   id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
-                            <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
+                            <input className={styles.createInput} type="radio" name="itemType"
+                                   id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
-
 
                         <label className={styles.contentUpload}>
-                            <input className={styles.createInput} id="content" name="content" type="file" {...register("content")}/>
+                            <input className={styles.createInput} id="content" name="content"
+                                   type="file" {...register("content")}/>
                         </label>
-
 
                         <FormInputComponent
                             type="text"
@@ -163,12 +158,8 @@ function CreateItemForm() {
                         {loading === true &&
                         <span>Loading...</span>}
 
-
                         {registerSucces === true &&
                         <span>New item creation succeeded</span>}
-
-
-
 
                         <button
                             className={styles.confirmButton}

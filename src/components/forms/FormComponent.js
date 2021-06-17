@@ -5,9 +5,7 @@ function FormComponent() {
 
     return (
         <>
-
             <FormInputComponent/>
-
         </>
     )
 }

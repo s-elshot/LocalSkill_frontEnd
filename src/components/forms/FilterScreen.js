@@ -5,7 +5,6 @@ import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
 
-
 function FilterScreen() {
 
     const [loading, toggleLoading] = useState(false)
@@ -13,7 +12,6 @@ function FilterScreen() {
     const [count, setCount] = useState(0)
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
-
 
     async function onSubmit(data) {
         console.log(data)
@@ -48,7 +46,6 @@ function FilterScreen() {
             {/*<img className="signUpBackground" src={lampMan} alt="lampMan"/>*/}
             <form onSubmit={handleSubmit(onSubmit)}
                   className="signUpFormBase">
-
 
                 <fieldset className="signUpForm">
                     <h2 className="formHeader">SHOPPING CART</h2>

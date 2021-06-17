@@ -49,12 +49,6 @@
     transform: scale(1.05);
 }
 
-/*.createItemField {*/
-/*    margin-top: 15px;*/
-/*    margin-bottom: 15px;*/
-/*    width: 400px;*/
-/*}*/
-
 .radio {
     color: #868484;
 }
@@ -63,17 +57,12 @@
     margin-top: 20px;
     margin-bottom: 10px;
     width: 50px
-
-
-
 }
 
 .createInput {
     border: none;
     border-bottom: 1px solid #525050;
 }
-
-
 
 .confirmButton {
     margin-top: 40px;

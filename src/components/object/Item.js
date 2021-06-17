@@ -3,20 +3,14 @@ import React, {
     // , useEffect
     , useState
 } from 'react';
-// import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-// import {NavLink} from "react-router-dom";
 import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg"
-// import {NavLink} from "react-router-dom";
 import SingleItemComponent from "./SingleItemComponent";
-
-// import SingleItemComponent from "./SingleItemComponent";
 
 
 function Item() {
 
     const {
-        // count,
         items,
         cart,
         addToCart,
@@ -25,26 +19,9 @@ function Item() {
         error,
         loading,
         addToFavorite,
-
-        // fetchItems,
-        // minusCount,
-        // plusCount
     } = useContext(UserContext)
-    // const [items, setItems] = useState(null);
     const [searchProductName, setSearchProductName] = useState("");
     const [searchPrice, setSearchPrice] = useState(0);
-
-    //
-    // const fetchItems = () => {
-    //     axios.get("http://localhost:8080/item").then(res => {
-    //         setItems(res.data)
-    //     });
-    // };
-    //
-    //
-    // useEffect(() => {
-    //     fetchItems();
-    // }, []);
 
 
     return (
@@ -103,6 +80,5 @@ function Item() {
         </Fragment>
     )
 }
-
 
 export default Item;

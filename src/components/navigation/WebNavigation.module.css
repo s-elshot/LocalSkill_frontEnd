@@ -1,7 +1,4 @@
-/*px solid red;*{*/
-/*  border: 1*/
 
-/*}*/
 .navContainer {
 background: transparent;
 /*position: fixed;*/
@@ -14,12 +11,9 @@ background: transparent;
     display: flex;
     padding: 2px 33px 2px 5px;
     justify-content: space-evenly;
-    /*padding: 5px;*/
     width: 100%;
-    /*text-transform: uppercase;*/
     letter-spacing: 2px;
     position: relative;
-    /*overflow: hidden;*/
     cursor: pointer;
 }
 
@@ -32,19 +26,14 @@ background: transparent;
     border-radius: 15px;
     padding: 0 10px;
     margin: 0 10px;
-    /*width: 1600px;*/
     font-family: "Segoe UI", serif;
     font-size: smaller;
-
 }
 
 
 .navBarUl {
-
     padding: 1px 10px;
     margin: 1px 10px;
-
-
 }
 
 .navBarUl:hover {
@@ -53,8 +42,6 @@ background: transparent;
     transition: ease-in .7s;
     background-color: black;
     text-decoration: none;
-
-
 }
 
 .navShoppingCart {
@@ -62,14 +49,6 @@ background: transparent;
     width: 20px;
     height: 20px;
 }
-
-/*.navBarUl:focus {*/
-/*    border-radius: 30px;*/
-
-/*    background-color: black;*/
-/*    text-decoration: none;*/
-
-/*}*/
 
 a:link {
     text-decoration: none;
@@ -89,25 +68,7 @@ a:focus {
     text-decoration: none;
     font-weight: bold;
     align-content: center;
-
-
 }
-
-
-/*.activeLink {*/
-/*    text-decoration: none;*/
-/*    color: black;*/
-/*}*/
-
-/*.activeLink {*/
-/*    text-decoration: none;*/
-/*    color: white;*/
-/*}*/
-
-
-
-
-
 
 
 

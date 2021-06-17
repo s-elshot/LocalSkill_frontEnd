@@ -19,8 +19,6 @@ function Profile() {
         return user.id === userId
     })
 
-
-
     return (
         <Fragment>
             {loading && <>
@@ -41,7 +39,7 @@ function Profile() {
 
                         <ul className={styles.listOutline}>
                             <h2 className={styles.profileName}>{val.firstName} {val.lastName}
-                                {val.guild != null && <> - {val.guild}</> }
+                                {val.guild != null && <> - {val.guild}</>}
                             </h2>
                             <li className={styles.listItem}><b>Email:</b> {val.emailAdress}</li>
                             <li className={styles.listItem}><b>Area Code:</b> {val.areaCode}</li>
@@ -52,9 +50,10 @@ function Profile() {
                             <li className={styles.listItem}><b>Type account:</b> {val.userRole} </li>
 
                             <div className={styles.navContainer}>
-                                <NavLink to={"/profile/itemsInPossession"} activeClassName={styles.entranceLinkContainer}>
+                                <NavLink to={"/profile/itemsInPossession"}
+                                         activeClassName={styles.entranceLinkContainer}>
                                     {val.guild === null ?
-                                    <p className={styles.entranceLink}>PREVIOUSLY BOUGHT ITEMS</p> :
+                                        <p className={styles.entranceLink}>PREVIOUSLY BOUGHT ITEMS</p> :
                                         <p className={styles.entranceLink}>ITEMS IN POSSESSION</p>
                                     }
                                 </NavLink>

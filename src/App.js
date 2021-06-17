@@ -3,14 +3,13 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-import React from "react";
+import React, {useContext} from "react";
 import Entrance from "./pages/entrance/Entrance";
 import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
 import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/logIn/Login";
-// import WebNavigation from "./components/navigation/WebNavigation";
 import Overview from "./pages/overview/Overview";
-import UserContextProvider from "./context/UserContext";
+import UserContextProvider, {UserContext} from "./context/UserContext";
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
@@ -22,6 +21,7 @@ import OrdersInPossesion from "./pages/profilePage/orders/OrdersInPossesion";
 import DeleteAccount from "./pages/profilePage/deleteAccount/DeleteAccount";
 import CreateItemForm from "./pages/profilePage/itemsInPossesion/CreateItemForm";
 import Favorites from "./pages/favorites/Favorites";
+import PrivateRoute from "./components/navigation/PrivateRoute";
 
 
 
@@ -31,7 +31,9 @@ function App() {
 
     const data = {}
 
+    const {signedIn} = useContext(UserContext)
 
+    console.log(signedIn)
     return (
 
             <UserContextProvider value={data}>
@@ -39,9 +41,6 @@ function App() {
                 <nav>
                     <MobileNavigation/>
                 </nav>
-                {/*<nav>*/}
-                {/*    <WebNavigation/>*/}
-                {/*</nav>*/}
 
                 <Switch>
 
@@ -61,63 +60,65 @@ function App() {
 
                     {/* Profile pages*/}
 
-                    <Route exact path={"/profile"}>
+
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile"}>
+                        {/*{ signedin ? <Component> : <Redirect to={"/"}}*/}
                         <Profile/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/profile/orders"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile/orders"}>
                         <OrdersInPossesion/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/profile/createItem"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile/createItem"}>
                         <CreateItemForm/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/profile/itemsInPossession"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile/itemsInPossession"}>
                         <ItemsInPossesion/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/profile/userDetails"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile/userDetails"}>
                         <UserDetails/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/profile/deleteAccount"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/profile/deleteAccount"}>
                         <DeleteAccount/>
-                    </Route>
+                    </PrivateRoute>
 
                     {/* Shopping pages*/}
-                    <Route path={"/overview"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/overview"}>
                         <Overview/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/shoppingCart"}>
+                    <PrivateRoute signedIn={signedIn} path={"/overview/:productType/:areaCode"}>
+                        <Overview/>
+                    </PrivateRoute>
+
+                    <PrivateRoute signedIn={signedIn} exact path={"/shoppingCart"}>
                         <ShoppingCart/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path={"/favorites"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/favorites"}>
                         <Favorites/>
-                    </Route>
+                    </PrivateRoute>
 
                     {/* Sign-up items*/}
-                    <Route exact path={"/signUp"}>
+                    <PrivateRoute signedIn={signedIn} exact path={"/signUp"}>
                         <SignUp/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route path={"/orders"}>
+                    <PrivateRoute signedIn={signedIn} path={"/orders"}>
                         <Orders/>
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route path="/item/:id" exact>
+                    <PrivateRoute signedIn={signedIn} path="/item/:id" exact>
                         <ItemPost/>
-                    </Route>
+                    </PrivateRoute>
+
 
 
                 </Switch>
-
-                {/*<nav>*/}
-                {/*    <MobileNavigation/>*/}
-                {/*</nav>*/}
-
 
             </UserContextProvider>
 

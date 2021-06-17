@@ -1,11 +1,17 @@
 import {Redirect, Route} from "react-router-dom";
+import {useContext} from "react";
+import {UserContext} from "../../context/UserContext";
 
-function PrivateRoute({children, signedIn, toggleSignedIn, ...rest}) {
+function PrivateRoute({children, toggleSignedIn, ...rest}) {
 
+    // zou overbodig moeten zijn
+    const {signedIn} = useContext(UserContext)
 
     return (
         <Route {...rest}>
-            {signedIn ? children : <Redirect to="http://localhost:3000/"/>}
+            <Route {...rest}>
+                {signedIn ? children : <Redirect to="/homePage" />}
+            </Route>
             </Route>
                 )
             }

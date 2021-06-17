@@ -1,13 +1,8 @@
 import React, {Fragment, useContext} from 'react';
 import {UserContext} from "../../../context/UserContext";
-
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
 import styles from "./OrdersInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/logIn.png";
-
-
-
-
 
 function ItemsInPossession() {
 
@@ -17,25 +12,22 @@ function ItemsInPossession() {
         loading,
     } = useContext(UserContext)
 
-
-
-
     const userId = 2
     const val = users.find(user => {
         return user.id === userId
     })
 
-
-
     return (
         <Fragment>
             <div className={styles.container}>
                 <img src={background} className={styles.background} alt={background}/>
+
                 {loading && <>
                     <LoadingIcon className="loader"/>
                     <p>Loading....</p>
                 </>
                 }
+
                 {error && <div>ERROR: {error}</div>}
 
                 <fieldset className={styles.orderOutline}>
@@ -76,7 +68,6 @@ function ItemsInPossession() {
                                     {val.message != null &&
                                     <p><b>POSTED MESSAGES</b> {order.message}</p>
                                     }
-
 
                                 </article>
                             })}</div>

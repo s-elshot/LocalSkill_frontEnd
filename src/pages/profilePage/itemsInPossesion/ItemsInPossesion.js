@@ -1,12 +1,4 @@
-import React, {
-    Fragment, useContext
-    // , useState,
-
-    // useState
-    // , useEffect
-
-} from 'react';
-// import axios from "axios";
+import React, {Fragment, useContext} from 'react';
 import {UserContext} from "../../../context/UserContext";
 import styles from "./ItemsInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/pexels-profile-2.png"
@@ -14,22 +6,14 @@ import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s
 import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
 
-
-
-
-// import {NavLink} from "react-router-dom";
-
-
 function ItemsInPossession() {
 
     const {
         users,
         error,
         loading,
-        // toggleLoading
     } = useContext(UserContext)
 
-    // const [searchUsers, setSearchUsers] = useState("");
     const userId = 2;
     const val = users.find(user => {
         return user.id === userId
@@ -72,14 +56,6 @@ function ItemsInPossession() {
 
             <fieldset className={styles.outline}>
             <h2 className={styles.header}>CURRENT ITEMS</h2>
-            {/*<input type="text" placeholder="Search email adress"*/}
-            {/*       onChange={event => {*/}
-            {/*           setSearchUsers(users)*/}
-            {/*           console.log(users)*/}
-            {/*           console.log(searchUsers)*/}
-            {/*           console.log(users[0].items[1].name)*/}
-
-            {/*       }}/>*/}
 
                 {val.guild != null &&
                 <NavLink to={"/profile/createItem"}>

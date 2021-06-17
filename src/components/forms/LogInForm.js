@@ -2,9 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import styles from './LogInForm.module.css';
 import FormInputComponent from "./FormInputComponent";
-// import formPeople from "../../assets/backgrounds/logIn.png";
 import guy from "../../assets/desktop/backgrounds/logIn.png";
-
 
 function LogInForm() {
 
@@ -13,9 +11,6 @@ function LogInForm() {
         console.log(data)
     };
 
-
-
-
     return (
         <div className={styles.container}>
             <img className={styles.signUpBackGround} src={guy} alt={guy}/>
@@ -23,8 +18,6 @@ function LogInForm() {
 
                 <fieldset className={styles.formField}>
                     <h2 className={styles.formHeader}>LOG IN</h2>
-
-
 
                     <FormInputComponent
                         type="text"
@@ -43,7 +36,6 @@ function LogInForm() {
                         })}
                         errors={errors}
                     />
-
 
                     <FormInputComponent
                         type="password"

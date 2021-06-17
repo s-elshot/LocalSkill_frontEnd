@@ -1,20 +1,16 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-
-// import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
 import axios from "axios";
 import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
 import styles from "./SignUpForm.module.css";
 
-
 function SignUpForm() {
 
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false);
-
 
     const history = useHistory();
 
@@ -26,8 +22,6 @@ function SignUpForm() {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                // const result = await axios.post("http://localhost:8080/customer",
-
                 firstName: data.firstName,
                 lastName: data.lastName,
                 age: data.age,
@@ -37,7 +31,6 @@ function SignUpForm() {
                 guild: data.guild,
                 password: data.password,
                 userRole: data.userRole
-
             }).then(() => {
                 console.log("New customer added")
 
@@ -60,7 +53,6 @@ function SignUpForm() {
             <img className={styles.backgroundImage} src={womenWithGlasses} alt={womenWithGlasses}/>
             <form onSubmit={handleSubmit(onSubmit)}
                   className={styles.signUpFormBase}>
-
 
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP</h2>

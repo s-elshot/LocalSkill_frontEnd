@@ -7,20 +7,24 @@ import OverviewComponent from "../../components/object/overviewComponent";
 
 function Overview() {
 
+    // check dynamic params
+    // niet undefined? Dan zoekopdracht triggeren waarin deze filters gebruikt eworden
+    // maak get request voor producten naar backend
+    // wel undefined? Dan "begin met zoeken laten zien
+
     return (
         <div className={styles.container}>
-
-            {/*<img className={styles.overViewBackground} src={overviewPic} alt={overviewPic}/>*/}
             <h1 className={styles.enterText}>LOCAL SKILL</h1>
 
             <h2 className={styles.formHeader}>SEARCH</h2>
 
             <fieldset className={styles.searchElement}>
-                {/*<h2 className={styles.formHeader}>SEARCH</h2>*/}
                 <input className={styles.input} type="text" placeholder="Search products / services"/>
                 <input className={styles.input} type="text" placeholder="Insert your price"/>
                 <button className={styles.button} type="submit"><img className={styles.img} src={find} alt={find}/></button>
             </fieldset>
+
+            begin met zoeken!
 
             <OverviewComponent
                 title="Explore your community"

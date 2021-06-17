@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styles from "./MobileNavigation.module.css"
 import {UserContext} from "../../context/UserContext";
-// import LogInButton from "../logIn/LoginButton";
 import favoriteImage from "../../assets/mobileIcons/Icon material-favorite-border-white.png"
 import favoriteImageFilled from "../../assets/mobileIcons/Icon material-favorite hart white fill.png"
 import home from "../../assets/mobileIcons/Icon awesome-home@2x.png"
@@ -14,12 +13,11 @@ import logout from "../../assets/mobileIcons/Icon open-account-logout@2x.png"
 
 function MobileNavigation() {
 
-    const {signedIn, cart,favorite} = useContext(UserContext)
+    const {signedIn, cart, favorite} = useContext(UserContext)
 
     return (
         <>
             <div className={styles.mobileNavContainer}>
-
                 <ul className={styles.mobNavUl}>
 
                     <li className={styles.mobNavUl}>
@@ -33,12 +31,10 @@ function MobileNavigation() {
                     {signedIn === false &&
                     <>
                         <li className={styles.mobNavUl}>
-
                             <NavLink to="/logIn" activeClassName="active-link">
                                 <img className={styles.image} src={logIn} alt={logIn}/>
                                 <div className={styles.navText}>LOG IN</div>
                             </NavLink>
-
                         </li>
 
                         <li className={styles.mobNavUl}>
@@ -46,21 +42,18 @@ function MobileNavigation() {
                                 <img className={styles.image} src={account} alt={account}/>
                                 <div className={styles.navText}>SIGNUP</div>
                             </NavLink>
-
                         </li>
-
                     </>
                     }
 
 
-                    {signedIn === true
-                        ? <>
+                    {signedIn === true &&
+                    <>
                             <li className={styles.mobNavUl}>
                                 <NavLink to="/profile" activeClassName="active-link">
                                     <img className={styles.image} src={account} alt={account}/>
                                     <div className={styles.navText}>PROFILE</div>
                                 </NavLink>
-
                             </li>
 
                             <li className={styles.mobNavUl}>
@@ -76,7 +69,10 @@ function MobileNavigation() {
 
                                     {cart.length > 0 &&
                                     <>
+                                        <div className={styles.circle}><div className={styles.circleNumber}>
                                         <span className={styles.navText}> {cart.length} </span>
+                                        </div>
+                                        </div>
                                     </>}
                                     <div className={styles.navText}>SHOPPING</div>
                                 </NavLink>
@@ -85,11 +81,11 @@ function MobileNavigation() {
                             <li className={styles.mobNavUl}>
                                 <NavLink to="/favorites" activeClassName="active-link">
                                     {favorite.length <= 0 ?
-                                    <img className={styles.image} src={favoriteImage} alt={favorite}/> :
-                                    <>
-                                        <img className={styles.image} src={favoriteImageFilled} alt={favorite}/>
-                                        <span className={styles.navText}>{favorite.length} </span>
-                                    </>}
+                                        <img className={styles.image} src={favoriteImage} alt={favorite}/> :
+                                        <>
+                                            <img className={styles.image} src={favoriteImageFilled} alt={favorite}/>
+                                            <span className={styles.navText}>{favorite.length} </span>
+                                        </>}
                                     <div className={styles.navText}>FAVORITES</div>
                                 </NavLink>
                             </li>
@@ -102,7 +98,6 @@ function MobileNavigation() {
                             </li>
 
                         </>
-                        : <Redirect to={"/"}/>
                     }
 
                 </ul>

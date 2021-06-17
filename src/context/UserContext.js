@@ -18,6 +18,12 @@ function UserContextProvider({children}) {
     const [users, setUsers] = useState("");
     const [favorite, setFavorite] = useState([]);
     const [favoriteTotal, setFavoriteTotal] = useState(0);
+    const [userDetail, setUserDetail] = useState({
+        email: "",
+        firstName: "Susanne",
+        lastName:"Bijwaard",
+        id:2,
+    });
 
     const itemLocation = "http://localhost:8080/item"
     const userLocation = "http://localhost:8080/customer"
@@ -104,7 +110,7 @@ function UserContextProvider({children}) {
         let copyOfFavorite = [...favorite]
         copyOfFavorite = copyOfFavorite.filter(favoriteItem => favoriteItem.id !== item.id)
         setFavorite(copyOfFavorite)
-        console.log(favorite, favorite.length)
+        // console.log(favorite, favorite.length)
     }
 
     const favoriteItems = favorite.map((item, index) => (
@@ -141,14 +147,14 @@ function UserContextProvider({children}) {
         setCart([...cart, item])
         for (let i = 0; i < cart.length; i++) {
         }
-        console.log(cart, cart.length)
+        // console.log(cart, cart.length)
     }
 
     const removeFromCart = (item) => {
         let copyOfCart = [...cart]
         copyOfCart = copyOfCart.filter(cartItem => cartItem.id !== item.id)
         setCart(copyOfCart)
-        console.log(cart, cart.length)
+        // console.log(cart, cart.length)
     }
 
 
@@ -166,6 +172,9 @@ function UserContextProvider({children}) {
     function changeState() {
         toggleSignedIn(!signedIn)
     }
+
+    useEffect(() => {
+    }, [signedIn]);
 
     const data = {
         // items data
@@ -188,6 +197,8 @@ function UserContextProvider({children}) {
         signedIn: signedIn,
         changeState: changeState,
         toggleSignedIn: toggleSignedIn,
+        userDetail: userDetail,
+        setUserDetail: setUserDetail,
 
         // functionality
         loading: loading,

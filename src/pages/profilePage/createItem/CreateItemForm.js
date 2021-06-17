@@ -2,14 +2,9 @@ import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import styles from './CreateItemForm.module.css';
 import axios from "axios";
-
 import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useHistory} from "react-router-dom";
 import guy from "../../../assets/desktop/backgrounds/pexels-profile-2.png";
-
-
-// import lampMan from "../../assets/backgrounds/Image.png";
-
 
 function CreateItemForm() {
 
@@ -17,8 +12,6 @@ function CreateItemForm() {
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
-
-
 
     async function onSubmit(data) {
         console.log(data)
@@ -49,7 +42,6 @@ function CreateItemForm() {
         toggleLoading(false)
     }
 
-
     return (
         <>
             <div className={styles.container}>
@@ -65,11 +57,9 @@ function CreateItemForm() {
                             <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
-
                         <label className={styles.contentUpload}>
                             <input className={styles.createInput} id="content" name="content" type="file" {...register("content")}/>
                         </label>
-
 
                         <FormInputComponent
                             type="text"
@@ -162,12 +152,8 @@ function CreateItemForm() {
                         {loading === true &&
                         <span>Loading...</span>}
 
-
                         {registerSucces === true &&
                         <span>New item creation succeeded</span>}
-
-
-
 
                         <button
                             className={styles.confirmButton}

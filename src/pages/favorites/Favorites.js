@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react";
 
 import styles from "./Favorites.module.css";
-import guy from "../../assets/desktop/backgrounds/pexels-photo-pottery.png";
+import guy from "../../assets/desktop/backgrounds/shoppingcart.png";
 import {UserContext} from "../../context/UserContext";
 
 
@@ -14,33 +14,6 @@ function Favorites (){
         removeFromFavorite,
     } = useContext(UserContext)
 
-
-    // async function onSubmit() {
-    //
-    //
-    //     try {
-    //         await axios.post("http://localhost:8080/invoice", {
-    //             method: "POST",
-    //             headers: {"Content-Type": "application/json"},
-    //             body: JSON.stringify,
-    //
-    //             invoiceItems: cart
-    //
-    //         }).then(() => {
-    //             console.log("Checkout succeeded")
-    //         })
-    //         toggleRegisterSucces(true)
-    //         setCart(null)
-    //         setTimeout(() => {
-    //             history.push("http://localhost:3000/order");
-    //         }, 2000)
-    //
-    //     } catch (e) {
-    //         console.error(e)
-    //     }
-    //
-    // }
-
     useEffect(() => {
         fetch("http://localhost:8080/customer")
             .then(res => {
@@ -48,11 +21,6 @@ function Favorites (){
             }).then(data => {
         })
     }, [])
-
-    console.log(favorite)
-
-
-
 
     return (
         <>
@@ -67,7 +35,8 @@ function Favorites (){
                             <p>description: {item.description}</p>
                             <p>price: €{item.price}</p>
                             <button onClick={() => removeFromFavorite(item)}>Remove from Favorites</button>
-                            <button onClick={()=> addToCart(item)}>Add to Shopping Cart</button>
+                            {/* eslint-disable-next-line no-sequences */}
+                            <button onClick={()=> (addToCart(item),removeFromFavorite(item)) }>Add to Shopping Cart</button>
                         </div>))
                     }
                     {favorite.length > 0 && <>

@@ -5,7 +5,6 @@ import axios from "axios";
 import {useHistory} from "react-router-dom"
 import FormInputComponent from "./FormInputComponent";
 
-
 function OrderForm() {
 
     const [loading, toggleLoading] = useState(false)
@@ -13,7 +12,6 @@ function OrderForm() {
     // const [count, setCount] = useState(0)
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
-
 
     async function onSubmit(data) {
         console.log(data)
@@ -49,17 +47,8 @@ function OrderForm() {
             <form onSubmit={handleSubmit(onSubmit)}
                   className="signUpFormBase">
 
-
                 <fieldset className="signUpForm">
                     <h2 className="formHeader">SHOPPING CART</h2>
-
-                    {/*<p>{count}</p>*/}
-                    {/*<button type="button" onClick={()=> count > 0 ? setCount(count -1 ): setCount(0)}>-</button>*/}
-                    {/*<button type="button" onClick={()=> setCount(count+1)}>+*/}
-
-                    {/*</button>*/}
-                    {/*<button type="button" onClick={()=> setCount(0)}>RESET</button>*/}
-
 
                     <textarea>Write your Message</textarea>
                     <FormInputComponent
@@ -80,13 +69,11 @@ function OrderForm() {
                         errors={errors}
                     />
 
-
                     {registerSucces === true &&
                     <span>Sign up succeeded</span>}
 
                     {loading === true &&
                     <span>Loading...</span>}
-
 
                     <button
                         type="submit"

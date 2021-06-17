@@ -17,8 +17,6 @@
     z-index: 10;
     /*background: red;*/
     width: 100%;
-
-
 }
 
 .formField {
@@ -38,12 +36,6 @@
     filter: blur(2x);
     opacity: 0.85;
 }
-
-/*.formItems {*/
-/*    display: flex;*/
-/*    align-items: flex-start;*/
-/*    flex-direction: column;*/
-/*}*/
 
 .logInField {
     margin-top: 15px;
@@ -75,7 +67,6 @@
     border-style: solid;
     border-color: black;
     border-width: 1px;
-
 }
 
 .confirmButton:hover {

@@ -2,12 +2,9 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-
-
 }
 
 .overviewBackground {
-
     /*position: fixed;*/
     /*height: auto;*/
     /*max-width: 300px;*/
@@ -23,7 +20,6 @@
     border: none;
     padding: 15px;
     margin: 10px;
-
 }
 
 
@@ -40,14 +36,11 @@
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
-
 }
-
 
 .enterText {
     font-family: "Segoe UI", sans-serif;
     color: #000000;
-    /*position: fixed;*/
     opacity: 80%;
     left: 35%;
     right: 35%;
@@ -56,7 +49,6 @@
 }
 
 .button {
-
     border: none;
     background: #a59e9e;
     padding: 10px;

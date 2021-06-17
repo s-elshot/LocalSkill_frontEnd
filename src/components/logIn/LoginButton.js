@@ -7,12 +7,15 @@ function LogInButton() {
 
     const {changeState, signedIn} = useContext(UserContext)
 
+    console.log(signedIn)
+
     return (
         <>
             <button className="logInButton"
                 type="submit"
                 onClick={changeState}>
                 {signedIn ? 'UITLOGGEN' : 'INLOGGEN'}
+
             </button>
         </>
     );
