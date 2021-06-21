@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import LogInButton from "../../components/logIn/LoginButton";
-import LogInForm from "../../components/forms/LogInForm";
+import LogInForm from "./LogInForm";
 
 
 function LogIn() {

@@ -9,7 +9,7 @@ import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
 import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/logIn/Login";
 import Overview from "./pages/overview/Overview";
-import UserContextProvider, {UserContext} from "./context/UserContext";
+// import UserContextProvider, {UserContext} from "./context/UserContext";
 import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
@@ -22,6 +22,8 @@ import DeleteAccount from "./pages/profilePage/deleteAccount/DeleteAccount";
 import CreateItemForm from "./pages/profilePage/itemsInPossesion/CreateItemForm";
 import Favorites from "./pages/favorites/Favorites";
 import PrivateRoute from "./components/navigation/PrivateRoute";
+import NotFound from "./pages/notFound/NotFound";
+import {UserContext} from "./context/UserContext";
 
 
 
@@ -29,22 +31,22 @@ import PrivateRoute from "./components/navigation/PrivateRoute";
 
 function App() {
 
-    const data = {}
+    // const data = {}
 
     const {signedIn} = useContext(UserContext)
 
-    console.log(signedIn)
+
     return (
 
-            <UserContextProvider value={data}>
-
+            // <UserContextProvider value={data}>
+                <>
                 <nav>
                     <MobileNavigation/>
                 </nav>
 
                 <Switch>
 
-                     basic functionality path
+                     {/*basic functionality path*/}
 
                     <Route exact path={"/"}>
                         <Entrance/>
@@ -56,6 +58,10 @@ function App() {
 
                     <Route exact path={"/logIn"}>
                         <Login/>
+                    </Route>
+
+                    <Route exact path={"/signUp"}>
+                        <SignUp/>
                     </Route>
 
                     {/* Profile pages*/}
@@ -104,9 +110,6 @@ function App() {
                     </PrivateRoute>
 
                     {/* Sign-up items*/}
-                    <PrivateRoute signedIn={signedIn} exact path={"/signUp"}>
-                        <SignUp/>
-                    </PrivateRoute>
 
                     <PrivateRoute signedIn={signedIn} path={"/orders"}>
                         <Orders/>
@@ -116,11 +119,13 @@ function App() {
                         <ItemPost/>
                     </PrivateRoute>
 
-
+                    <Route exact path={"*"}>
+                        <NotFound/>
+                    </Route>
 
                 </Switch>
-
-            </UserContextProvider>
+            </>
+            // {/*// </UserContextProvider>*/}
 
 
     )

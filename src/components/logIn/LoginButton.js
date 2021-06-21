@@ -7,7 +7,7 @@ function LogInButton() {
 
     const {changeState, signedIn} = useContext(UserContext)
 
-    console.log(signedIn)
+
 
     return (
         <>

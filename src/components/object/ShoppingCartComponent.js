@@ -63,9 +63,9 @@ function ShoppingCartItem() {
                     id: userDetail.id
                 }
                 ,
-                invoiceItems:
-                    [{id:4 },{id:3}]
-
+            //     // invoiceItems:{
+            //     //     [{id:4 },{id:3}]
+            // }
                     //     () => {
                     //     let cartIds = []
                     //     for (let i = 0; i < cart.length; i++) {

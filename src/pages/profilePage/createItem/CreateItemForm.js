@@ -15,25 +15,30 @@ function CreateItemForm() {
 
     async function onSubmit(data) {
         console.log(data)
+        console.log(data.content)
         toggleLoading(true)
         try {
-            await axios.post("http://localhost:8080/item",{
+            await axios.post("http://localhost:8080/item", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                                itemType: data.itemType,
-                                // item: data.item,
-                                // content: data.content,
-                                name: data.name,
-                                price: data.price,
-                                description: data.description,
-                                count: data.count,
+                itemType: data.itemType,
+                // item: data.item,
+                // content: data.content,
+                content:
+                    data.content,
+
+                name: data.name,
+                price: data.price,
+                description: data.description,
+                count: data.count,
+    
             }).then(() => {
                 console.log("New item added")
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000/profilePage");
+                history.push("/");
             }, 2000)
 
         } catch (e) {
@@ -51,14 +56,20 @@ function CreateItemForm() {
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        <label htmlFor="product" id="radioSelector" className={styles.radio} {...register("itemType", {required: true, message: 'This field must have input' })} >
-                            <input className={styles.createInput} type="radio" name="itemType" id="product"  {...register("itemType")}
+                        <label htmlFor="product" id="radioSelector" className={styles.radio} {...register("itemType", {
+                            required: true,
+                            message: 'This field must have input'
+                        })} >
+                            <input className={styles.createInput} type="radio" name="itemType"
+                                   id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
-                            <input className={styles.createInput} type="radio" name="itemType" id="service"  {...register("itemType")} value="SERVICE"/>service
+                            <input className={styles.createInput} type="radio" name="itemType"
+                                   id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
                         <label className={styles.contentUpload}>
-                            <input className={styles.createInput} id="content" name="content" type="file" {...register("content")}/>
+                            <input className={styles.createInput} id="content" name="content"
+                                   type="file" {...register("content")}/>
                         </label>
 
                         <FormInputComponent

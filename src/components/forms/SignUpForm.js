@@ -18,14 +18,16 @@ function SignUpForm() {
         console.log(data)
         toggleLoading(true)
         try {
-            await axios.post("http://localhost:8080/customer", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
+            await axios.post(
+                // "http://localhost:8080/customer"
+                "http://localhost:3000/register"
+                , {
+                // method: "POST",
+                // headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
                 firstName: data.firstName,
                 lastName: data.lastName,
-                age: data.age,
-                emailAdress: data.emailAdress,
+                email: data.email,
                 areaCode: data.areaCode,
                 city: data.city,
                 guild: data.guild,
@@ -37,7 +39,7 @@ function SignUpForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000");
+                history.push("http://localhost:3001");
             }, 2000)
 
         } catch (e) {
@@ -129,9 +131,9 @@ function SignUpForm() {
                     <FormInputComponent
                         type="text"
                         className={styles.signUpField}
-                        name="emailAdress"
+                        name="email"
                         placeHolder="Email (for example: Email@gmail.com)"
-                        fieldRef={register('emailAdress', {
+                        fieldRef={register('email', {
                             required: {
                                 value: true,
                                 message: 'This field cant be empty',
