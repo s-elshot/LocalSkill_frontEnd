@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom"
-import FormInputComponent from "./FormInputComponent";
+import FormInputComponent from "../../components/forms/FormInputComponent";
 import axios from "axios";
 import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
-import styles from "./SignUpForm.module.css";
+import styles from "../../components/forms/SignUpForm.module.css";
 
 function SignUpForm() {
 
@@ -19,8 +19,8 @@ function SignUpForm() {
         toggleLoading(true)
         try {
             await axios.post(
-                // "http://localhost:8080/customer"
-                "http://localhost:3000/register"
+                "http://localhost:8080/customer"
+                // "http://localhost:3000/register"
                 , {
                 // method: "POST",
                 // headers: {"Content-Type": "application/json"},
@@ -39,7 +39,7 @@ function SignUpForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3001");
+                history.push("/");
             }, 2000)
 
         } catch (e) {

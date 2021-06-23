@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 
-import SignUpFormCustomer from "../../components/forms/SignUpForm";
+import SignUpFormCustomer from "./SignUpForm";
 
 
 

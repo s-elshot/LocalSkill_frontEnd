@@ -18,7 +18,8 @@ function LogInForm() {
         console.log(data)
         toggleSignedIn(false)
         try {
-             await axios.post("http://localhost:3000/login",data)
+             // await axios.post("http://localhost:3000/login",data)
+            await axios.post("http://localhost:8080/customer",data)
 
             // logIn(result.data.accessToken)
             // place jwt in local storage
