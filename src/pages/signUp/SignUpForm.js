@@ -39,7 +39,7 @@ function SignUpForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("/");
+                history.push("overview");
             }, 2000)
 
         } catch (e) {
@@ -208,6 +208,8 @@ function SignUpForm() {
                         })}
                         errors={errors}
                     />
+
+
 
                     <FormInputComponent
                         type="password"
