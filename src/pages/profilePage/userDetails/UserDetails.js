@@ -50,7 +50,7 @@ function UserDetails() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000");
+                history.push("/");
             }, 2000)
 
         } catch (e) {

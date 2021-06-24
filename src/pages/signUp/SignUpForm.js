@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom"
 import FormInputComponent from "../../components/forms/FormInputComponent";
 import axios from "axios";
 import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
-import styles from "../../components/forms/SignUpForm.module.css";
+import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
 

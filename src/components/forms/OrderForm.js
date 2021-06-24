@@ -31,7 +31,7 @@ function OrderForm() {
             console.log(result)
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000/order");
+                history.push("/order");
             }, 2000)
 
         } catch (e) {

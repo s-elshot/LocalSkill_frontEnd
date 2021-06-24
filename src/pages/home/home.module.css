@@ -22,6 +22,12 @@
     font-weight: bolder;
 }
 
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    align-content: space-around;
+}
+
 .formHeader {
     font-family: "Segoe UI", sans-serif;
     color: #ffffff;
@@ -45,14 +51,23 @@
 .button {
 
     border: none;
-    background: #a59e9e;
+    background: #797373;
+    font-weight: bold;
+    color: #ffffff;
+    width: 100%;
     padding: 10px;
     margin: 10px;
     border-radius: 20px;
 }
 
+.button:hover {
+    transform: scale(1.03);
+    background-color: #000000;
+    transition: transform 300ms ease-out;
+}
+
 .img {
-    width: 6%;
+    width: 4%;
     height: auto;
 }
 

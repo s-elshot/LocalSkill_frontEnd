@@ -24,6 +24,7 @@ import Favorites from "./pages/favorites/Favorites";
 import PrivateRoute from "./components/navigation/PrivateRoute";
 import NotFound from "./pages/notFound/NotFound";
 import {UserContext} from "./context/UserContext";
+import OverviewDynamic from "./pages/overview/OverviewDynamic";
 
 
 
@@ -64,6 +65,13 @@ function App() {
                         <SignUp/>
                     </Route>
 
+                    <Route signedIn={signedIn} exact path={"/overview"}>
+                        <Overview/>
+                    </Route>
+
+                    <Route signedIn={signedIn} path={"/overview/:itemType/:areaCode"}>
+                        <OverviewDynamic/>
+                    </Route>
                     {/* Profile pages*/}
 
 
@@ -93,13 +101,6 @@ function App() {
                     </PrivateRoute>
 
                     {/* Shopping pages*/}
-                    <PrivateRoute signedIn={signedIn} exact path={"/overview"}>
-                        <Overview/>
-                    </PrivateRoute>
-
-                    <PrivateRoute signedIn={signedIn} path={"/overview/:productType/:areaCode"}>
-                        <Overview/>
-                    </PrivateRoute>
 
                     <PrivateRoute signedIn={signedIn} exact path={"/shoppingCart"}>
                         <ShoppingCart/>
@@ -123,7 +124,13 @@ function App() {
                         <NotFound/>
                     </Route>
 
+                    <nav>
+                        <MobileNavigation/>
+                    </nav>
+
                 </Switch>
+
+
             </>
             // {/*// </UserContextProvider>*/}
 

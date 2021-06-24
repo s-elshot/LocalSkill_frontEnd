@@ -143,11 +143,50 @@ function UserContextProvider({children}) {
         setCartTotal(totalSum)
     }
 
+    // const addToCart = (item) => {
+    //     cart.find((cartItem, index) => {
+    //         if (cartItem.id === item.id) {
+    //             console.log('HIJ IS ER AL')
+    //             // als dit item hier al bestaat, kopieer dan de bestaande state array
+    //             const newCart = [...cart];
+    //             // op het indexnummer van het gevonden item, kijk daar naar wat voor getal er in de amount property staat en hoog dat op met 1
+    //             newCart[index].amount = newCart[index].amount + 1;
+    //             // zet die nieuwe array in de state ter vervanging van wat er stond
+    //             setCart(newCart);
+    //             return true;
+    //         }
+    //         // stond hij er niet al in? Voeg 'm dan gewoon toe
+    //         console.log('HIJ IS ER NIET')
+    //         setCart([...cart, item]);
+    //         return false;
+    //     });
+    // };
+
     const addToCart = (item) => {
-        setCart([...cart, item])
-        for (let i = 0; i < cart.length; i++) {
+        // DIT ALLEEN OMDAT WE GEEN AMOUNT HEBBEN
+        const itemForCart = {
+            ...item,
+            amount: 0,
         }
-        // console.log(cart, cart.length)
+
+        let indexOfDoubleItem;
+
+        const outcome = cart.find((cartItem, index) => {
+            if (cartItem.id === item.id) {
+                indexOfDoubleItem = index;
+                return true;
+            }
+        })
+
+        if (outcome) {
+            const newCart = [...cart];
+            newCart[indexOfDoubleItem].amount = newCart[indexOfDoubleItem].amount + 1;
+            setCart(newCart);
+            console.log('NIEUWE CART', newCart)
+        } else {
+            // ALLEEN ITEMFORCART OMDAT WE GEEN AMAOUNT HEBBEN
+            setCart([...cart, itemForCart])
+        }
     }
 
     const removeFromCart = (item) => {

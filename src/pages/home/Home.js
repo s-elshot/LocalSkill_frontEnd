@@ -3,8 +3,23 @@ import homePic from "../../assets/desktop/backgrounds/logIn.png";
 import React from "react";
 import find from "../../assets/mobileIcons/Icon awesome-search@2x.png";
 import OverviewComponent from "../../components/object/overviewComponent";
+import {useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
+
+import FormInputComponent from "../../components/forms/FormInputComponent";
+
 
 function Home() {
+
+    const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
+    const history = useHistory();
+
+    async function onSubmit(data) {
+        console.log(data)
+        history.push(`/overview/${data.itemType}/${data.areaCode}`)
+    }
+
+
 
     return (
         <div className={styles.container}>
@@ -12,11 +27,52 @@ function Home() {
             <h1 className={styles.enterText}>LOCAL SKILL</h1>
             <h1 className={styles.formHeader}>SEARCH</h1>
 
-            <fieldset className={styles.searchElement}>
-                <input className={styles.input} type="text" placeholder="Search products / services"/>
-                <input className={styles.input} type="text" placeholder="Insert your price"/>
-                <button className={styles.button} type="submit"><img className={styles.img} src={find} alt={find}/></button>
-            </fieldset>
+            <form  onSubmit={handleSubmit(onSubmit)} className={styles.searchElement}>
+
+                <FormInputComponent
+                    type="text"
+                    name="itemType"
+                    className={styles.input}
+                    placeHolder="Search products / services"
+                    fieldRef= {register('itemType', {
+                        required: {
+                            value: true,
+                            message: 'This field must have input',
+                        }
+                        , maxLength: {
+                            value: 30,
+                            message: 'At most 30 characters can be used to define the first name',
+                        }
+                    })}
+                    errors={errors}
+                />
+                {/*<input className={styles.input} type="text" placeholder="Search products / services"/>*/}
+
+                <FormInputComponent
+                    type="text"
+                    className={styles.input}
+                    name="areaCode"
+                    placeHolder="Insert your area code (for example: 1066SP)"
+                    fieldRef={register('areaCode', {
+                        required: {
+                            value: true,
+                            message: 'This field must have an input',
+                        },
+                        pattern: {
+                            value: /([0-9]{4}[A-Z]{2})/,
+                            message: 'Please insert a valid area code (with caps)',
+                        },
+                    })}
+                    errors={errors}
+                />
+
+                {/*<input className={styles.input} type="text" placeholder="Insert your area code"/>*/}
+                <div className={styles.buttonContainer}>
+
+                <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>SPECIFIC SEARCH  <img className={styles.img} src={find} alt={find}/></button>
+                <button className={styles.button} type="submit" onClick={()=>{history.push("overview")}}>BROWSE ALL ITEMS  <img className={styles.img} src={find} alt={find}/></button>
+                </div>
+            </form>
 
             <OverviewComponent
                 title="Explore your community"

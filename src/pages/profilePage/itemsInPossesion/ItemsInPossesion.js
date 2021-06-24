@@ -33,7 +33,7 @@ function ItemsInPossession() {
             })
 
             setTimeout(() => {
-                history.push("http://localhost:3000/profile/itemsInPossession");
+                history.push("/itemsInPossession");
             })
         } catch (e) {
             console.error(e)

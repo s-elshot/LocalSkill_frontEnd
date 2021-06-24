@@ -54,6 +54,8 @@ function ShoppingCartItem() {
     //     })
     // }
 
+    console.log(userDetail.id)
+
     async function onSubmit() {
         // registerSucces(false)
         try {
@@ -61,10 +63,11 @@ function ShoppingCartItem() {
                 description: 'het lukt?',
                 customer: {
                     id: userDetail.id
+                    // id: 2
                 }
-                ,
-            //     // invoiceItems:{
-            //     //     [{id:4 },{id:3}]
+                // ,
+                //     invoiceItems:
+                //      [{id:4 },{id:3}]
             // }
                     //     () => {
                     //     let cartIds = []
@@ -90,7 +93,7 @@ function ShoppingCartItem() {
             setCart([])
 
             setTimeout(() => {
-                history.push("http://localhost:3000/profile");
+                history.push("/profile");
             }, 2000)
 
         } catch (e) {
@@ -156,12 +159,12 @@ function ShoppingCartItem() {
                         <h4>currently in your cart:({cart.length} items)</h4>
                         <h2>TOTAL AMOUNT: €{cartTotal}</h2>
 
-
+                        <textarea>MESSAGE TO SELLER..</textarea>
                         <button type="submit" className={styles.confirmButton} onClick={onSubmit}>CHECK OUT</button>
 
 
                         {registerSucces === true &&
-                        <span>New item creation succeeded</span>}
+                        <span>ORDER FINISHED!</span>}
 
                     </>
                     }

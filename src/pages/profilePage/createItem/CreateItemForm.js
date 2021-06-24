@@ -38,7 +38,7 @@ function CreateItemForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("/");
+                history.push("/profile");
             }, 2000)
 
         } catch (e) {
@@ -56,13 +56,17 @@ function CreateItemForm() {
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        <label htmlFor="product" id="radioSelector" className={styles.radio} {...register("itemType", {
+                        {/*options bij inputvelden*/}
+                        <label htmlFor="product" id="radioSelector" className={styles.radio}
+                               {...register("itemType", {
                             required: true,
                             message: 'This field must have input'
                         })} >
                             <input className={styles.createInput} type="radio" name="itemType"
+                                   {/*hierbij*/}
                                    id="product"  {...register("itemType")}
                                    value="PRODUCT"/> product
+                            {/*hierbij*/}
                             <input className={styles.createInput} type="radio" name="itemType"
                                    id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
