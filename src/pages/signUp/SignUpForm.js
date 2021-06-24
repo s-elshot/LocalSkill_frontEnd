@@ -59,12 +59,17 @@ function SignUpForm() {
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP</h2>
 
-                    <label htmlFor="userRole" id="radioSelector" className={styles.radio} {...register("userRole", {required: true, message: 'This field must have input' })}>
-                        <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}
-                               value="CUSTOMER"/> Customer
-                        <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
-                    </label>
+                    {/*<label htmlFor="userRole" id="radioSelector" className={styles.radio} {...register("userRole", {required: true, message: 'This field must have input' })}>*/}
+                    {/*    <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}*/}
+                    {/*           value="CUSTOMER"/> Customer*/}
+                    {/*    <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder*/}
+                    {/*</label>*/}
 
+                    <select {...register("userRole",{ required: true})} className={styles.input}>
+                        <option value="">Please choose between an Customer Account or Guilder Account....</option>
+                        <option value="CUSTOMER">Customer</option>
+                        <option value="GUILDER">Guilder</option>
+                    </select>
 
                     <FormInputComponent
                         type="text"

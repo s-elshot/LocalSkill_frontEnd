@@ -24,18 +24,18 @@ function OverviewDynamic() {
 
     const {itemType, areaCode} = useParams();
 
+    // eslint-disable-next-line array-callback-return
     const guilderItems = users.filter((users) => {
         if (users.areaCode === areaCode) {
 
             const products = users.items.filter((item) => {
                 return item.itemType === itemType;
             });
-            return products
-                ? true : false
+            return !!products
         };
     })
 
-    console.log(guilderItems)
+    // console.log(guilderItems)
 
 
     // const currentItem = items.find((item) => {

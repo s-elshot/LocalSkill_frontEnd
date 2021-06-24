@@ -10,12 +10,13 @@ import account from "../../assets/mobileIcons/Icon material-account-circle@2x.pn
 import mobileCart from "../../assets/mobileIcons/Icon awesome-shopping-cart@2x.png"
 import logIn from "../../assets/mobileIcons/Icon open-account-login@2x.png"
 import logout from "../../assets/mobileIcons/Icon open-account-logout@2x.png"
-import {AuthContext} from "../../context/AuthContext";
+// import {AuthContext} from "../../context/AuthContext";
 
 function MobileNavigation() {
 
+    // LogOut with JWT must be inplemented in frontEnd
     const {signedIn, cart, favorite, changeState} = useContext(UserContext)
-    const {logOUt} = useContext(AuthContext)
+    // const {logOut} = useContext(AuthContext)
 
     return (
         <>
@@ -90,12 +91,16 @@ function MobileNavigation() {
                         </li>
 
                         <li className={styles.mobNavUl}>
-                            <NavLink to="/" activeClassName="active-link">
-                                <img className={styles.image} src={logout} alt={logout}
-                                onClick={changeState}/>
-                                    {logOUt}
-                                <div className={styles.navText}>{signedIn ?'LOG OUT' : 'LOG IN'}</div>
+                            <NavLink to="/" activeClassName="active-link" >
+                                <div
+                                    onClick={changeState}
+                                    // onClick={logOut}
+                                >
+                                    <img className={styles.image} src={logout} alt={logout}/>
+                                    <div className={styles.navText}>{signedIn ? 'LOG OUT' : 'LOG IN'}</div>
+                                </div>
                             </NavLink>
+
                         </li>
 
                     </>

@@ -171,6 +171,7 @@ function UserContextProvider({children}) {
 
         let indexOfDoubleItem;
 
+        // eslint-disable-next-line array-callback-return
         const outcome = cart.find((cartItem, index) => {
             if (cartItem.id === item.id) {
                 indexOfDoubleItem = index;

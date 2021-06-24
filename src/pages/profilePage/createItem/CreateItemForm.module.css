@@ -45,6 +45,10 @@
     transition: transform 300ms ease-out;
 }
 
+.input{
+    padding: 10px;
+}
+
 .logInField:hover {
     transform: scale(1.05);
 }

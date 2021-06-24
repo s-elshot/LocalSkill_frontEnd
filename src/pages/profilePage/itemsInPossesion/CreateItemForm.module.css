@@ -29,6 +29,9 @@
     opacity: 0.9;
 }
 
+.input {
+    padding: 10px;
+}
 
 .formHeader {
     color: #868484;

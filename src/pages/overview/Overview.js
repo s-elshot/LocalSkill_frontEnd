@@ -32,7 +32,10 @@ function Overview() {
     const [
         // areaCode,
         setAreaCode] = useState("");
-    const [guild, setGuild] = useState("")
+    const
+        [
+            // guild,
+        setGuild] = useState("")
 
     function ButtonClick(){
         console.log("werkt")
@@ -108,6 +111,7 @@ function Overview() {
             {/*    })*/}
             {/*})}*/}
 
+            {/* eslint-disable-next-line array-callback-return */}
             {users && users.filter((val) => {
 
                 if (productType.toUpperCase() === "" && productName  === "") {

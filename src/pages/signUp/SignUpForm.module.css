@@ -15,7 +15,9 @@
     z-index: 10;
     width: 100%;
 }
-
+.input {
+    margin: 10px;
+}
 .formHeader {
     color: #868484;
     font-weight: bolder;

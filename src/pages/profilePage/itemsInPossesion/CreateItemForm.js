@@ -62,6 +62,12 @@ function CreateItemForm() {
                                    id="service"  {...register("itemType")} value="SERVICE"/>service
                         </label>
 
+                        <select {...register("itemType",{ required: true})} className={styles.input}>
+                            <option value="">Please choose between an item or serice....</option>
+                            <option value="PRODUCT">Product</option>
+                            <option value="SERVICE">Service</option>
+                        </select>
+
                         <label className={styles.contentUpload}>
                             <input className={styles.createInput} id="content" name="content"
                                    type="file" {...register("content")}/>
