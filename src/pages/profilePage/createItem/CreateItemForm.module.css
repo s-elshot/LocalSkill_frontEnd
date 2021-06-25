@@ -29,6 +29,15 @@
     opacity: 0.9;
 }
 
+.select {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
+    transition: transform 300ms ease-out;
+    color: #868484;
+}
 
 .formHeader {
     color: #868484;

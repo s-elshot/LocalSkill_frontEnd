@@ -15,9 +15,7 @@
     z-index: 10;
     width: 100%;
 }
-.input {
-    margin: 10px;
-}
+
 .formHeader {
     color: #868484;
     font-weight: bolder;
@@ -38,6 +36,16 @@
     z-index: 10;
     filter: blur(2x);
     opacity: 0.9;
+}
+
+.select {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
+    transition: transform 300ms ease-out;
+    color: #868484;
 }
 
 .signUpField {

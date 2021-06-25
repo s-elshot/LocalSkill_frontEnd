@@ -46,10 +46,20 @@
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
+    color: #868484;
+}
+
+.select {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 300ms ease-out;
+    color: #868484;
 }
 
 .button {
-
     border: none;
     background: #797373;
     font-weight: bold;

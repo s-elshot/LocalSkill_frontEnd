@@ -10,7 +10,6 @@ import SingleItemComponent from "../../components/object/SingleItemComponent";
 
 function OverviewDynamic() {
     // destructures the id from app.js(navigation - line 91)
-
     const {
         users,
         addToCart,
@@ -21,21 +20,21 @@ function OverviewDynamic() {
 
     console.log(users)
 
+    const {areaCode, customerGuild} = useParams();
 
-    const {itemType, areaCode} = useParams();
 
     // eslint-disable-next-line array-callback-return
     const guilderItems = users.filter((users) => {
-        if (users.areaCode === areaCode) {
-
-            const products = users.items.filter((item) => {
-                return item.itemType === itemType;
-            });
-            return !!products
-        };
+        return users.areaCode === areaCode && users.customerGuild === customerGuild
+        // if (users.areaCode === areaCode) {
+        //
+        //     const products = users.items.filter((item) => {
+        //         return item.itemType === itemType;
+        //     });
+        //     return !!products
+        // };
     })
-
-    // console.log(guilderItems)
+    console.log(guilderItems)
 
 
     // const currentItem = items.find((item) => {

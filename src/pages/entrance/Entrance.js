@@ -23,7 +23,7 @@ function Entrance() {
                             <p className={styles.entranceLink}>SIGN UP</p>
                         </NavLink>
 
-                        <NavLink to="/overview" activeClassName={styles.entranceLinkContainer}>
+                        <NavLink to="/homePage" activeClassName={styles.entranceLinkContainer}>
                             <p className={styles.entranceLink}>ENTER</p>
                         </NavLink>
 

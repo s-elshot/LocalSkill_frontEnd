@@ -16,7 +16,7 @@ function CreateItemForm() {
 
     async function onSubmit(data) {
         console.log(data)
-        console.log(data.content.name)
+        // console.log(data.content.name)
         toggleLoading(true)
         try {
             await axios.post("http://localhost:8080/item", {
@@ -36,7 +36,7 @@ function CreateItemForm() {
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("http://localhost:3000/profilePage");
+                history.push("/profile");
             }, 2000)
 
         } catch (e) {
@@ -54,24 +54,27 @@ function CreateItemForm() {
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        <label htmlFor="product" id="radioSelector" className={styles.radio}>
-                            <input className={styles.createInput} type="radio" name="itemType"
-                                   id="product"  {...register("itemType")}
-                                   value="PRODUCT"/> product
-                            <input className={styles.createInput} type="radio" name="itemType"
-                                   id="service"  {...register("itemType")} value="SERVICE"/>service
-                        </label>
-
-                        <select {...register("itemType",{ required: true})} className={styles.input}>
-                            <option value="">Please choose between an item or serice....</option>
-                            <option value="PRODUCT">Product</option>
-                            <option value="SERVICE">Service</option>
-                        </select>
+                        {/*<label htmlFor="product" id="radioSelector" className={styles.radio}>*/}
+                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
+                        {/*           id="product"  {...register("itemType")}*/}
+                        {/*           value="PRODUCT"/> product*/}
+                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
+                        {/*           id="service"  {...register("itemType")} value="SERVICE"/>service*/}
+                        {/*</label>*/}
 
                         <label className={styles.contentUpload}>
                             <input className={styles.createInput} id="content" name="content"
                                    type="file" {...register("content")}/>
                         </label>
+
+                        <label>
+                        <select {...register("itemType",{ required: true, message: 'You must specify the type of item you want to create'})} className={styles.select}>
+                            <option value="">Please choose between an item or service....</option>
+                            <option value="PRODUCT">Product</option>
+                            <option value="SERVICE">Service</option>
+                        </select>
+                        {errors.itemType && <span>{errors.itemType.message}</span>}
+                    </label>
 
                         <FormInputComponent
                             type="text"

@@ -56,23 +56,23 @@ function CreateItemForm() {
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
 
-                        {/*options bij inputvelden*/}
-                        <label htmlFor="product" id="radioSelector" className={styles.radio}
-                               {...register("itemType", {
-                            required: true,
-                            message: 'This field must have input'
-                        })} >
-                            <input className={styles.createInput} type="radio" name="itemType"
-                                   {/*hierbij*/}
-                                   id="product"  {...register("itemType")}
-                                   value="PRODUCT"/> product
-                            {/*hierbij*/}
-                            <input className={styles.createInput} type="radio" name="itemType"
-                                   id="service"  {...register("itemType")} value="SERVICE"/>service
-                        </label>
+                        {/*/!*options bij inputvelden*!/*/}
+                        {/*<label htmlFor="product" id="radioSelector" className={styles.radio}*/}
+                        {/*       {...register("itemType", {*/}
+                        {/*    required: true,*/}
+                        {/*    message: 'This field must have input'*/}
+                        {/*})} >*/}
+                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
+                        {/*           /!*hierbij*!/*/}
+                        {/*           id="product"  {...register("itemType")}*/}
+                        {/*           value="PRODUCT"/> product*/}
+                        {/*    /!*hierbij*!/*/}
+                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
+                        {/*           id="service"  {...register("itemType")} value="SERVICE"/>service*/}
+                        {/*</label>*/}
 
-                        <select {...register("itemType",{ required: true})} className={styles.input}>
-                            <option value="">Please choose between an item or serice....</option>
+                        <select {...register("itemType",{ required: true})} className={styles.select}>
+                            <option value="">Please choose between an item or service....</option>
                             <option value="PRODUCT">Product</option>
                             <option value="SERVICE">Service</option>
                         </select>

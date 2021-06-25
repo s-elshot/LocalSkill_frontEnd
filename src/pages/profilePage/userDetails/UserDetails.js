@@ -71,12 +71,52 @@ function UserDetails() {
                     <fieldset className={styles.signUpForm}>
                         <h2 className={styles.formHeader}>EDIT ACCOUNT</h2>
 
-                        <label htmlFor="userRole" id="radioSelector" className={styles.radio}>
-                            <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}
-                                   value="CUSTOMER"/> Customer
-                            <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder
+                        {/*<label htmlFor="userRole" id="radioSelector" className={styles.radio}>*/}
+                        {/*    <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}*/}
+                        {/*           value="CUSTOMER"/> Customer*/}
+                        {/*    <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder*/}
+                        {/*</label>*/}
+
+                        <label>
+                            <select id="userRole" {...register("userRole",{ required: true, message: 'This field must have input'})} className={styles.select} >
+                                <option value="">Please choose between an Customer Account or Guilder Account....</option>
+                                <option value="CUSTOMER">Customer</option>
+                                <option value="GUILDER">Guilder</option>
+                            </select>
+                            {errors.userRole && <span>{errors.userRole.message}</span>}
                         </label>
 
+                        <label>
+                            <select {...register("customerGuild",{ required: true,message: 'This field must have input'})} className={styles.select}>
+                                <option value="">Please choose an Guild....</option>
+                                <option value="FINANCE">Finance</option>
+                                <option value="CONSTRUCTION">Construction</option>
+                                <option value="CREATIVE_DESIGN">Creative design</option>
+                                <option value="LEISURE">Leisure</option>
+                                <option value="MEDIA">Media</option>
+                                <option value="SECURITY">Security</option>
+                                <option value="HEALTHCARE">Healthcare</option>
+                                <option value="IT">IT</option>
+                                <option value="BEAUTY">Beauty</option>
+                                <option value="SPORT">Sport</option>
+                                <option value="FOOD">Food</option>
+                                <option value="HOBBY">Hobby</option>
+                                <option value="SALES">Sales</option>
+                                <option value="EDUCATION">Education</option>
+                                <option value="LOGISTICS">Logistics</option>
+                                <option value="LEGAL">Legal</option>
+                                <option value="HUMAN_RESOURCES">Human resources</option>
+                                <option value="IT">IT</option>
+                                <option value="BEAUTY">Beauty</option>
+                                <option value="SPORT">Sport</option>
+                                <option value="FOOD">Food</option>
+                                <option value="HOBBY">Hobby</option>
+                                <option value="SALES">Sales</option>
+                                <option value="EDUCATION">Education</option>
+                                <option value="HEALTHCARE">Healthcare</option>
+                            </select>
+                            {errors.customerGuild && <span>{errors.customerGuild.message}</span>}
+                        </label>
 
                         <FormInputComponent
                             type="text"

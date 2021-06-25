@@ -69,7 +69,7 @@ function App() {
                         <Overview/>
                     </Route>
 
-                    <Route signedIn={signedIn} path={"/overview/:itemType/:areaCode"}>
+                    <Route signedIn={signedIn} path={"/overview/:customerGuild/:areaCode"}>
                         <OverviewDynamic/>
                     </Route>
                     {/* Profile pages*/}

@@ -6,7 +6,7 @@ import OverviewComponent from "../../components/object/overviewComponent";
 import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import FormInputComponent from "../../components/forms/FormInputComponent";
-import Select from "./HomeSelect";
+
 
 
 
@@ -15,37 +15,16 @@ function Home() {
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const history = useHistory();
 
+
     async function onSubmit(data) {
         console.log(data)
+        console.log(data.areaCode)
+        console.log(data.customerGuild)
+        // console.log(data.firstName)
+        // console.log(data.itemType)
         // history.push(`/overview/${data.itemType}/${data.areaCode}`)
+        history.push(`/overview/${data.customerGuild}/${data.areaCode}`)
     }
-
-
-
-    const selectOptions = [
-        // { value: "", label: "" },
-        // { value: "FINANCE", label: "Finance" },
-        // { value: "CONSTRUCTION", label: "Construction" },
-        // { value: "CREATIVE_DESIGN", label: "Creative design" },
-        // { value: "LEISURE", label: "Leisure" },
-        // { value: "MEDIA", label: "Media" },
-        // { value: "SECURITY", label: "Security" },
-        // { value: "HEALTHCARE", label: "Healthcare" },
-        // { value: "IT" , label: "IT" },
-        // { value: "BEAUTY", label: "Beauty" },
-        // { value: "SPORT", label: "Sport" },
-        // { value: "FOOD", label: "Food" },
-        // { value: "HOBBY", label: "Hobby" },
-        // { value: "SALES", label: "Sales" },
-        // { value: "EDUCATION", label: "Education"},
-        // { value: "LOGISTICS", label: "Logistics" },
-        // { value: "LEGAL", label: "Legal" },
-        // { value: "HUMAN_RESOURCES", label: "Human resources" },
-        // { value: "customerGuild", label: "Legal" },
-        // { value: "HUMAN_RESOURCES", label: "Human resources" },
-
-    ]
-
 
 
     return (
@@ -58,8 +37,8 @@ function Home() {
             <form  onSubmit={handleSubmit(onSubmit)} className={styles.searchElement}>
 
 
-
-                <select {...register("customerGuild",{ required: true})} className={styles.input}>
+                <label htmlFor="formItems">
+                <select name="customerGuild" {...register("customerGuild",{ required: true, message: 'You must specify an Guild'})} className={styles.select}>
                     <option value="">Please choose an Guild....</option>
                     <option value="FINANCE">Finance</option>
                     <option value="CONSTRUCTION">Construction</option>
@@ -87,29 +66,9 @@ function Home() {
                     <option value="EDUCATION">Education</option>
                     <option value="HEALTHCARE">Healthcare</option>
                 </select>
+                    {errors.customerGuild && <span>{errors.customerGuild.message}</span>}
+                </label>
 
-
-                {/*<select*/}
-                {/*    className={styles.input}>*/}
-                {/*    <option value="">Select your option</option>*/}
-                {/*    <option value="Hond">female</option>*/}
-                {/*    <option value="Kat">male</option>*/}
-                {/*    <option value="Fiets">other</option>*/}
-                {/*</select>*/}
-
-                {/*<Select*/}
-                {/*    option={guildOptions}*/}
-                {/*    name="customerGuild"*/}
-                {/*    placeholder="Search Guild"*/}
-                {/*    fieldRef= {register('customerGuild', {*/}
-                {/*        required: {*/}
-                {/*            value: true,*/}
-                {/*            message: 'This field must be selected',*/}
-                {/*        }*/}
-                {/*    })}*/}
-                {/*    errors={errors}*/}
-
-                {/*/>*/}
 
 
                 {/*<FormInputComponent*/}
@@ -129,33 +88,31 @@ function Home() {
                 {/*    })}*/}
                 {/*    errors={errors}*/}
                 {/*/>*/}
-                {/*/!*<input className={styles.input} type="text" placeholder="Search products / services"/>*!/*/}
 
-                {/*<FormInputComponent*/}
-                {/*    type="text"*/}
-                {/*    className={styles.input}*/}
-                {/*    name="areaCode"*/}
-                {/*    placeHolder="Insert your area code (for example: 1066SP)"*/}
-                {/*    fieldRef={register('areaCode', {*/}
-                {/*        required: {*/}
-                {/*            value: true,*/}
-                {/*            message: 'This field must have an input',*/}
-                {/*        },*/}
-                {/*        pattern: {*/}
-                {/*            value: /([0-9]{4}[A-Z]{2})/,*/}
-                {/*            message: 'Please insert a valid area code (with caps)',*/}
-                {/*        },*/}
-                {/*    })}*/}
-                {/*    errors={errors}*/}
-                {/*/>*/}
+                <FormInputComponent
+                    type="text"
+                    className={styles.input}
+                    name="areaCode"
+                    placeHolder="Insert your area code (for example: 1066SP)"
+                    fieldRef={register('areaCode', {
+                        required: {
+                            value: true,
+                            message: 'This field must have an input',
+                        },
+                        pattern: {
+                            value: /([0-9]{4}[A-Z]{2})/,
+                            message: 'Please insert a valid area code (with caps)',
+                        },
+                    })}
+                    errors={errors}
+                />
 
-                {/*<input className={styles.input} type="text" placeholder="Insert your area code"/>*/}
+
                 <div className={styles.buttonContainer}>
-
-                {/*<button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>SPECIFIC SEARCH  <img className={styles.img} src={find} alt={find}/></button>*/}
+                <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>QUICK SEARCH  <img className={styles.img} src={find} alt={find}/></button>
                 <button className={styles.button} type="submit" onClick={()=>{history.push("overview")}}>BROWSE ALL ITEMS  <img className={styles.img} src={find} alt={find}/></button>
-                    <button className={styles.button} onClick={handleSubmit}>TIJDELIJK</button>
                 </div>
+
             </form>
 
             <OverviewComponent
