@@ -72,6 +72,10 @@ function App() {
                     <Route signedIn={signedIn} path={"/overview/:customerGuild/:areaCode"}>
                         <OverviewDynamic/>
                     </Route>
+
+                    <Route path="/item/:id" exact>
+                        <ItemPost/>
+                    </Route>
                     {/* Profile pages*/}
 
 
@@ -114,10 +118,6 @@ function App() {
 
                     <PrivateRoute signedIn={signedIn} path={"/orders"}>
                         <Orders/>
-                    </PrivateRoute>
-
-                    <PrivateRoute signedIn={signedIn} path="/item/:id" exact>
-                        <ItemPost/>
                     </PrivateRoute>
 
                     <Route exact path={"*"}>

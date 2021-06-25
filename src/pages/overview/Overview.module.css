@@ -4,12 +4,11 @@
     align-content: center;
 }
 
-.overviewBackground {
-    /*position: fixed;*/
-    /*height: auto;*/
-    /*max-width: 300px;*/
+.backgroundImage {
+    height: auto;
+    width: auto;
+    z-index: 1;
 }
-
 .searchElement {
     display: flex;
     flex-direction: column;
@@ -38,6 +37,17 @@
     padding: 10px;
 }
 
+.select {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 300ms ease-out;
+    color: #868484;
+    width: 95%;
+}
+
 .enterText {
     font-family: "Segoe UI", sans-serif;
     color: #000000;
@@ -58,6 +68,7 @@
     margin: 10px;
     border-radius: 20px;
 }
+
 
 .button:hover {
     transform: scale(1.03);

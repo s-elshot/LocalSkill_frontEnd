@@ -91,7 +91,7 @@ function Home() {
 
                 <FormInputComponent
                     type="text"
-                    className={styles.input}
+                    className={styles.select}
                     name="areaCode"
                     placeHolder="Insert your area code (for example: 1066SP)"
                     fieldRef={register('areaCode', {

@@ -6,6 +6,9 @@ import {
 
 import {UserContext} from "../../context/UserContext";
 import SingleItemComponent from "../../components/object/SingleItemComponent";
+import styles from "./OverviewDynamic.module.css";
+
+import homePic from "../../assets/desktop/backgrounds/pexels-photo-statueFace.png";
 
 
 function OverviewDynamic() {
@@ -48,18 +51,39 @@ function OverviewDynamic() {
     return (
         <>
 
-            {users && guilderItems.map((item, index) => {
-            return item.items.map((item,index) => {
-                return <SingleItemComponent
-                key={index}
-                index={index}
-                item={item}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
-                addToFavorite={addToFavorite}
-                />
-            })
-            })}
+            <div className={styles.container}>
+                <img className={styles.backgroundImage} src={homePic} alt={homePic}/>
+                <h1 className={styles.enterText}>LOCAL SKILL</h1>
+
+
+                <fieldset className={styles.searchElement}>
+                    <h2 className={styles.formHeader}>GUILD - {customerGuild}</h2>
+                    <h3>area code - {areaCode}</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores assumenda
+                        consequatur dignissimos dolor dolorem earum esse et inventore iusto, labore minus perferendis
+                        quaerat quis reiciendis. Atque corporis cum eius explicabo impedit incidunt ipsum iste
+                        laudantium maiores minima mollitia nobis non, porro quibusdam quos reiciendis saepe sed sequi
+                        ullam voluptatibus!</p>
+
+
+
+
+                </fieldset>
+
+
+                {users && guilderItems.map((item, index) => {
+                    return item.items.map((item, index) => {
+                        return <SingleItemComponent
+                            key={index}
+                            index={index}
+                            item={item}
+                            addToCart={addToCart}
+                            removeFromCart={removeFromCart}
+                            addToFavorite={addToFavorite}
+                        />
+                    })
+                })}
+            </div>
         </>
     );
 }

@@ -57,6 +57,7 @@
     padding: 10px;
     transition: transform 300ms ease-out;
     color: #868484;
+    width: 95%;
 }
 
 .button {
