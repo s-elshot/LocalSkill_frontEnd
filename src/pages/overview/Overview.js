@@ -3,7 +3,7 @@ import React, {useContext, useState} from 'react';
 import styles from "./Overview.module.css"
 import find from "../../assets/mobileIcons/Icon awesome-search@2x.png"
 
-import OverviewComponent from "../../components/object/overviewComponent";
+// import OverviewComponent from "../../components/object/overviewComponent";
 // import ItemOverview from "./ItemOverview";
 
 
@@ -11,8 +11,8 @@ import SingleItemComponent from "../../components/object/SingleItemComponent";
 import {UserContext} from "../../context/UserContext";
 import FormInputComponent from "../../components/forms/FormInputComponent";
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom";
 
+// import {useHistory} from "react-router-dom";
 
 
 function Overview() {
@@ -23,7 +23,7 @@ function Overview() {
     // wel undefined? Dan "begin met zoeken laten zien
 
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
-    const history = useHistory();
+    // const history = useHistory();
 
     const {
         users,
@@ -33,56 +33,31 @@ function Overview() {
 
     } = useContext(UserContext)
 
-    const [productType, setProductType] = useState("");
-    const [productName, setProductName] = useState("");
-    const [
-        areaCode,
-        setAreaCode] = useState("");
-    const
-        [
-            guild,
-        setGuild] = useState("")
+    // const [productType, setProductType] = useState("");
+    // const [productName, setProductName] = useState("");
+    const [areaCode, setAreaCode] = useState("");
+    const [guild, setGuild] = useState("")
 
 
     const guilderItems = users.filter((users) => {
         return users.userRole === "GUILDER"
-        // if (users.areaCode === areaCode) {
-        //
-        //     const products = users.items.filter((item) => {
-        //         return item.itemType === itemType;
-        //     });
-        //     return !!products
-        // };
     })
 
+    console.log(guilderItems)
+
     async function onSubmit(data) {
-        console.log(data)
-        console.log(guilderItems)
+        setAreaCode(data.areaCode)
+        setGuild(data.customerGuild)
 
-
-        // console.log(data.customerGuild)
-        // console.log(data.firstName)
-        // console.log(data.itemType)
-        // history.push(`/overview/${data.itemType}/${data.areaCode}`)
-        // history.push(`/overview/${data.customerGuild}/${data.areaCode}`)
     }
 
-    function ButtonClick(){
-        console.log(guild)
-        console.log(areaCode)
-        console.log(users)
-        console.log(productType)
-        console.log(productName)
-    }
 
-    // const openGuilderItems = users.filter((users) => {
-    //     if (users.areaCode === areaCode) {
-    //         const products = users.items.filter((item) => {
-    //             return item.itemType === itemType;
-    //         });
-    //         return products ? true : false
-    //     };
-    // })
+    const findUsers = guilderItems.filter((users) => {
+        return users.areaCode.toUpperCase() === areaCode && users.customerGuild === guild
+    })
+
+    console.log(findUsers)
+
 
     return (
         <div className={styles.container}>
@@ -90,11 +65,12 @@ function Overview() {
 
             <h2 className={styles.formHeader}>SEARCH</h2>
 
-            <form  onSubmit={handleSubmit(onSubmit)} className={styles.searchElement}>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.searchElement}>
 
 
                 <label htmlFor="formItems">
-                    <select name="customerGuild" {...register("customerGuild",{ required: true, message: 'You must specify an Guild'})} className={styles.select}>
+                    <select name="customerGuild" {...register("customerGuild", {
+                    })} className={styles.select}>
                         <option value="">Please choose an Guild....</option>
                         <option value="FINANCE">Finance</option>
                         <option value="CONSTRUCTION">Construction</option>
@@ -122,7 +98,7 @@ function Overview() {
                         <option value="EDUCATION">Education</option>
                         <option value="HEALTHCARE">Healthcare</option>
                     </select>
-                    {errors.customerGuild && <span>{errors.customerGuild.message}</span>}
+
                 </label>
 
                 <FormInputComponent
@@ -144,13 +120,12 @@ function Overview() {
                 />
 
                 <label htmlFor="formItems">
-                <select {...register("itemType")} className={styles.select}>
-                    <option value="">Are you searching an item or service?</option>
-                    <option value="PRODUCT">Product</option>
-                    <option value="SERVICE">Service</option>
-                </select>
+                    <select {...register("itemType")} className={styles.select}>
+                        <option value="">Are you searching an item or service?</option>
+                        <option value="PRODUCT">Product</option>
+                        <option value="SERVICE">Service</option>
+                    </select>
                 </label>
-
 
 
                 <FormInputComponent
@@ -158,7 +133,7 @@ function Overview() {
                     name="itemName"
                     className={styles.select}
                     placeHolder="What kind of product/service are you searching?"
-                    fieldRef= {register('itemName' )}
+                    fieldRef={register('itemName')}
                     errors={errors}
                 />
                 <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>
@@ -167,92 +142,52 @@ function Overview() {
             </form>
 
 
-            {/*<fieldset className={styles.searchElement}>*/}
+            {/*{users && findUsers.item.map((item, index) => {*/}
+            {/*    return <SingleItemComponent*/}
+            {/*        key={index}*/}
+            {/*        index={index}*/}
+            {/*        item={item}*/}
+            {/*        addToCart={addToCart}*/}
+            {/*        removeFromCart={removeFromCart}*/}
+            {/*        addToFavorite={addToFavorite}*/}
+            {/*    />*/}
 
-            {/*    <input className={styles.input}  type="text" placeholder="Set your Guild"*/}
-            {/*           onChange={event => {*/}
-            {/*               setGuild(event.target.value)*/}
-            {/*           }}/>*/}
-
-            {/*    <input className={styles.input}  type="text" placeholder="Set your areaCode"*/}
-            {/*           onChange={event => {*/}
-            {/*               setAreaCode(event.target.value)*/}
-            {/*           }}/>*/}
-
-            {/*    <input  className={styles.input} type="text" placeholder="Search products / services"*/}
-            {/*           onChange={event => {*/}
-            {/*               setProductType(event.target.value)*/}
-            {/*           }}/>*/}
-
-
-            {/*    <input className={styles.input} type="text" placeholder="Search product name"*/}
-            {/*           onChange={event => {*/}
-            {/*               setProductName(event.target.value)*/}
-            {/*           }}/>*/}
-
-
-
-            {/*    <button className={styles.button} type="submit"  onClick={ButtonClick}><img className={styles.img} src={find} alt={find}/></button>*/}
-            {/*</fieldset>*/}
-
-
-
-
-
-            {/* eslint-disable-next-line array-callback-return */}
-            {/*{users && users.map((item, index) =>{*/}
-            {/*return <SingleItemComponent*/}
-            {/*key={index}*/}
-            {/*    index={index}*/}
-            {/*    item={item}*/}
-            {/*addToCart={addToCart}*/}
-            {/*removeFromCart={removeFromCart}*/}
-
-            {/*/>*/}
             {/*})}*/}
 
-            {/*{users && guilderItems.map((item, index) => {*/}
-            {/*    return item.items.map((item,index) => {*/}
-            {/*        return <SingleItemComponent*/}
-            {/*            key={index}*/}
-            {/*            index={index}*/}
-            {/*            item={item}*/}
-            {/*            addToCart={addToCart}*/}
-            {/*            removeFromCart={removeFromCart}*/}
-            {/*            addToFavorite={addToFavorite}*/}
-            {/*        />*/}
-            {/*    })*/}
-            {/*})}*/}
 
-            {/* eslint-disable-next-line array-callback-return */}
-            {users && guilderItems.filter((val) => {
-                //
-                // if (customerGuild === "" && areaCode  === "") {
-                //     return val;
-                // } else if (val.areaCode.toUpperCase().includes(areaCode.toLowerCase()) && productName === "") {
-                //     return val;
-                // } else if (productName === "" && searchPrice < val.price) {
-                //     return val;
-                // } else if (val.name.toLowerCase().includes(searchProductName.toLowerCase()) && searchPrice < val.price) {
-                //     return val;
-                // }
-            }).map((item, index) => {
-                return <SingleItemComponent
-                    key={index}
-                    index={index}
-                    item={item}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    addToFavorite={addToFavorite}
-                />
+            {(users && findUsers.length === 0 ?
+                    <>
+                        <article>
+                            NO SEARCH RESULTS
+                        </article>
+                    </> :
 
-            })}
+                    <div>{findUsers.map((user, index) => {
+                        return <article key={index}>
+
+                            {user.items.length != null &&
+                            <>
+                                <div>{user.items.map((item, index) => {
+                                    return <SingleItemComponent
+                                        key={index}
+                                        index={index}
+                                        item={item}
+                                        addToCart={addToCart}
+                                        removeFromCart={removeFromCart}
+                                        addToFavorite={addToFavorite}
+                                    />
+
+                                })}</div>
+                                    </>
+                                }
+
+                                </article>
+                                })}</div>
+                        )}
 
 
-            {/*<ItemOverview/>*/}
-
-        </div>
-    );
-}
+                    </div>
+            );
+            }
 
 export default Overview;
