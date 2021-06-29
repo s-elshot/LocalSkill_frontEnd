@@ -6,11 +6,9 @@ import {
 import React, {useContext} from "react";
 import Entrance from "./pages/entrance/Entrance";
 import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
-import SignUp from "./pages/signUp/SignUp";
-import Login from "./pages/logIn/Login";
 import Overview from "./pages/overview/Overview";
 // import UserContextProvider, {UserContext} from "./context/UserContext";
-import Orders from "./pages/orders/Orders";
+// import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
 import Home from "./pages/home/Home";
@@ -25,6 +23,9 @@ import PrivateRoute from "./components/navigation/PrivateRoute";
 import NotFound from "./pages/notFound/NotFound";
 import {UserContext} from "./context/UserContext";
 import OverviewDynamic from "./pages/overview/OverviewDynamic";
+import SignUpForm from "./pages/signUp/SignUpForm";
+import LogInForm from "./pages/logIn/LogInForm";
+// import OrderForm from "./pages/orders/OrderForm";
 
 
 
@@ -58,11 +59,11 @@ function App() {
                     </Route>
 
                     <Route exact path={"/logIn"}>
-                        <Login/>
+                        <LogInForm/>
                     </Route>
 
                     <Route exact path={"/signUp"}>
-                        <SignUp/>
+                        <SignUpForm/>
                     </Route>
 
                     <Route signedIn={signedIn} exact path={"/overview"}>
@@ -116,9 +117,9 @@ function App() {
 
                     {/* Sign-up items*/}
 
-                    <PrivateRoute signedIn={signedIn} path={"/orders"}>
-                        <Orders/>
-                    </PrivateRoute>
+                    {/*<PrivateRoute signedIn={signedIn} path={"/orders"}>*/}
+                    {/*    <OrderForm/>*/}
+                    {/*</PrivateRoute>*/}
 
                     <Route exact path={"*"}>
                         <NotFound/>

@@ -62,7 +62,7 @@ function UserDetails() {
     return (
         <Fragment>
             <div className={styles.container}>
-                <img src={background} className={styles.background} alt={background}/>
+                <img src={background} className={styles.backgroundImage} alt={background}/>
 
                 <form onSubmit={handleSubmit(onSubmit)}
                       className={styles.signUpFormBase}>

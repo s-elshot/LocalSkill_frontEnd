@@ -1,5 +1,8 @@
 import React, {useContext} from 'react';
 import {Link, useParams} from "react-router-dom";
+import styles from "./ItemPost.module.css"
+import guy from "../../assets/desktop/backgrounds/pexels-photo-statueFace.png";
+
 
 
 import {UserContext} from "../../context/UserContext";
@@ -23,16 +26,24 @@ function ItemPost() {
 
     return (
         <>
-            <article>
+            <div className={styles.container}>
+            <img className={styles.background} src={guy} alt={guy}/>
+                <div className={styles.card}>
+                <article>
                 <h1>{currentItem.name}</h1>
                 <p>description: {currentItem.description}</p>
                 <p>price: €{currentItem.price}</p>
-                <p>item type{currentItem.itemType}</p>
-                <button onClick={() => addToCart(currentItem)}>add to cart</button>
+                <p>item type: {currentItem.itemType}</p>
+
+                </article>
+                    <p>
+                        <button onClick={() => addToCart(currentItem)}>add to cart</button>
+                    </p>
+            <article className={styles.navContainer}>
+                <Link to="/">Terug naar Home ?</Link>
             </article>
-            <article>
-                <Link to="/">Terug naar Home</Link>
-            </article>
+               </div>
+            </div>
         </>
     )
         ;

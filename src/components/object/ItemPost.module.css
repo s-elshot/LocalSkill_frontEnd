@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.background {
+    margin: 0px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.formHeader {
+    color: #444343;
+    font-weight: bolder;
+    font-size: xx-large;
+    z-index: 10;
+}
+
+.card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 70px;
+    color: white;
+    border-radius: 20px;
+    margin: 50px;
+    opacity: 75%;
+    background-color: #555555;
+    top: 100px;
+    z-index: 10;
+}
+
+.navContainer {
+    background-color: white;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    align-content: center;
+    align-self: center;
+    /*align-items: center;*/
+
+
+
+    border-radius: 10px;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}

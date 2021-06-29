@@ -3,48 +3,62 @@
     flex-direction: column;
 }
 
-.background {
-    margin: 0px;
+.signUpBackGround {
+    height: auto;
+    width: auto;
+    z-index: 1;
     border-radius: 10px;
 }
 
-.formHeader {
-    color: #444343;
-    font-weight: bolder;
-    font-size: xx-large;
+.logInFormBase {
+    /*top:80px;*/
+    position: fixed;
+    /*margin-left: 2%;*/
+    z-index: 10;
+    /*background: red;*/
+    width: 100%;
 }
 
-.outline {
-    position: absolute;
+.formField {
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
     margin-top: 100px;
     margin-left: 10%;
     margin-right: -10%;
-    padding: 30px;
+    padding: 60px;
     width: 80%;
-    background-color: #fcfcfc;
+    background-color: #ffffff;
     /*height: 600px;*/
     border-radius: 20px;
     border-style: none;
     z-index: 10;
     /*background-color: white;*/
     filter: blur(2x);
-    opacity: 0.95;
-    box-shadow: 0px 6px 18px -9px rgba(0,0,0,20);
+    opacity: 0.85;
 }
 
-.itemCard {
-    border-radius: 10px;
-    background-color: #000000;
-    padding: 20px;
-    border-style: none;
-    color: #ffffff;
+.logInField {
     margin-top: 15px;
-    opacity: 0.75;
-    box-shadow: 0px 6px 18px -9px rgba(0,0,0,0.75);
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #525050;
+    transition: transform 300ms ease-out;
+}
 
+.logInField:hover {
+    transform: scale(1.05);
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #525050;
+}
+
+.formHeader {
+    color: #868484;
+    font-weight: bolder;
+    font-size: xx-large;
 }
 
 .confirmButton {
@@ -53,7 +67,6 @@
     border-style: solid;
     border-color: black;
     border-width: 1px;
-
 }
 
 .confirmButton:hover {

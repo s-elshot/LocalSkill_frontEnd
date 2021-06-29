@@ -11,6 +11,7 @@ import SingleItemComponent from "../../components/object/SingleItemComponent";
 import {UserContext} from "../../context/UserContext";
 import FormInputComponent from "../../components/forms/FormInputComponent";
 import {useForm} from "react-hook-form";
+import homePic from "../../assets/desktop/backgrounds/noFilter.png";
 
 // import {useHistory} from "react-router-dom";
 
@@ -33,8 +34,8 @@ function Overview() {
 
     } = useContext(UserContext)
 
-    // const [productType, setProductType] = useState("");
-    // const [productName, setProductName] = useState("");
+    const [itemType, setItemType] = useState("");
+    const [itemName, setItemName] = useState("");
     const [areaCode, setAreaCode] = useState("");
     const [guild, setGuild] = useState("")
 
@@ -43,26 +44,74 @@ function Overview() {
         return users.userRole === "GUILDER"
     })
 
-    console.log(guilderItems)
 
     async function onSubmit(data) {
+        console.log(data)
         setAreaCode(data.areaCode)
         setGuild(data.customerGuild)
+        setItemType(data.itemType)
+        setItemName(data.itemName)
 
     }
 
-
     const findUsers = guilderItems.filter((users) => {
-        return users.areaCode.toUpperCase() === areaCode && users.customerGuild === guild
+
+
+        if (users.areaCode === areaCode && users.customerGuild === guild) {
+
+            const products = users.items.filter((item) => {
+                return item.itemType === itemType;
+
+            });
+            return !!products
+
+            }
+
+        // if (users.areaCode === areaCode && users.customerGuild === guild) {
+        //
+        //     const productName = users.items.filter((item) => {
+        //         return item.name === itemName;
+        //
+        //     });
+        //     return !!productName
+        //
+        // }
+        //
+        // if (users.areaCode === areaCode && users.customerGuild === guild) {
+        //
+        //     // const products = users.items.filter((item) => {
+        //     //     return item.itemType === itemType;
+        //     //
+        //     // });
+        //     return users
+        //
+        // }
+
+
+    // if (users.areaCode === areaCode) {
+        //     return users
+        // }
+        //
+        // if (users.customerGuild === guild){
+        //        return users
+        // }
+        //     if (users.areaCode === areaCode && users.customerGuild !== "NONE") {
+        //         return users;
+        //     }
+        //     } if (users.areaCode !== areaCode && users.customerGuild === guild){
+        //         return  users
+
     })
 
-    console.log(findUsers)
+
+
+
 
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.enterText}>LOCAL SKILL</h1>
-
+            <img className={styles.backgroundImage} src={homePic} alt={homePic}/>
+            <h1 className={styles.banner}>LOCAL SKILL</h1>
             <h2 className={styles.formHeader}>SEARCH</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className={styles.searchElement}>
@@ -71,7 +120,7 @@ function Overview() {
                 <label htmlFor="formItems">
                     <select name="customerGuild" {...register("customerGuild", {
                     })} className={styles.select}>
-                        <option value="">Please choose an Guild....</option>
+                        <option value="NONE">Please choose an Guild....</option>
                         <option value="FINANCE">Finance</option>
                         <option value="CONSTRUCTION">Construction</option>
                         <option value="CREATIVE_DESIGN">Creative design</option>
@@ -89,14 +138,6 @@ function Overview() {
                         <option value="LOGISTICS">Logistics</option>
                         <option value="LEGAL">Legal</option>
                         <option value="HUMAN_RESOURCES">Human resources</option>
-                        <option value="IT">IT</option>
-                        <option value="BEAUTY">Beauty</option>
-                        <option value="SPORT">Sport</option>
-                        <option value="FOOD">Food</option>
-                        <option value="HOBBY">Hobby</option>
-                        <option value="SALES">Sales</option>
-                        <option value="EDUCATION">Education</option>
-                        <option value="HEALTHCARE">Healthcare</option>
                     </select>
 
                 </label>
@@ -107,14 +148,14 @@ function Overview() {
                     name="areaCode"
                     placeHolder="Please insert your area code (for example: 1066SP)"
                     fieldRef={register('areaCode', {
-                        required: {
-                            value: true,
-                            message: 'This field must have an input',
-                        },
-                        pattern: {
-                            value: /([0-9]{4}[A-Z]{2})/,
-                            message: 'Please insert a valid area code (with caps)',
-                        },
+                        // required: {
+                        //     value: true,
+                        //     message: 'This field must have an input',
+                        // },
+                        // pattern: {
+                        //     value: /([0-9]{4}[A-Z]{2})/,
+                        //     message: 'Please insert a valid area code (with caps)',
+                        // },
                     })}
                     errors={errors}
                 />
@@ -137,7 +178,7 @@ function Overview() {
                     errors={errors}
                 />
                 <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>
-                    QUICK SEARCH <img className={styles.img} src={find} alt={find}/>
+                    SEARCH <img className={styles.img} src={find} alt={find}/>
                 </button>
             </form>
 
@@ -157,9 +198,9 @@ function Overview() {
 
             {(users && findUsers.length === 0 ?
                     <>
-                        <article>
-                            NO SEARCH RESULTS
-                        </article>
+                        <p className={styles.noSearchContainer}>
+                            <div className={styles.noSearch}>NO SEARCH RESULTS</div>
+                        </p>
                     </> :
 
                     <div>{findUsers.map((user, index) => {

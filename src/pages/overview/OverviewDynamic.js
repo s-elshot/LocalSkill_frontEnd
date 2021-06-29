@@ -27,7 +27,7 @@ function OverviewDynamic() {
     const {areaCode, customerGuild} = useParams();
 
 
-    // eslint-disable-next-line array-callback-return
+
     const guilderItems = users.filter((users) => {
         return users.areaCode === areaCode && users.customerGuild === customerGuild
         // if (users.areaCode === areaCode) {

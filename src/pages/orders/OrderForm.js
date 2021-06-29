@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-import './OrderForm.css';
+// import './OrderForm.css';
 import axios from "axios";
 import {useHistory} from "react-router-dom"
-import FormInputComponent from "./FormInputComponent";
+import FormInputComponent from "../../components/forms/FormInputComponent";
 
 function OrderForm() {
 

@@ -5,6 +5,7 @@ import FormInputComponent from "../../components/forms/FormInputComponent";
 import guy from "../../assets/desktop/backgrounds/logIn.png";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
+import LogInButton from "../../components/logIn/LoginButton";
 
 function LogInForm() {
 
@@ -97,6 +98,7 @@ function LogInForm() {
 
                 </fieldset>
             </form>
+            <LogInButton/>
         </div>
     )
 }
