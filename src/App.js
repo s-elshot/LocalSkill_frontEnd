@@ -7,8 +7,6 @@ import React, {useContext} from "react";
 import Entrance from "./pages/entrance/Entrance";
 import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
 import Overview from "./pages/overview/Overview";
-// import UserContextProvider, {UserContext} from "./context/UserContext";
-// import Orders from "./pages/orders/Orders";
 import ItemPost from "./components/object/ItemPost";
 import MobileNavigation from "./components/navigation/MobileNavigation";
 import Home from "./pages/home/Home";
@@ -25,7 +23,8 @@ import {UserContext} from "./context/UserContext";
 import OverviewDynamic from "./pages/overview/OverviewDynamic";
 import SignUpForm from "./pages/signUp/SignUpForm";
 import LogInForm from "./pages/logIn/LogInForm";
-// import OrderForm from "./pages/orders/OrderForm";
+import Customer from "./components/object/Customer";
+
 
 
 
@@ -112,7 +111,9 @@ function App() {
                     </PrivateRoute>
 
                     <PrivateRoute signedIn={signedIn} exact path={"/favorites"}>
+
                         <Favorites/>
+                        <Customer/>
                     </PrivateRoute>
 
                     {/* Sign-up items*/}
@@ -125,9 +126,9 @@ function App() {
                         <NotFound/>
                     </Route>
 
-                    <nav>
-                        <MobileNavigation/>
-                    </nav>
+                    {/*<nav>*/}
+                    {/*    <MobileNavigation/>*/}
+                    {/*</nav>*/}
 
                 </Switch>
 

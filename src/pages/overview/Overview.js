@@ -12,11 +12,21 @@ import {UserContext} from "../../context/UserContext";
 import FormInputComponent from "../../components/forms/FormInputComponent";
 import {useForm} from "react-hook-form";
 import homePic from "../../assets/desktop/backgrounds/noFilter.png";
+import Item from "../../components/object/Item";
 
 // import {useHistory} from "react-router-dom";
 
 
 function Overview() {
+    const {
+        users,
+        addToCart,
+        removeFromCart,
+        addToFavorite
+
+    } = useContext(UserContext)
+
+    const [displayedUsers, setDisplayedUsers] = useState(users);
 
     // check dynamic params
     // niet undefined? Dan zoekopdracht triggeren waarin deze filters gebruikt worden
@@ -26,19 +36,11 @@ function Overview() {
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     // const history = useHistory();
 
-    const {
-        users,
-        addToCart,
-        removeFromCart,
-        addToFavorite
 
-    } = useContext(UserContext)
 
-    const [itemType, setItemType] = useState("");
-    const [itemName, setItemName] = useState("");
-    const [areaCode, setAreaCode] = useState("");
-    const [guild, setGuild] = useState("")
 
+
+    // @todo: dit is een PERFECTE helperfunctie!
 
     const guilderItems = users.filter((users) => {
         return users.userRole === "GUILDER"
@@ -46,62 +48,60 @@ function Overview() {
 
 
     async function onSubmit(data) {
-        console.log(data)
-        setAreaCode(data.areaCode)
-        setGuild(data.customerGuild)
-        setItemType(data.itemType)
-        setItemName(data.itemName)
+        // @todo: hele mooie helperfunctie die active filters teruggeeft op basis van de data
+        const activeFilters = {};
 
+        if (data.areaCode !== '') {
+            // neem mee in de filter
+            activeFilters.areaCode = data.areaCode;
+        }
+        if (data.customerGuild !== 'NONE') {
+            // neem mee in de filter
+            activeFilters.customerGuild = data.customerGuild;
+        }
+        if (data.itemName !== '') {
+            // neem mee in de filter
+            activeFilters.itemName = data.itemName;
+        }
+        if (data.itemType !== '') {
+            // neem mee in de filter
+            activeFilters.itemType = data.itemType;
+        }
+
+        console.log(activeFilters); // is een object
+
+        // alle keys die erin zitten (dit kunnen er maximaal 4 zijn)
+
+        const vergelijkingsProperties = Object.keys(activeFilters);
+        const amount = vergelijkingsProperties.length;
+
+
+        const filteredResults = displayedUsers.filter((users) => {
+
+
+
+            // bepalen welke filters we nodig hebben
+            // met die filters een conditie maken
+            // als de conditie waar is wordt die user in de nieuwe filteredResults gezet
+            // filteredResults wordt gebruikt om de state, displayedUsers te updaten
+            // omdat state supervet is, worden de zoekresultaten opnieuw gerenderd
+
+            // we hebben een variabele nodig die alle actieve filters bundelt die we kunnen gebruiken
+
+
+            // if (users.areaCode === data.areaCode && users.customerGuild === data.guild) {
+            //
+            //     const products = users.items.filter((item) => {
+            //         return item.itemType === data.itemType;
+            //
+            //     });
+            //     return !products
+            //
+            // }
+
+
+        })
     }
-
-    const findUsers = guilderItems.filter((users) => {
-
-
-        if (users.areaCode === areaCode && users.customerGuild === guild) {
-
-            const products = users.items.filter((item) => {
-                return item.itemType === itemType;
-
-            });
-            return !!products
-
-            }
-
-        // if (users.areaCode === areaCode && users.customerGuild === guild) {
-        //
-        //     const productName = users.items.filter((item) => {
-        //         return item.name === itemName;
-        //
-        //     });
-        //     return !!productName
-        //
-        // }
-        //
-        // if (users.areaCode === areaCode && users.customerGuild === guild) {
-        //
-        //     // const products = users.items.filter((item) => {
-        //     //     return item.itemType === itemType;
-        //     //
-        //     // });
-        //     return users
-        //
-        // }
-
-
-    // if (users.areaCode === areaCode) {
-        //     return users
-        // }
-        //
-        // if (users.customerGuild === guild){
-        //        return users
-        // }
-        //     if (users.areaCode === areaCode && users.customerGuild !== "NONE") {
-        //         return users;
-        //     }
-        //     } if (users.areaCode !== areaCode && users.customerGuild === guild){
-        //         return  users
-
-    })
 
 
 
@@ -148,14 +148,10 @@ function Overview() {
                     name="areaCode"
                     placeHolder="Please insert your area code (for example: 1066SP)"
                     fieldRef={register('areaCode', {
-                        // required: {
-                        //     value: true,
-                        //     message: 'This field must have an input',
-                        // },
-                        // pattern: {
-                        //     value: /([0-9]{4}[A-Z]{2})/,
-                        //     message: 'Please insert a valid area code (with caps)',
-                        // },
+                        pattern: {
+                            value: /([0-9]{4}[A-Z]{2})/,
+                            message: 'Please insert a valid area code (with caps)',
+                        },
                     })}
                     errors={errors}
                 />
@@ -177,8 +173,8 @@ function Overview() {
                     fieldRef={register('itemName')}
                     errors={errors}
                 />
-                <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>
-                    SEARCH <img className={styles.img} src={find} alt={find}/>
+                <button className={styles.button} type="submit" disabled={pristine}>
+                    Filter <img className={styles.img} src={find} alt={find}/>
                 </button>
             </form>
 
@@ -196,39 +192,40 @@ function Overview() {
             {/*})}*/}
 
 
-            {(users && findUsers.length === 0 ?
-                    <>
-                        <p className={styles.noSearchContainer}>
-                            <div className={styles.noSearch}>NO SEARCH RESULTS</div>
-                        </p>
-                    </> :
+            {/*{(users && findUsers.length === 0 ?*/}
+            {/*        <>*/}
+            {/*            <p className={styles.noSearchContainer}>*/}
+            {/*                <div className={styles.noSearch}>NO SEARCH RESULTS</div>*/}
+            {/*            </p>*/}
+            {/*        </> :*/}
 
-                    <div>{findUsers.map((user, index) => {
-                        return <article key={index}>
+            {/*        <div>{findUsers.map((user, index) => {*/}
+            {/*            return <article key={index}>*/}
 
-                            {user.items.length != null &&
-                            <>
-                                <div>{user.items.map((item, index) => {
-                                    return <SingleItemComponent
-                                        key={index}
-                                        index={index}
-                                        item={item}
-                                        addToCart={addToCart}
-                                        removeFromCart={removeFromCart}
-                                        addToFavorite={addToFavorite}
-                                    />
+            {/*                {user.items.length != null &&*/}
+            {/*                <>*/}
+            {/*                    <div>{user.items.map((item, index) => {*/}
+            {/*                        return <SingleItemComponent*/}
+            {/*                            key={index}*/}
+            {/*                            index={index}*/}
+            {/*                            item={item}*/}
+            {/*                            addToCart={addToCart}*/}
+            {/*                            removeFromCart={removeFromCart}*/}
+            {/*                            addToFavorite={addToFavorite}*/}
+            {/*                        />*/}
 
-                                })}</div>
-                                    </>
-                                }
+            {/*                    })}</div>*/}
+            {/*                        </>*/}
+            {/*                    }*/}
 
-                                </article>
-                                })}</div>
-                        )}
+            {/*                    </article>*/}
+            {/*                    })}</div>*/}
+            {/*            )}*/}
 
-
+            {/*<Item/>*/}
                     </div>
             );
+
             }
 
 export default Overview;

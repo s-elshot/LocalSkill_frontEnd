@@ -18,6 +18,7 @@ function Home() {
 
     async function onSubmit(data) {
         console.log(data)
+        console.log(errors)
         console.log(data.areaCode)
         console.log(data.customerGuild)
         // console.log(data.firstName)
@@ -38,7 +39,7 @@ function Home() {
 
 
                 <label htmlFor="formItems">
-                <select name="customerGuild" {...register("customerGuild",{ required: true, message: 'You must specify an Guild'})} className={styles.select}>
+                <select name="customerGuild" {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>
                     <option value="">Please choose an Guild....</option>
                     <option value="FINANCE">Finance</option>
                     <option value="CONSTRUCTION">Construction</option>
@@ -66,28 +67,9 @@ function Home() {
                     <option value="EDUCATION">Education</option>
                     <option value="HEALTHCARE">Healthcare</option>
                 </select>
-                    {errors.customerGuild && <span>{errors.customerGuild.message}</span>}
+                    {errors.customerGuild  && <span>PLEASE SPECIFY AN INPUT..</span>}
                 </label>
 
-
-
-                {/*<FormInputComponent*/}
-                {/*    type="text"*/}
-                {/*    name="itemType"*/}
-                {/*    className={styles.input}*/}
-                {/*    placeHolder="Search products / services"*/}
-                {/*    fieldRef= {register('itemType', {*/}
-                {/*        required: {*/}
-                {/*            value: true,*/}
-                {/*            message: 'This field must have input',*/}
-                {/*        }*/}
-                {/*        , maxLength: {*/}
-                {/*            value: 30,*/}
-                {/*            message: 'At most 30 characters can be used to define the first name',*/}
-                {/*        }*/}
-                {/*    })}*/}
-                {/*    errors={errors}*/}
-                {/*/>*/}
 
                 <FormInputComponent
                     type="text"
@@ -109,7 +91,9 @@ function Home() {
 
 
                 <div className={styles.buttonContainer}>
-                <button className={styles.button} type="submit" onClick={handleSubmit} disabled={pristine}>QUICK SEARCH  <img className={styles.img} src={find} alt={find}/></button>
+                <button className={styles.button} type="submit" onClick={handleSubmit}
+                        // disabled={pristine}
+                >QUICK SEARCH  <img className={styles.img} src={find} alt={find}/></button>
                 <button className={styles.button} type="submit" onClick={()=>{history.push("overview")}}>BROWSE ALL ITEMS  <img className={styles.img} src={find} alt={find}/></button>
                 </div>
 

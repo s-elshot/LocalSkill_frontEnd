@@ -55,27 +55,46 @@ function CreateItemForm() {
 
                     <fieldset className={styles.formSet}>
                         <h2 className={styles.formHeader}>CREATE ITEM</h2>
+                        <label>
+                            <select {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>
+                                <option value="">Please choose an Guild....</option>
+                                <option value="FINANCE">Finance</option>
+                                <option value="CONSTRUCTION">Construction</option>
+                                <option value="CREATIVE_DESIGN">Creative design</option>
+                                <option value="LEISURE">Leisure</option>
+                                <option value="MEDIA">Media</option>
+                                <option value="SECURITY">Security</option>
+                                <option value="HEALTHCARE">Healthcare</option>
+                                <option value="IT">IT</option>
+                                <option value="BEAUTY">Beauty</option>
+                                <option value="SPORT">Sport</option>
+                                <option value="FOOD">Food</option>
+                                <option value="HOBBY">Hobby</option>
+                                <option value="SALES">Sales</option>
+                                <option value="EDUCATION">Education</option>
+                                <option value="LOGISTICS">Logistics</option>
+                                <option value="LEGAL">Legal</option>
+                                <option value="HUMAN_RESOURCES">Human resources</option>
+                                <option value="IT">IT</option>
+                                <option value="BEAUTY">Beauty</option>
+                                <option value="SPORT">Sport</option>
+                                <option value="FOOD">Food</option>
+                                <option value="HOBBY">Hobby</option>
+                                <option value="SALES">Sales</option>
+                                <option value="EDUCATION">Education</option>
+                                <option value="HEALTHCARE">Healthcare</option>
+                            </select>
+                            {errors.userRole && <span>PLEASE CHOOSE AN GUILD..</span>}
+                        </label>
 
-                        {/*/!*options bij inputvelden*!/*/}
-                        {/*<label htmlFor="product" id="radioSelector" className={styles.radio}*/}
-                        {/*       {...register("itemType", {*/}
-                        {/*    required: true,*/}
-                        {/*    message: 'This field must have input'*/}
-                        {/*})} >*/}
-                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
-                        {/*           /!*hierbij*!/*/}
-                        {/*           id="product"  {...register("itemType")}*/}
-                        {/*           value="PRODUCT"/> product*/}
-                        {/*    /!*hierbij*!/*/}
-                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
-                        {/*           id="service"  {...register("itemType")} value="SERVICE"/>service*/}
-                        {/*</label>*/}
-
-                        <select {...register("itemType",{ required: true})} className={styles.select}>
+                        <label>
+                        <select {...register("itemType",{ validate: (value) => value !== ""})} className={styles.select}>
                             <option value="">Please choose between an item or service....</option>
                             <option value="PRODUCT">Product</option>
                             <option value="SERVICE">Service</option>
                         </select>
+                            {errors.userRole && <span>PLEASE CHOOSE BETWEEN AN ITEM OR SERVICE..</span>}
+                        </label>
 
                         <label className={styles.contentUpload}>
                             <input className={styles.createInput} id="content" name="content"
