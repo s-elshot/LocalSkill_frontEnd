@@ -33,7 +33,7 @@ function Profile() {
 
                 <fieldset className={styles.profileOutline}>
 
-                    {users &&
+                    {users && val &&
                     <div>
                         <h2 className={styles.profileHeader}>YOUR PROFILE</h2>
 
@@ -66,7 +66,7 @@ function Profile() {
                                     <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
                                 </NavLink>
 
-                                <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
+                                <NavLink to="/profile/deleteAccount" activeClassName={styles.entranceLinkContainer}>
                                     <p className={styles.entranceLink}>DELETE YOUR ACCOUNT</p>
                                 </NavLink>
 

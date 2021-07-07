@@ -78,12 +78,12 @@ function UserDetails() {
                         {/*</label>*/}
 
                         <label>
-                            <select id="userRole" {...register("userRole",{ required: true, message: 'This field must have input'})} className={styles.select} >
+                            <select id="userRole" {...register("userRole",{ validate: (value) => value !== ""})} className={styles.select} >
                                 <option value="">Please choose between an Customer Account or Guilder Account....</option>
                                 <option value="CUSTOMER">Customer</option>
                                 <option value="GUILDER">Guilder</option>
                             </select>
-                            {errors.userRole && <span>{errors.userRole.message}</span>}
+                            {errors.userRole && <span className={styles.errors}>Please choose between an customer or guilder account..</span>}
                         </label>
 
                         <label>
@@ -115,7 +115,7 @@ function UserDetails() {
                                 <option value="EDUCATION">Education</option>
                                 <option value="HEALTHCARE">Healthcare</option>
                             </select>
-                            {errors.customerGuild && <span>{errors.customerGuild.message}</span>}
+                            {errors.customerGuild && <span className={styles.errors}>Please specify an preferred guild..</span>}
                         </label>
 
                         <FormInputComponent

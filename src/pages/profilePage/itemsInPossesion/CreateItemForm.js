@@ -68,13 +68,14 @@ function CreateItemForm() {
                         </label>
 
                         <label>
-                        <select {...register("itemType",{ required: true, message: 'You must specify the type of item you want to create'})} className={styles.select}>
-                            <option value="">Please choose between an item or service....</option>
-                            <option value="PRODUCT">Product</option>
-                            <option value="SERVICE">Service</option>
-                        </select>
-                        {errors.itemType && <span>{errors.itemType.message}</span>}
-                    </label>
+                            <select {...register("itemType",{ validate: (value) => value !== ""})} className={styles.select}>
+                                <option value="">Please choose between an item or service....</option>
+                                <option value="PRODUCT">Product</option>
+                                <option value="SERVICE">Service</option>
+                            </select>
+                            {errors.itemType && <span className={styles.errors}>Please choose between an item or service..</span>}
+                        </label>
+                        
 
                         <FormInputComponent
                             type="text"

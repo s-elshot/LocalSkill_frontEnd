@@ -23,7 +23,7 @@ import {UserContext} from "./context/UserContext";
 import OverviewDynamic from "./pages/overview/OverviewDynamic";
 import SignUpForm from "./pages/signUp/SignUpForm";
 import LogInForm from "./pages/logIn/LogInForm";
-import Customer from "./components/object/Customer";
+
 
 
 
@@ -111,9 +111,7 @@ function App() {
                     </PrivateRoute>
 
                     <PrivateRoute signedIn={signedIn} exact path={"/favorites"}>
-
                         <Favorites/>
-                        <Customer/>
                     </PrivateRoute>
 
                     {/* Sign-up items*/}

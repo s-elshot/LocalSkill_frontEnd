@@ -1,20 +1,34 @@
-import React, {useContext, useState} from 'react';
+import React, {
+    useContext, useState
+    // , useState
+} from 'react';
 
 import styles from "./Overview.module.css"
 import find from "../../assets/mobileIcons/Icon awesome-search@2x.png"
-
-// import OverviewComponent from "../../components/object/overviewComponent";
-// import ItemOverview from "./ItemOverview";
-
-
-import SingleItemComponent from "../../components/object/SingleItemComponent";
 import {UserContext} from "../../context/UserContext";
 import FormInputComponent from "../../components/forms/FormInputComponent";
 import {useForm} from "react-hook-form";
 import homePic from "../../assets/desktop/backgrounds/noFilter.png";
-import Item from "../../components/object/Item";
 
-// import {useHistory} from "react-router-dom";
+import SingleItemComponent from "../../components/object/SingleItemComponent";
+import buildFilter from "../../helper/buildFilter";
+
+
+
+
+
+// @todo: helperfunctie declaratie, deze mag in een apart bestand uiteindelijk!
+// we filteren de properties met lege arrays erin, eruit!
+// function buildFilter(filter) {
+//     let activeFilters = {};
+//     for (let keys in filter) {
+//         if (filter[keys].length > 0) {
+//             activeFilters[keys] = filter[keys];
+//         }
+//     }
+//     return activeFilters;
+// }
+
 
 
 function Overview() {
@@ -23,89 +37,69 @@ function Overview() {
         addToCart,
         removeFromCart,
         addToFavorite
-
-    } = useContext(UserContext)
-
-    const [displayedUsers, setDisplayedUsers] = useState(users);
-
-    // check dynamic params
-    // niet undefined? Dan zoekopdracht triggeren waarin deze filters gebruikt worden
-    // maak get request voor producten naar backend
-    // wel undefined? Dan "begin met zoeken laten zien
-
+    } = useContext(UserContext);
+    const [displayedItems, setDisplayedItems] = useState([]);
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
-    // const history = useHistory();
 
-
-
-
-
-    // @todo: dit is een PERFECTE helperfunctie!
-
-    const guilderItems = users.filter((users) => {
-        return users.userRole === "GUILDER"
-    })
-
-
-    async function onSubmit(data) {
-        // @todo: hele mooie helperfunctie die active filters teruggeeft op basis van de data
-        const activeFilters = {};
-
-        if (data.areaCode !== '') {
-            // neem mee in de filter
-            activeFilters.areaCode = data.areaCode;
-        }
-        if (data.customerGuild !== 'NONE') {
-            // neem mee in de filter
-            activeFilters.customerGuild = data.customerGuild;
-        }
-        if (data.itemName !== '') {
-            // neem mee in de filter
-            activeFilters.itemName = data.itemName;
-        }
-        if (data.itemType !== '') {
-            // neem mee in de filter
-            activeFilters.itemType = data.itemType;
+    function onSubmit(data) {
+        const userFilters = {
+            areaCode: (data.areaCode && [data.areaCode]) || [],
+            userRole: ['GUILDER'],
+            customerGuild: (data.customerGuild && [data.customerGuild]) || [],
         }
 
-        console.log(activeFilters); // is een object
+        console.log(userFilters);
 
-        // alle keys die erin zitten (dit kunnen er maximaal 4 zijn)
+        const itemFilters = {
+            itemName: (data.itemName && [data.itemName]) || [],
+            itemType: (data.itemName && [data.itemType]) || [],
+        }
 
-        const vergelijkingsProperties = Object.keys(activeFilters);
-        const amount = vergelijkingsProperties.length;
+        console.log(itemFilters);
 
+        // hier maken we de arrays met filters die ook daadwerkelijk togepast moeten worden
+        const activeUserFilters = buildFilter(userFilters);
+        const activeItemFilters = buildFilter(itemFilters);
 
-        const filteredResults = displayedUsers.filter((users) => {
+        console.log(activeUserFilters, activeItemFilters);
 
-
-
-            // bepalen welke filters we nodig hebben
-            // met die filters een conditie maken
-            // als de conditie waar is wordt die user in de nieuwe filteredResults gezet
-            // filteredResults wordt gebruikt om de state, displayedUsers te updaten
-            // omdat state supervet is, worden de zoekresultaten opnieuw gerenderd
-
-            // we hebben een variabele nodig die alle actieve filters bundelt die we kunnen gebruiken
+        // Maak alvast een lege array voor alle toekomstige items
+        let items = [];
 
 
-            // if (users.areaCode === data.areaCode && users.customerGuild === data.guild) {
-            //
-            //     const products = users.items.filter((item) => {
-            //         return item.itemType === data.itemType;
-            //
-            //     });
-            //     return !products
-            //
-            // }
 
+        // FILTER EERST DE USERS OP BASIS VAN DYNAMISCHE FILTERS
+        users.filter((user) => {
+            for (let key in activeUserFilters) {
+                if (user[key] === undefined || !activeUserFilters[key].includes(user[key])) {
+                    return false;
+                }
+            }
+            // dit willen we niet!
+            // items = [[.., ..,..], [..,..,..]];
 
-        })
+            // als deze gebruiker aan de filters voldoet
+            // map dan over al zijn items heen en zet die in de variabele ITEMS
+            user.items.map((item) => {
+                return items.push(item)
+            });
+            return true;
+        });
+        console.log(items);
+
+        // FILTER DAARNA DE ITEMS OP BASIS VAN DYNAMISCHE FILTERS
+        const filteredItems = items.filter((item) => {
+            for (let key in activeItemFilters) {
+                if (item[key] === undefined || !activeItemFilters[key].includes(item[key])) {
+                    return false;
+                }
+            }
+            return true;
+        });
+        // zet de items in de state zodat we ze kunnen weergeven op de pagina!
+        setDisplayedItems(filteredItems);
+        console.log(filteredItems);
     }
-
-
-
-
 
 
     return (
@@ -179,17 +173,16 @@ function Overview() {
             </form>
 
 
-            {/*{users && findUsers.item.map((item, index) => {*/}
-            {/*    return <SingleItemComponent*/}
-            {/*        key={index}*/}
-            {/*        index={index}*/}
-            {/*        item={item}*/}
-            {/*        addToCart={addToCart}*/}
-            {/*        removeFromCart={removeFromCart}*/}
-            {/*        addToFavorite={addToFavorite}*/}
-            {/*    />*/}
-
-            {/*})}*/}
+            {users && displayedItems && displayedItems.map((item, index) => {
+                return <SingleItemComponent
+                    key={index}
+                    index={index}
+                    item={item}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    addToFavorite={addToFavorite}
+                />
+            })}
 
 
             {/*{(users && findUsers.length === 0 ?*/}

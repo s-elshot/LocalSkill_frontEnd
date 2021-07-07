@@ -88,7 +88,7 @@ function SignUpForm() {
                             <option value="EDUCATION">Education</option>
                             <option value="HEALTHCARE">Healthcare</option>
                         </select>
-                        {errors.customerGuild  && <span>PLEASE SPECIFY AN INPUT..</span>}
+                        {errors.customerGuild  && <span className={styles.errors}>Please specify an input..</span>}
                     </label>
 
 
@@ -98,7 +98,7 @@ function SignUpForm() {
                         <option value="CUSTOMER">Customer</option>
                         <option value="GUILDER">Guilder</option>
                     </select>
-                        {errors.userRole && <span>PLEASE CHOOSE AN USER ROLE..</span>}
+                        {errors.userRole && <span className={styles.errors}>Please choose an role..</span>}
                     </label>
 
                     <FormInputComponent

@@ -67,7 +67,7 @@ function Home() {
                     <option value="EDUCATION">Education</option>
                     <option value="HEALTHCARE">Healthcare</option>
                 </select>
-                    {errors.customerGuild  && <span>PLEASE SPECIFY AN INPUT..</span>}
+                    {errors.customerGuild  && <span className={styles.errors}>Please specify an Guild..</span>}
                 </label>
 
 
@@ -92,9 +92,9 @@ function Home() {
 
                 <div className={styles.buttonContainer}>
                 <button className={styles.button} type="submit" onClick={handleSubmit}
-                        // disabled={pristine}
-                >QUICK SEARCH  <img className={styles.img} src={find} alt={find}/></button>
-                <button className={styles.button} type="submit" onClick={()=>{history.push("overview")}}>BROWSE ALL ITEMS  <img className={styles.img} src={find} alt={find}/></button>
+                        disabled={pristine}
+                >Quick search  <img className={styles.img} src={find} alt={find}/></button>
+                <button className={styles.button} type="submit" onClick={()=>{history.push("overview")}}>Browse all items <img className={styles.img} src={find} alt={find}/></button>
                 </div>
 
             </form>

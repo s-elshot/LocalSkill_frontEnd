@@ -84,7 +84,7 @@ function CreateItemForm() {
                                 <option value="EDUCATION">Education</option>
                                 <option value="HEALTHCARE">Healthcare</option>
                             </select>
-                            {errors.userRole && <span>PLEASE CHOOSE AN GUILD..</span>}
+                            {errors.customerGuild && <span className={styles.errors}>PLEASE CHOOSE AN GUILD..</span>}
                         </label>
 
                         <label>

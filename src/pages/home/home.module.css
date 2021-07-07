@@ -101,3 +101,8 @@
     z-index: 10;
 }
 
+.errors {
+    color: #f16767;
+    font-size: x-small;
+    font-family: "Segoe UI Semilight", sans-serif;
+}

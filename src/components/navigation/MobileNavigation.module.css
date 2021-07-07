@@ -8,10 +8,13 @@
 
 .mobileNavContainer {
     /*background: transparent;*/
-    width: 97%;
+    margin-left: 1%;
+    margin-right: 3%;
+    width: 94%;
     position: fixed;
     z-index: 20;
     /*padding-right: 20px;*/
+
 
 
 }
@@ -27,6 +30,7 @@
     /*position: relative;*/
     /*overflow: hidden;*/
     cursor: pointer;
+
 }
 
 .image {

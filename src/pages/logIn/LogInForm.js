@@ -47,10 +47,10 @@ function LogInForm() {
 
                     <FormInputComponent
                         type="text"
-                        name="email"
+                        name="username"
                         className={styles.logInField}
-                        placeHolder="Email"
-                        fieldRef= {register('email', {
+                        placeHolder="Username"
+                        fieldRef= {register('username', {
                             required: {
                                 value: true,
                                 message: 'This field must have input',

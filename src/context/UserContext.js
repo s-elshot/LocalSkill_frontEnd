@@ -15,11 +15,11 @@ function UserContextProvider({children}) {
     const [items, setItems] = useState(null);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [users, setUsers] = useState("");
+    const [users, setUsers] = useState([]);
     const [favorite, setFavorite] = useState([]);
     const [favoriteTotal, setFavoriteTotal] = useState(0);
     const [userDetail, setUserDetail] = useState({
-        email: "",
+        username: "Susanne",
         firstName: "Susanne",
         lastName:"Bijwaard",
         id:2,
