@@ -19,28 +19,39 @@ function SignUpForm() {
         toggleLoading(true)
         try {
             await axios.post(
-                "http://localhost:8080/customer"
+                "http://localhost:8080/api/auth/signup"
                 // "http://localhost:3000/register"
                 , {
-                // method: "POST",
-                // headers: {"Content-Type": "application/json"},
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
+                username: data.username,
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
+                role: ["user"],
+                // enabled: true,
+                //     authorities: [
+                //         {
+                //             username: data.username,
+                //             authority: "ROLE_USER"
+                //         }
+                //     ],
+
                 areaCode: data.areaCode,
                 city: data.city,
-                guild: data.guild,
+                customerGuild: data.customerGuild,
                 password: data.password,
-                userRole: data.userRole
+                userRole: data.userRole,
+
             }).then(() => {
                 console.log("New customer added")
 
             })
             toggleRegisterSucces(true)
             setTimeout(() => {
-                history.push("overview");
-            }, 2000)
+                history.push("logIn");
+            }, 1000)
 
         } catch (e) {
             console.error(e)
@@ -103,6 +114,28 @@ function SignUpForm() {
 
                     <FormInputComponent
                         type="text"
+                        className={styles.signUpField}
+                        name="username"
+                        placeHolder="Please choose an username"
+                        fieldRef={register('username', {
+                            required: {
+                                value: true,
+                                message: 'This field must have input',
+                            },
+                            minLength: {
+                                value: 2,
+                                message: 'At least 2 characters must be used to define the last name',
+                            },
+                            maxLength: {
+                                value: 15,
+                                message: 'At most 15 characters can be used to define the last name',
+                            },
+                        })}
+                        errors={errors}
+                    />
+
+                    <FormInputComponent
+                        type="text"
                         name="firstName"
                         className={styles.signUpField}
                         placeHolder="First name"
@@ -145,23 +178,7 @@ function SignUpForm() {
                         errors={errors}
                     />
 
-                    {/*<FormInputComponent*/}
-                    {/*    type="number"*/}
-                    {/*    className="signUpField"*/}
-                    {/*    name="age"*/}
-                    {/*    placeHolder="Age"*/}
-                    {/*    fieldRef={register('age', {*/}
-                    {/*        required: {*/}
-                    {/*            value: true,*/}
-                    {/*            message: 'This field must have input',*/}
-                    {/*        },*/}
-                    {/*        min: {*/}
-                    {/*            value: 12,*/}
-                    {/*            message: 'You must be at least 12 to visit this website',*/}
-                    {/*        }*/}
-                    {/*    })}*/}
-                    {/*    errors={errors}*/}
-                    {/*/>*/}
+
 
                     <FormInputComponent
                         type="text"
@@ -222,27 +239,27 @@ function SignUpForm() {
                     />
 
 
-                    <FormInputComponent
-                        type="text"
-                        className={styles.signUpField}
-                        name="guild"
-                        placeHolder="Choose your guild"
-                        fieldRef={register('guild', {
-                            required: {
-                                value: true,
-                                message: 'This field must have input',
-                            },
-                            minLength: {
-                                value: 2,
-                                message: 'At least 2 characters must be used to define the last name',
-                            },
-                            maxLength: {
-                                value: 25,
-                                message: 'At most 25 characters can be used to define the last name',
-                            },
-                        })}
-                        errors={errors}
-                    />
+                    {/*<FormInputComponent*/}
+                    {/*    type="text"*/}
+                    {/*    className={styles.signUpField}*/}
+                    {/*    name="guild"*/}
+                    {/*    placeHolder="Choose your guild"*/}
+                    {/*    fieldRef={register('guild', {*/}
+                    {/*        required: {*/}
+                    {/*            value: true,*/}
+                    {/*            message: 'This field must have input',*/}
+                    {/*        },*/}
+                    {/*        minLength: {*/}
+                    {/*            value: 2,*/}
+                    {/*            message: 'At least 2 characters must be used to define the last name',*/}
+                    {/*        },*/}
+                    {/*        maxLength: {*/}
+                    {/*            value: 25,*/}
+                    {/*            message: 'At most 25 characters can be used to define the last name',*/}
+                    {/*        },*/}
+                    {/*    })}*/}
+                    {/*    errors={errors}*/}
+                    {/*/>*/}
 
 
                     <FormInputComponent
@@ -260,8 +277,8 @@ function SignUpForm() {
                                 message: 'At least 2 characters must be used to define the last name',
                             },
                             maxLength: {
-                                value: 25,
-                                message: 'At most 25 characters can be used to define the last name',
+                                value: 100,
+                                message: 'At most 100 characters can be used to define the last name',
                             },
                         })}
                         errors={errors}

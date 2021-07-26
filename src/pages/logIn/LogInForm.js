@@ -6,12 +6,13 @@ import guy from "../../assets/desktop/backgrounds/logIn.png";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
 import LogInButton from "../../components/logIn/LoginButton";
+import {useHistory} from "react-router-dom";
 
 function LogInForm() {
 
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false);
-
+    const history = useHistory();
     const {toggleSignedIn} = useContext(UserContext)
 
 
@@ -20,12 +21,15 @@ function LogInForm() {
         toggleSignedIn(false)
         try {
              // await axios.post("http://localhost:3000/login",data)
-            await axios.post("http://localhost:8080/customer",data)
+            await axios.post("http://localhost:8080/api/auth/signin",data)
 
             // logIn(result.data.accessToken)
             // place jwt in local storage
 
             toggleRegisterSucces(true)
+            setTimeout(() => {
+                history.push("homepage");
+            }, 1000)
 
             // no time-out: redirect immediately to new page
             // place jwt in local storage

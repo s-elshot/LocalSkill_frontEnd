@@ -46,12 +46,12 @@ function AuthContextProvider({children}) {
     async function fetchUserData(jwtToken) {
 
         const decoded = jwt_decode(jwtToken);
-        const userId = decoded.sub;
+        const username = decoded.sub;
         localStorage.setItem("token", jwtToken)
 
         try {
 
-            const result = await axios.get(`http://localhost:600/users/${userId}`, {
+            const result = await axios.get(`http://localhost:600/users/${username}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`,
@@ -86,19 +86,19 @@ function AuthContextProvider({children}) {
         // eslint-disable-next-line
     }, [])
 
-    // async function logIn(jwtToken) {
-    //     // console.log("JWT token?",jwtToken)
-    //     // JWT DECODER NODIG: NPM INSTALL JWT-DECODE --SAVE
-    //     localStorage.setItem("token", jwtToken)
-    //     // need jwt token to get user-id
-    //     // put jwt token in local storage
-    //     // gebruikersdata ophalen
-    //     // data gebruiken om context te vullen
-    //     // doorlinken naar profielpagina
-    //     fetchUserData(jwtToken);
-    //
-    //     history.push("/profile");
-    // }
+    async function logIn(jwtToken) {
+        // console.log("JWT token?",jwtToken)
+        // JWT DECODER NODIG: NPM INSTALL JWT-DECODE --SAVE
+        localStorage.setItem("token", jwtToken)
+        // need jwt token to get user-id
+        // put jwt token in local storage
+        // gebruikersdata ophalen
+        // data gebruiken om context te vullen
+        // doorlinken naar profielpagina
+        fetchUserData(jwtToken);
+
+        history.push("/profile");
+    }
 
 
     function logOut() {
@@ -108,7 +108,7 @@ function AuthContextProvider({children}) {
 
     const data = {
         ...authState,
-        // logIn: logIn,
+        logIn: logIn,
         logOut: logOut,
 
     }
