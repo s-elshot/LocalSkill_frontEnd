@@ -10,9 +10,10 @@ function ItemsInPossession() {
         users,
         error,
         loading,
+
     } = useContext(UserContext)
 
-    const userId = 2
+    const userId = 2000
     const val = users.find(user => {
         return user.id === userId
     })
@@ -33,7 +34,7 @@ function ItemsInPossession() {
                 <fieldset className={styles.orderOutline}>
                     <h2 className={styles.header}>ALL ORDERS</h2>
 
-                    {(users && val.invoices.length === 0 ?
+                    {(users && val.invoices && val.invoices.length === 0 ?
                             <>
                                 <article className={styles.orderCard}>
                                     You don't have any orders yet

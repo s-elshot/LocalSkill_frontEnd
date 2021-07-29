@@ -6,18 +6,29 @@ import {UserContext} from "../../context/UserContext";
 import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg";
 
 
+
+
 function Profile() {
 
     const {
         users,
         error,
         loading,
+        userLogIn
     } = useContext(UserContext)
 
-    const userId = 2;
+
+
+    // const userId = 2000;
+    // const val = users.find(user => {
+    //     return user.id === userId
+    // })
+
+    // const userId = 2000;
     const val = users.find(user => {
-        return user.id === userId
+        return user.username === userLogIn
     })
+
 
     return (
         <Fragment>
@@ -33,19 +44,21 @@ function Profile() {
 
                 <fieldset className={styles.profileOutline}>
 
-                    {users && val &&
+                    {users &&
+                    val
+                    &&
                     <div>
                         <h2 className={styles.profileHeader}>YOUR PROFILE</h2>
 
                         <ul className={styles.listOutline}>
                             <h2 className={styles.profileName}>{val.firstName} {val.lastName}
-                                {val.guild != null && <> - {val.guild}</>}
+                                {val.customerGuild != null && <> - {val.customerGuild}</>}
                             </h2>
-                            <li className={styles.listItem}><b>Email:</b> {val.emailAdress}</li>
+                            <li className={styles.listItem}><b>Email:</b> {val.email}</li>
                             <li className={styles.listItem}><b>Area Code:</b> {val.areaCode}</li>
                             <li className={styles.listItem}><b>City:</b> {val.city}</li>
                             {val.guild != null &&
-                            <li className={styles.listItem}><b>Guild:</b> {val.guild}</li>
+                            <li className={styles.listItem}><b>Guild:</b> {val.customerGuild}</li>
                             }
                             <li className={styles.listItem}><b>Type account:</b> {val.userRole} </li>
 

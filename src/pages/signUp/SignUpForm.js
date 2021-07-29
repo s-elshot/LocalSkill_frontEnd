@@ -20,6 +20,7 @@ function SignUpForm() {
         try {
             await axios.post(
                 "http://localhost:8080/api/auth/signup"
+            // "http://localhost:8080/customer"
                 // "http://localhost:3000/register"
                 , {
                 method: "POST",

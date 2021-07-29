@@ -14,10 +14,12 @@ function ItemsInPossession() {
         loading,
     } = useContext(UserContext)
 
-    const userId = 2;
+    const userId = 2000;
     const val = users.find(user => {
         return user.id === userId
     })
+
+    console.log(val)
 
 
     const history = useHistory();
@@ -57,19 +59,19 @@ function ItemsInPossession() {
             <fieldset className={styles.outline}>
             <h2 className={styles.header}>CURRENT ITEMS</h2>
 
-                {val.guild != null &&
+                {val.customerGuild != null &&
                 <NavLink to={"/profile/createItem"}>
                     <div className={styles.createButton}>CREATE NEW ITEM +</div>
                 </NavLink>
                 }
-            {users &&
+            {users && val &&
                 <div>{val.items.map((item, index) => {
                     return <article key={index} className={styles.itemCard}>
                         <h4>{item.name}</h4>
                         <p>{item.description}</p>
                         <p>€ {item.price}</p>
                         <p>ID: {item.id}</p>
-                        {val.guild != null && <>
+                        {val.customerGuild != null && <>
                         <button onClick={()=>removeItem(item)}>DELETE ITEM</button>
                             </>
                         }

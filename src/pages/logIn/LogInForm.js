@@ -13,11 +13,13 @@ function LogInForm() {
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
     const [registerSucces, toggleRegisterSucces] = useState(false);
     const history = useHistory();
-    const {toggleSignedIn} = useContext(UserContext)
+    const {toggleSignedIn, setUserLogIn} = useContext(UserContext)
 
 
     async function onSubmit(data) {
         console.log(data)
+        // console.log(data.username)
+        setUserLogIn(data.username)
         toggleSignedIn(false)
         try {
              // await axios.post("http://localhost:3000/login",data)

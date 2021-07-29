@@ -18,11 +18,12 @@ function UserContextProvider({children}) {
     const [users, setUsers] = useState([]);
     const [favorite, setFavorite] = useState([]);
     const [favoriteTotal, setFavoriteTotal] = useState(0);
+    const [userLogIn, setUserLogIn] = useState("");
     const [userDetail, setUserDetail] = useState({
-        username: "Susanne",
-        firstName: "Susanne",
-        lastName:"Bijwaard",
-        id:2,
+        username: "",
+        firstName: "",
+        lastName:"",
+        id:"",
     });
 
     const itemLocation = "http://localhost:8080/item"
@@ -239,7 +240,8 @@ function UserContextProvider({children}) {
         toggleSignedIn: toggleSignedIn,
         userDetail: userDetail,
         setUserDetail: setUserDetail,
-
+        userLogIn: userLogIn,
+        setUserLogIn: setUserLogIn,
         // functionality
         loading: loading,
         error: error,

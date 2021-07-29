@@ -43,6 +43,7 @@ function AuthContextProvider({children}) {
         status: 'pending',
     })
 
+
     async function fetchUserData(jwtToken) {
 
         const decoded = jwt_decode(jwtToken);
@@ -57,16 +58,19 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
+
             setAuthState({
-                user: {
+                customer: {
                     username: result.data.username,
                     id: result.data.id
                 },
+
                 status: 'done'
             });
         } catch (e) {
             console.error(e)
         }
+
     }
 
     useEffect(() => {
@@ -108,8 +112,10 @@ function AuthContextProvider({children}) {
 
     const data = {
         ...authState,
+        authState: authState,
         logIn: logIn,
         logOut: logOut,
+
 
     }
 
@@ -118,7 +124,6 @@ function AuthContextProvider({children}) {
             {
                 authState.status === "done"
                 ?
-
                 children
                 : <p>Loading..</p>
             }
