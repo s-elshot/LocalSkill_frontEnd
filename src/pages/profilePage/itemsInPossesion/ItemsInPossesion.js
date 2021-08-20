@@ -3,7 +3,9 @@ import {UserContext} from "../../../context/UserContext";
 import styles from "./ItemsInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/pexels-profile-2.png"
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink,
+    useHistory
+} from "react-router-dom";
 import axios from "axios";
 
 function ItemsInPossession() {
@@ -12,14 +14,29 @@ function ItemsInPossession() {
         users,
         error,
         loading,
+        userLogIn
     } = useContext(UserContext)
 
-    const userId = 2000;
+    console.log(users)
     const val = users.find(user => {
-        return user.id === userId
+        return user.username === userLogIn
     })
 
     console.log(val)
+    console.log(val.items)
+
+
+
+    // const userId = 2000;
+    // const val = users.find(user => {
+    //     return user.id === userId
+    // })
+
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
 
 
     const history = useHistory();
@@ -32,10 +49,11 @@ function ItemsInPossession() {
                 method: "DELETE",
             }).then(() => {
                 console.log("Item deleted")
+                refreshPage()
             })
 
             setTimeout(() => {
-                history.push("/itemsInPossession");
+                history.push("/profile");
             })
         } catch (e) {
             console.error(e)

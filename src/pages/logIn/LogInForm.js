@@ -5,7 +5,7 @@ import FormInputComponent from "../../components/forms/FormInputComponent";
 import guy from "../../assets/desktop/backgrounds/logIn.png";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-import LogInButton from "../../components/logIn/LoginButton";
+// import LogInButton from "../../components/logIn/LoginButton";
 import {useHistory} from "react-router-dom";
 
 function LogInForm() {
@@ -60,14 +60,15 @@ function LogInForm() {
                             required: {
                                 value: true,
                                 message: 'This field must have input',
-                            }
-                            , maxLength: {
-                                value: 30,
-                                message: 'At most 30 characters can be used to define the first name',
+                            },
+                            pattern: {
+                                value: /^[A-Z].*$/,
+                                message: 'Username must start with capital letter',
                             }
                         })}
                         errors={errors}
                     />
+
 
                     <FormInputComponent
                         type="password"
@@ -104,7 +105,7 @@ function LogInForm() {
 
                 </fieldset>
             </form>
-            <LogInButton/>
+            {/*<LogInButton/>*/}
         </div>
     )
 }

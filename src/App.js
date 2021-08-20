@@ -23,6 +23,7 @@ import {UserContext} from "./context/UserContext";
 import OverviewDynamic from "./pages/overview/OverviewDynamic";
 import SignUpForm from "./pages/signUp/SignUpForm";
 import LogInForm from "./pages/logIn/LogInForm";
+import SignUpCustomer from "./pages/signUp/SignUpCustomer";
 
 
 
@@ -63,6 +64,10 @@ function App() {
 
                     <Route exact path={"/signUp"}>
                         <SignUpForm/>
+                    </Route>
+
+                    <Route exact path={"/signUpCustomer"}>
+                        <SignUpCustomer/>
                     </Route>
 
                     <Route signedIn={signedIn} exact path={"/overview"}>

@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom"
-import FormInputComponent from "../../components/forms/FormInputComponent";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
-import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
 import styles from "./SignUpForm.module.css";
+import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
+import FormInputComponent from "../../components/forms/FormInputComponent";
 
-function SignUpForm() {
+
+function SignUpCustomer() {
 
     const [loading, toggleLoading] = useState(false)
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
@@ -21,21 +22,21 @@ function SignUpForm() {
             await axios.post(
                 "http://localhost:8080/api/auth/signup"
                 , {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify,
-                username: data.username,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                role: ["user"],
-                areaCode: data.areaCode,
-                city: data.city,
-                customerGuild: data.customerGuild,
-                password: data.password,
-                userRole: data.userRole,
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify,
+                    username: data.username,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    role: ["user"],
+                    areaCode: data.areaCode,
+                    city: data.city,
+                    customerGuild: "NONE",
+                    password: data.password,
+                    userRole: "CUSTOMER",
 
-            }).then(() => {
+                }).then(() => {
                 console.log("New customer added")
 
             })
@@ -61,47 +62,47 @@ function SignUpForm() {
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP</h2>
 
-                    <label htmlFor="formItems">
-                        <select name="customerGuild" {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>
-                            <option value="">Please choose an Guild....</option>
-                            <option value="FINANCE">Finance</option>
-                            <option value="CONSTRUCTION">Construction</option>
-                            <option value="CREATIVE_DESIGN">Creative design</option>
-                            <option value="LEISURE">Leisure</option>
-                            <option value="MEDIA">Media</option>
-                            <option value="SECURITY">Security</option>
-                            <option value="HEALTHCARE">Healthcare</option>
-                            <option value="IT">IT</option>
-                            <option value="BEAUTY">Beauty</option>
-                            <option value="SPORT">Sport</option>
-                            <option value="FOOD">Food</option>
-                            <option value="HOBBY">Hobby</option>
-                            <option value="SALES">Sales</option>
-                            <option value="EDUCATION">Education</option>
-                            <option value="LOGISTICS">Logistics</option>
-                            <option value="LEGAL">Legal</option>
-                            <option value="HUMAN_RESOURCES">Human resources</option>
-                            <option value="IT">IT</option>
-                            <option value="BEAUTY">Beauty</option>
-                            <option value="SPORT">Sport</option>
-                            <option value="FOOD">Food</option>
-                            <option value="HOBBY">Hobby</option>
-                            <option value="SALES">Sales</option>
-                            <option value="EDUCATION">Education</option>
-                            <option value="HEALTHCARE">Healthcare</option>
-                        </select>
-                        {errors.customerGuild  && <span className={styles.errors}>Please specify an input..</span>}
-                    </label>
+                    {/*<label htmlFor="formItems">*/}
+                    {/*    <select name="customerGuild" {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>*/}
+                    {/*        <option value="">Please choose an Guild....</option>*/}
+                    {/*        <option value="FINANCE">Finance</option>*/}
+                    {/*        <option value="CONSTRUCTION">Construction</option>*/}
+                    {/*        <option value="CREATIVE_DESIGN">Creative design</option>*/}
+                    {/*        <option value="LEISURE">Leisure</option>*/}
+                    {/*        <option value="MEDIA">Media</option>*/}
+                    {/*        <option value="SECURITY">Security</option>*/}
+                    {/*        <option value="HEALTHCARE">Healthcare</option>*/}
+                    {/*        <option value="IT">IT</option>*/}
+                    {/*        <option value="BEAUTY">Beauty</option>*/}
+                    {/*        <option value="SPORT">Sport</option>*/}
+                    {/*        <option value="FOOD">Food</option>*/}
+                    {/*        <option value="HOBBY">Hobby</option>*/}
+                    {/*        <option value="SALES">Sales</option>*/}
+                    {/*        <option value="EDUCATION">Education</option>*/}
+                    {/*        <option value="LOGISTICS">Logistics</option>*/}
+                    {/*        <option value="LEGAL">Legal</option>*/}
+                    {/*        <option value="HUMAN_RESOURCES">Human resources</option>*/}
+                    {/*        <option value="IT">IT</option>*/}
+                    {/*        <option value="BEAUTY">Beauty</option>*/}
+                    {/*        <option value="SPORT">Sport</option>*/}
+                    {/*        <option value="FOOD">Food</option>*/}
+                    {/*        <option value="HOBBY">Hobby</option>*/}
+                    {/*        <option value="SALES">Sales</option>*/}
+                    {/*        <option value="EDUCATION">Education</option>*/}
+                    {/*        <option value="HEALTHCARE">Healthcare</option>*/}
+                    {/*    </select>*/}
+                    {/*    {errors.customerGuild  && <span className={styles.errors}>Please specify an input..</span>}*/}
+                    {/*</label>*/}
 
 
-                    <label>
-                    <select id="userRole" {...register("userRole",{ validate: (value) => value !== ""})} className={styles.select} >
-                        <option value="">Please choose between an Customer Account or Guilder Account....</option>
-                        <option value="CUSTOMER">Customer</option>
-                        <option value="GUILDER">Guilder</option>
-                    </select>
-                        {errors.userRole && <span className={styles.errors}>Please choose an role..</span>}
-                    </label>
+                    {/*<label>*/}
+                    {/*    <select id="userRole" {...register("userRole",{ validate: (value) => value !== ""})} className={styles.select} >*/}
+                    {/*        <option value="">Please choose between an Customer Account or Guilder Account....</option>*/}
+                    {/*        <option value="CUSTOMER">Customer</option>*/}
+                    {/*        <option value="GUILDER">Guilder</option>*/}
+                    {/*    </select>*/}
+                    {/*    {errors.userRole && <span className={styles.errors}>Please choose an role..</span>}*/}
+                    {/*</label>*/}
 
 
                     <FormInputComponent
@@ -326,4 +327,4 @@ function SignUpForm() {
     )
 }
 
-export default SignUpForm
+export default SignUpCustomer;

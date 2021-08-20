@@ -102,7 +102,7 @@ function Home() {
             <OverviewComponent
                 title="Explore your community"
                 bodyText="incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non. Neque laoreet suspendisse interdum consectetur libero id. "
-                link="/signUp"
+                link="/signUpCustomer"
                 linkText="Sign up as a customer today"
             />
 

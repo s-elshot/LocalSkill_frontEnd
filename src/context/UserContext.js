@@ -65,7 +65,7 @@ function UserContextProvider({children}) {
             toggleLoading(false);
         }
         getAllUsers()
-    }, [userLocation]);
+    }, [ userLocation]);
 
 
     //
