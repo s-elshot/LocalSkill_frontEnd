@@ -82,6 +82,7 @@ function ItemsInPossession() {
                     <div className={styles.createButton}>CREATE NEW ITEM +</div>
                 </NavLink>
                 }
+
             {users && val &&
                 <div>{val.items.map((item, index) => {
                     return <article key={index} className={styles.itemCard}>

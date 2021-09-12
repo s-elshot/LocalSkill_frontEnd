@@ -2,7 +2,7 @@ import React, {
     Fragment,
     // Fragment,
     useContext
-    , useEffect
+    , useEffect, useState
 } from 'react';
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
@@ -14,18 +14,42 @@ import guy from "../../assets/desktop/backgrounds/shopping  2.png";
 
 function ShoppingCartItem() {
 
-    // @todo: usergegevens toevoegen aan de userContext
+    const [registerSucces, toggleRegisterSucces] = useState(false);
+    const [productAmount, setProductAmount] = useState(1);
+    // const [itemId, setItemId] = useState("");
+
+
+
+
     const {
         cart,
         setCart,
         removeFromCart,
         cartTotal,
-        registerSucces,
-        // toggleRegisterSucces,
-        userDetail
+        users,
+        userLogIn
     } = useContext(UserContext)
 
     const history = useHistory();
+
+
+    const val = users.find(user => {
+        return user.username === userLogIn
+    })
+
+    const id = {}
+    id.id = val.id
+
+    const lastArrayItem = val.invoices.length-1
+    const invoice = val.invoices
+
+
+    const lastInvoice=  invoice[lastArrayItem].id
+    console.log(lastInvoice)
+
+
+    // console.log(lastArrayItem)
+
 
     // async function oud() {
     //     axios.post().then().then().catch();
@@ -41,6 +65,7 @@ function ShoppingCartItem() {
     // }
 
 
+
     // function getCartIds(cart) {
     //     let cartIds = []
     //     for (let i = 0; i < cart.length; i++) {
@@ -54,17 +79,65 @@ function ShoppingCartItem() {
     //     })
     // }
 
-    console.log(userDetail.id)
+    async function addItemToInvoice() {
+        toggleRegisterSucces(false)
+
+        try {
+            await axios.post("http://localhost:8080/iteminvoice", {
+                quantity: productAmount,
+                invoice:{"id": 4
+                // lastInvoice
+                },
+                item: {"id": 24}
+
+                // ,
+                //     invoiceItems:
+                //      [{id:4 },{id:3}]
+                // }
+                //     () => {
+                //     let cartIds = []
+                //     for (let i = 0; i < cart.length; i++) {
+                //         cartIds.push(cart[i].id)
+                //     }
+                //     return cartIds
+                // }
+
+                // }
+                // invoiceItems: () => {
+                //     let cartIds = []
+                //     for (let i = 0; i < cart.length; i++) {
+                //         cartIds.push(cart[i].id)
+                //     }
+                //     return cartIds
+                // },
+
+            })
+
+            console.log("Item added")
+
+
+            toggleRegisterSucces(true)
+            // eslint-disable-next-line no-unused-expressions
+            // setCart([])
+
+            setTimeout(() => {
+                // history.push("/profile");
+            }, 2000)
+
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+
 
     async function onSubmit() {
-        // registerSucces(false)
+        toggleRegisterSucces(false)
         try {
             await axios.post("http://localhost:8080/invoice", {
-                description: 'het lukt?',
-                customer: {
-                    id: userDetail.id
-                    // id: 2
-                }
+                description: 'Standard order',
+                customer: id,
+                totalPrice: cartTotal,
                 // ,
                 //     invoiceItems:
                 //      [{id:4 },{id:3}]
@@ -87,9 +160,8 @@ function ShoppingCartItem() {
                 // },
 
             })
-
             console.log("Checkout succeeded")
-            // toggleRegisterSucces(true)
+            toggleRegisterSucces(true)
             setCart([])
 
             setTimeout(() => {
@@ -135,9 +207,9 @@ function ShoppingCartItem() {
             // console.log(data)
             // console.log(data[0].items[1].name)
         })
-    }, [])
+    }, [users])
 
-    console.log(cart)
+
 
 
     return (
@@ -146,29 +218,45 @@ function ShoppingCartItem() {
                 <img className={styles.background} src={guy} alt={guy}/>
                 <div className={styles.outline}>
                     <h2 className={styles.formHeader}>SHOPPING CART</h2>
+                    <div>LAST ORDER: {lastInvoice}</div>
                     {cart.length === 0 && <>YOUR CART IS EMPTY</>}
-                    {cart && cart.map((item, index) => (
+                    {cart &&
+
+                    cart.map((item, index) => (
+
                         <div key={index} className={styles.itemCard}>
+
+
                             <h4>{item.name}</h4>
-                            <p>description: {item.description}</p>
+                            <h4>{item.id}</h4>
+                            <input type="number" placeholder="Number"
+                                   onChange={event => {
+                                       setProductAmount(event.target.value)
+                                   }}/>
+
+                                <p>description: {item.description}</p>
                             <p>price: €{item.price}</p>
+                            {
+                                <button onClick={() => addItemToInvoice()}>Add to invoice</button>
+                            }
                             <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
                         </div>))
                     }
                     {cart.length > 0 && <>
                         <h4>currently in your cart:({cart.length} items)</h4>
+                        <h4>Message to Seller</h4>
+                        <textarea placeholder= "Send a message"
+                        />
+
                         <h2>TOTAL AMOUNT: €{cartTotal}</h2>
-
-                        <textarea>MESSAGE TO SELLER..</textarea>
                         <button type="submit" className={styles.confirmButton} onClick={onSubmit}>CHECK OUT</button>
-
-
-                        {registerSucces === true &&
-                        <span>ORDER FINISHED!</span>}
 
                     </>
                     }
+                    {registerSucces === true &&
+                    <span>ORDER FINISHED!</span>}
                 </div>
+
             </div>
         </>
     )

@@ -17,17 +17,10 @@ function Profile() {
         userLogIn
     } = useContext(UserContext)
 
-
-
-    // const userId = 2000;
-    // const val = users.find(user => {
-    //     return user.id === userId
-    // })
-
-    // const userId = 2000;
     const val = users.find(user => {
         return user.username === userLogIn
     })
+
 
 
     return (
@@ -49,7 +42,6 @@ function Profile() {
                     &&
                     <div>
                         <h2 className={styles.profileHeader}>YOUR PROFILE</h2>
-
                         <ul className={styles.listOutline}>
                             <h2 className={styles.profileName}>{val.firstName} {val.lastName}
                                 {val.customerGuild != null && <> - {val.customerGuild}</>}

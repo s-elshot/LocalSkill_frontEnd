@@ -1,10 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useContext, useState} from 'react';
 import styles from "../userDetails/UserDetails.module.css";
 import background from "../../../assets/desktop/backgrounds/pexels-profile.png";
 import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import {UserContext} from "../../../context/UserContext";
 
 
 
@@ -19,17 +20,23 @@ function UserDetails() {
     const [registerSucces, toggleRegisterSucces] = useState(false);
 
     const history = useHistory();
+    const {
+        users,
+        userLogIn
+    } = useContext(UserContext)
 
-    const userId = 2;
-    // const val = users.find(user => {
-    //     return user.id === userId
-    // })
+    const val = users.find(user => {
+        return user.username === userLogIn
+    })
+
+    const id = {}
+    id.id = val.id
 
     async function onSubmit(data) {
         console.log(data)
         toggleLoading(true)
         try {
-            await axios.put(`http://localhost:8080/customer/${userId}`, {
+            await axios.put(`http://localhost:8080/customer/${val.id}`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
@@ -40,8 +47,8 @@ function UserDetails() {
                 emailAdress: data.emailAdress,
                 areaCode: data.areaCode,
                 city: data.city,
-                guild: data.guild,
-                password: data.password,
+
+                // password: data.password,
                 userRole: data.userRole
 
             }).then(() => {
@@ -71,11 +78,6 @@ function UserDetails() {
                     <fieldset className={styles.signUpForm}>
                         <h2 className={styles.formHeader}>EDIT ACCOUNT</h2>
 
-                        {/*<label htmlFor="userRole" id="radioSelector" className={styles.radio}>*/}
-                        {/*    <input className={styles.input} type="radio" name="userRole" id="customer"  {...register("userRole")}*/}
-                        {/*           value="CUSTOMER"/> Customer*/}
-                        {/*    <input className={styles.input}  type="radio" name="userRole" id="guilder"  {...register("userRole")} value="GUILDER"/>Guilder*/}
-                        {/*</label>*/}
 
                         <label>
                             <select id="userRole" {...register("userRole",{ validate: (value) => value !== ""})} className={styles.select} >
@@ -221,49 +223,27 @@ function UserDetails() {
                         />
 
 
-                        <FormInputComponent
-                            type="text"
-                            className={styles.signUpField}
-                            name="guild"
-                            placeHolder="Edit guild"
-                            fieldRef={register('guild', {
-                                required: {
-                                    value: true,
-                                    message: 'This field must have input',
-                                },
-                                minLength: {
-                                    value: 2,
-                                    message: 'At least 2 characters must be used to define the last name',
-                                },
-                                maxLength: {
-                                    value: 25,
-                                    message: 'At most 25 characters can be used to define the last name',
-                                },
-                            })}
-                            errors={errors}
-                        />
-
-                        <FormInputComponent
-                            type="password"
-                            className={styles.signUpField}
-                            name="password"
-                            placeHolder="Edit password"
-                            fieldRef={register('password', {
-                                required: {
-                                    value: true,
-                                    message: 'This field must have input',
-                                },
-                                minLength: {
-                                    value: 2,
-                                    message: 'At least 2 characters must be used to define the last name',
-                                },
-                                maxLength: {
-                                    value: 25,
-                                    message: 'At most 25 characters can be used to define the last name',
-                                },
-                            })}
-                            errors={errors}
-                        />
+                        {/*<FormInputComponent*/}
+                        {/*    type="password"*/}
+                        {/*    className={styles.signUpField}*/}
+                        {/*    name="password"*/}
+                        {/*    placeHolder="Edit password"*/}
+                        {/*    fieldRef={register('password', {*/}
+                        {/*        required: {*/}
+                        {/*            value: true,*/}
+                        {/*            message: 'This field must have input',*/}
+                        {/*        },*/}
+                        {/*        minLength: {*/}
+                        {/*            value: 2,*/}
+                        {/*            message: 'At least 2 characters must be used to define the last name',*/}
+                        {/*        },*/}
+                        {/*        maxLength: {*/}
+                        {/*            value: 25,*/}
+                        {/*            message: 'At most 25 characters can be used to define the last name',*/}
+                        {/*        },*/}
+                        {/*    })}*/}
+                        {/*    errors={errors}*/}
+                        {/*/>*/}
 
                         {loading === true &&
                         <span>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from "react-hook-form";
 import styles from './CreateItemForm.module.css';
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useHistory} from "react-router-dom";
 import guy from "../../../assets/desktop/backgrounds/pexels-profile.png";
+import {UserContext} from "../../../context/UserContext";
 
 function CreateItemForm() {
 
@@ -14,22 +15,32 @@ function CreateItemForm() {
     const [registerSucces, toggleRegisterSucces] = useState(false)
     const history = useHistory();
 
+    const {users, userLogIn} = useContext(UserContext)
+
+    const val = users.find(user => {
+        return user.username === userLogIn
+    })
+
+    const id = {}
+    id.id = val.id
+
+
     async function onSubmit(data) {
         console.log(data)
-        // console.log(data.content.name)
+        console.log(val)
+
         toggleLoading(true)
         try {
             await axios.post("http://localhost:8080/item", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                itemType: data.itemType,
-                // item: data.item,
-                content: data.content,
                 name: data.name,
                 price: data.price,
+                itemType: data.itemType,
                 description: data.description,
                 count: data.count,
+                customer: id
 
             }).then(() => {
                 console.log("New item added")
@@ -38,7 +49,6 @@ function CreateItemForm() {
             setTimeout(() => {
                 history.push("/profile");
             }, 2000)
-
         } catch (e) {
             console.error(e)
         }
@@ -52,20 +62,13 @@ function CreateItemForm() {
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.formBase}>
 
                     <fieldset className={styles.formSet}>
-                        <h2 className={styles.formHeader}>CREATE ITEM</h2>
+                        <h2 className={styles.formHeader}>CREATE ITEMZZZZZZZZZ</h2>
 
-                        {/*<label htmlFor="product" id="radioSelector" className={styles.radio}>*/}
-                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
-                        {/*           id="product"  {...register("itemType")}*/}
-                        {/*           value="PRODUCT"/> product*/}
-                        {/*    <input className={styles.createInput} type="radio" name="itemType"*/}
-                        {/*           id="service"  {...register("itemType")} value="SERVICE"/>service*/}
+
+                        {/*<label className={styles.contentUpload}>*/}
+                        {/*    <input className={styles.createInput} id="content" name="content"*/}
+                        {/*           type="file" {...register("content")}/>*/}
                         {/*</label>*/}
-
-                        <label className={styles.contentUpload}>
-                            <input className={styles.createInput} id="content" name="content"
-                                   type="file" {...register("content")}/>
-                        </label>
 
                         <label>
                             <select {...register("itemType",{ validate: (value) => value !== ""})} className={styles.select}>

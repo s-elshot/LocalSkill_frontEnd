@@ -17,7 +17,9 @@ function SingleItemComponent({src, index, item, addToCart, removeFromCart
     return (
         <Fragment>
             <article key={index} className="itemCard">
-                <img src={template} alt="template"/>
+                {item.itemType === "PRODUCT" ?
+                    < img src={template} alt="template"/> : < img src={favorite} alt="template"/>
+                }
                 <div className="cardInfo">
                     <NavLink exact to={`/Item/${item.id}`}>
                         <h2> {item.name}</h2>
