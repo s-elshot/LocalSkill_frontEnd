@@ -62,13 +62,7 @@ function CreateItemForm() {
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.formBase}>
 
                     <fieldset className={styles.formSet}>
-                        <h2 className={styles.formHeader}>CREATE ITEMZZZZZZZZZ</h2>
-
-
-                        {/*<label className={styles.contentUpload}>*/}
-                        {/*    <input className={styles.createInput} id="content" name="content"*/}
-                        {/*           type="file" {...register("content")}/>*/}
-                        {/*</label>*/}
+                        <h2 className={styles.formHeader}>CREATE ITEM / SERVICE</h2>
 
                         <label>
                             <select {...register("itemType",{ validate: (value) => value !== ""})} className={styles.select}>
@@ -84,7 +78,7 @@ function CreateItemForm() {
                             type="text"
                             name="name"
                             className={styles.logInField}
-                            placeHolder="Item name"
+                            placeHolder="Name"
                             fieldRef={register('name', {
                                 required: {
                                     value: true,
@@ -107,19 +101,19 @@ function CreateItemForm() {
                             name="price"
                             step="0.01"
                             className={styles.logInField}
-                            placeHolder="Item price"
+                            placeHolder="Price"
                             fieldRef={register('price', {
                                 required: {
                                     value: true,
                                     message: 'This field must have input',
                                 },
                                 min: {
-                                    value: 0,
-                                    message: "The price for an item can't be a negative number",
+                                    value: 0.1,
+                                    message: "The price for an item or service must be greater or equal to 0.1",
                                 },
                                 max: {
                                     value: 10000,
-                                    message: 'The max amount for an item is 10000',
+                                    message: 'The max amount for an item or service is 10000',
                                 }
                             })}
                             errors={errors}
@@ -129,7 +123,7 @@ function CreateItemForm() {
                             type="text"
                             name="description"
                             className={styles.logInField}
-                            placeHolder="Item description"
+                            placeHolder="Description"
                             fieldRef={register('description', {
                                 required: {
                                     value: true,
@@ -151,19 +145,19 @@ function CreateItemForm() {
                             type="number"
                             name="count"
                             className={styles.logInField}
-                            placeHolder="Item count"
+                            placeHolder="Count"
                             fieldRef={register('count', {
                                 required: {
                                     value: true,
                                     message: 'This field must have input',
                                 },
                                 min: {
-                                    value: 0,
-                                    message: "The price for an item can't be a negative number",
+                                    value: 0.1,
+                                    message: "The price for an item or service must be greater or equal to 0.1",
                                 },
                                 max: {
                                     value: 1000,
-                                    message: 'The max amount for an item is 1000',
+                                    message: 'The max amount for an item or service is 1000',
                                 }
                             })}
                             errors={errors}
@@ -179,7 +173,7 @@ function CreateItemForm() {
                             type="submit"
                             id="confirmButton"
                             name="submitButton"
-                            disabled={pristine}> CREATE ITEM
+                            disabled={pristine}> CREATE ITEM / SERVICE
                         </button>
 
                     </fieldset>

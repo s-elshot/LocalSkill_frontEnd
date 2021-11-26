@@ -36,7 +36,9 @@ function UserDetails() {
         console.log(data)
         toggleLoading(true)
         try {
-            await axios.put(`http://localhost:8080/customer/${val.id}`, {
+            // await axios.put(`http://localhost:8080/customer/${val.id}`,
+                await axios.put(`http://localhost:8080/customer/${val.id}`,
+                    {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
@@ -44,12 +46,13 @@ function UserDetails() {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 age: data.age,
-                emailAdress: data.emailAdress,
+                email: data.email,
                 areaCode: data.areaCode,
+                        role: ["user"],
                 city: data.city,
-
-                // password: data.password,
-                userRole: data.userRole
+                userRole:"CUSTOMER",
+                password: data.password,
+                customerGuild: data.customerGuild
 
             }).then(() => {
                 console.log("Customer edited")
@@ -167,9 +170,9 @@ function UserDetails() {
                         <FormInputComponent
                             type="text"
                             className={styles.signUpField}
-                            name="emailAdress"
+                            name="email"
                             placeHolder="Edit email (for example: Email@gmail.com)"
-                            fieldRef={register('emailAdress', {
+                            fieldRef={register('email', {
                                 required: {
                                     value: true,
                                     message: 'This field cant be empty',
@@ -223,27 +226,27 @@ function UserDetails() {
                         />
 
 
-                        {/*<FormInputComponent*/}
-                        {/*    type="password"*/}
-                        {/*    className={styles.signUpField}*/}
-                        {/*    name="password"*/}
-                        {/*    placeHolder="Edit password"*/}
-                        {/*    fieldRef={register('password', {*/}
-                        {/*        required: {*/}
-                        {/*            value: true,*/}
-                        {/*            message: 'This field must have input',*/}
-                        {/*        },*/}
-                        {/*        minLength: {*/}
-                        {/*            value: 2,*/}
-                        {/*            message: 'At least 2 characters must be used to define the last name',*/}
-                        {/*        },*/}
-                        {/*        maxLength: {*/}
-                        {/*            value: 25,*/}
-                        {/*            message: 'At most 25 characters can be used to define the last name',*/}
-                        {/*        },*/}
-                        {/*    })}*/}
-                        {/*    errors={errors}*/}
-                        {/*/>*/}
+                        <FormInputComponent
+                            type="password"
+                            className={styles.signUpField}
+                            name="password"
+                            placeHolder="Edit password"
+                            fieldRef={register('password', {
+                                required: {
+                                    value: true,
+                                    message: 'This field must have input',
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: 'At least 2 characters must be used to define the last name',
+                                },
+                                maxLength: {
+                                    value: 25,
+                                    message: 'At most 25 characters can be used to define the last name',
+                                },
+                            })}
+                            errors={errors}
+                        />
 
                         {loading === true &&
                         <span>

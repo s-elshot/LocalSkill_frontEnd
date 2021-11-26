@@ -1,9 +1,12 @@
+
 import React, {Fragment, useContext} from 'react';
 import styles from "./Profile.module.css";
 import {NavLink} from "react-router-dom";
 import guy from "../../../src/assets/desktop/backgrounds/pexels-photo-statueFace.png"
 import {UserContext} from "../../context/UserContext";
-import {ReactComponent as LoadingIcon} from "../../assets/mobileIcons/Spin-1s-200px.svg";
+import FilesUpload from "./FileUpload/FilesUpload";
+
+
 
 
 
@@ -13,7 +16,6 @@ function Profile() {
     const {
         users,
         error,
-        loading,
         userLogIn
     } = useContext(UserContext)
 
@@ -25,23 +27,21 @@ function Profile() {
 
     return (
         <Fragment>
-            {loading && <>
-                <LoadingIcon className="loader"/>
-                <p>Loading....</p>
-            </>
-            }
+
             {error && <div>ERROR: {error}</div>}
 
             <div className={styles.container}>
                 <img className={styles.background} src={guy} alt={guy}/>
 
                 <fieldset className={styles.profileOutline}>
+                    <FilesUpload/>
 
                     {users &&
                     val
                     &&
                     <div>
                         <h2 className={styles.profileHeader}>YOUR PROFILE</h2>
+
                         <ul className={styles.listOutline}>
                             <h2 className={styles.profileName}>{val.firstName} {val.lastName}
                                 {val.customerGuild != null && <> - {val.customerGuild}</>}

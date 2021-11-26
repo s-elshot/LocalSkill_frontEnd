@@ -3,8 +3,7 @@ import {UserContext} from "../../../context/UserContext";
 import styles from "./ItemsInPossesion.module.css"
 import background from "../../../assets/desktop/backgrounds/pexels-profile-2.png"
 import {ReactComponent as LoadingIcon} from "../../../assets/mobileIcons/Spin-1s-200px.svg"
-import {NavLink,
-    useHistory
+import {NavLink
 } from "react-router-dom";
 import axios from "axios";
 
@@ -33,32 +32,27 @@ function ItemsInPossession() {
     // })
 
 
-    function refreshPage() {
-        window.location.reload(false);
-    }
 
 
 
-    const history = useHistory();
 
     async function removeItem({id}) {
 
-        // toggleLoading(true)
+
         try {
             await axios.delete(`http://localhost:8080/item/${id}`,{
                 method: "DELETE",
             }).then(() => {
                 console.log("Item deleted")
-                refreshPage()
             })
 
             setTimeout(() => {
-                history.push("/profile");
+
             })
         } catch (e) {
             console.error(e)
         }
-        // toggleLoading(false)
+
     }
 
 
@@ -77,7 +71,7 @@ function ItemsInPossession() {
             <fieldset className={styles.outline}>
             <h2 className={styles.header}>CURRENT ITEMS</h2>
 
-                {val.customerGuild != null &&
+                {val.userRole === "GUILDER" &&
                 <NavLink to={"/profile/createItem"}>
                     <div className={styles.createButton}>CREATE NEW ITEM +</div>
                 </NavLink>
@@ -92,6 +86,7 @@ function ItemsInPossession() {
                         <p>ID: {item.id}</p>
                         {val.customerGuild != null && <>
                         <button onClick={()=>removeItem(item)}>DELETE ITEM</button>
+
                             </>
                         }
                     </article>

@@ -2,13 +2,14 @@ import React, {
     Fragment
 } from 'react';
 
-import template from "../../assets/mobileIcons/pexels-photo-3026809@2x.png"
+import template from "../../assets/mobileIcons/pexels-photo-3026809@2xA.png"
+import templateB from "../../assets/mobileIcons/pexels-photo-3026809@2xB.png"
 import favorite from "../../assets/mobileIcons/Icon material-favorite-black border.png"
 import {NavLink} from "react-router-dom";
 import './SingleItemComponent.css'
 
 
-function SingleItemComponent({src, index, item, addToCart, removeFromCart
+function SingleItemComponent({index, item, addToCart, removeFromCart
                                  ,addToFavorite
 }) {
 
@@ -18,7 +19,7 @@ function SingleItemComponent({src, index, item, addToCart, removeFromCart
         <Fragment>
             <article key={index} className="itemCard">
                 {item.itemType === "PRODUCT" ?
-                    < img src={template} alt="template"/> : < img src={favorite} alt="template"/>
+                    < img src={template} alt="template"/> : < img src={templateB} alt="template"/>
                 }
                 <div className="cardInfo">
                     <NavLink exact to={`/Item/${item.id}`}>

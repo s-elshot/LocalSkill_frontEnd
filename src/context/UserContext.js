@@ -47,7 +47,9 @@ function UserContextProvider({children}) {
         }
 
         getAllItems()
-    }, [itemLocation]);
+    }, [
+        // items,
+        itemLocation]);
 
 
     useEffect(() => {
@@ -65,7 +67,9 @@ function UserContextProvider({children}) {
             toggleLoading(false);
         }
         getAllUsers()
-    }, [ userLocation]);
+    }, [
+        // users,
+        userLocation]);
 
 
     //

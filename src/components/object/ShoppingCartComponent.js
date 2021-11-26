@@ -16,7 +16,7 @@ function ShoppingCartItem() {
 
     const [registerSucces, toggleRegisterSucces] = useState(false);
     const [productAmount, setProductAmount] = useState(1);
-    // const [itemId, setItemId] = useState("");
+    const [itemId, setItemId] = useState("");
 
 
 
@@ -48,6 +48,47 @@ function ShoppingCartItem() {
     console.log(lastInvoice)
 
 
+    async function onSubmit() {
+        toggleRegisterSucces(false)
+        try {
+            await axios.post("http://localhost:8080/invoice", {
+                description: 'Standard order',
+                customer: id,
+                totalPrice: cartTotal,
+                // ,
+                //     invoiceItems:
+                //      [{id:4 },{id:3}]
+                // }
+                //     () => {
+                //     let cartIds = []
+                //     for (let i = 0; i < cart.length; i++) {
+                //         cartIds.push(cart[i].id)
+                //     }
+                //     return cartIds
+                // }
+
+                // }
+                // invoiceItems: () => {
+                //     let cartIds = []
+                //     for (let i = 0; i < cart.length; i++) {
+                //         cartIds.push(cart[i].id)
+                //     }
+                //     return cartIds
+                // },
+
+            })
+            console.log("Checkout succeeded")
+            toggleRegisterSucces(true)
+            setCart([])
+
+            setTimeout(() => {
+                history.push("/profile");
+            }, 2000)
+
+        } catch (e) {
+            console.error(e)
+        }
+    }
     // console.log(lastArrayItem)
 
 
@@ -81,14 +122,15 @@ function ShoppingCartItem() {
 
     async function addItemToInvoice() {
         toggleRegisterSucces(false)
-
+        console.log(itemId)
         try {
             await axios.post("http://localhost:8080/iteminvoice", {
                 quantity: productAmount,
-                invoice:{"id": 4
-                // lastInvoice
+                invoice:{"id":
+                        (lastInvoice-1)
                 },
-                item: {"id": 24}
+                item: {"id": itemId}
+                // item: {"id": 24}
 
                 // ,
                 //     invoiceItems:
@@ -130,49 +172,6 @@ function ShoppingCartItem() {
     }
 
 
-
-    async function onSubmit() {
-        toggleRegisterSucces(false)
-        try {
-            await axios.post("http://localhost:8080/invoice", {
-                description: 'Standard order',
-                customer: id,
-                totalPrice: cartTotal,
-                // ,
-                //     invoiceItems:
-                //      [{id:4 },{id:3}]
-            // }
-                    //     () => {
-                    //     let cartIds = []
-                    //     for (let i = 0; i < cart.length; i++) {
-                    //         cartIds.push(cart[i].id)
-                    //     }
-                    //     return cartIds
-                    // }
-
-                // }
-                // invoiceItems: () => {
-                //     let cartIds = []
-                //     for (let i = 0; i < cart.length; i++) {
-                //         cartIds.push(cart[i].id)
-                //     }
-                //     return cartIds
-                // },
-
-            })
-            console.log("Checkout succeeded")
-            toggleRegisterSucces(true)
-            setCart([])
-
-            setTimeout(() => {
-                history.push("/profile");
-            }, 2000)
-
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
     // async function onSubmit() {
     //
     //
@@ -209,6 +208,16 @@ function ShoppingCartItem() {
         })
     }, [users])
 
+    useEffect(() => {
+        fetch("http://localhost:8080/invoice")
+            .then(res => {
+                return res.json();
+            }).then(data => {
+            // console.log(data)
+            // console.log(data[0].items[1].name)
+        })
+    }, [invoice])
+
 
 
 
@@ -218,7 +227,7 @@ function ShoppingCartItem() {
                 <img className={styles.background} src={guy} alt={guy}/>
                 <div className={styles.outline}>
                     <h2 className={styles.formHeader}>SHOPPING CART</h2>
-                    <div>LAST ORDER: {lastInvoice}</div>
+
                     {cart.length === 0 && <>YOUR CART IS EMPTY</>}
                     {cart &&
 
@@ -237,7 +246,11 @@ function ShoppingCartItem() {
                                 <p>description: {item.description}</p>
                             <p>price: €{item.price}</p>
                             {
-                                <button onClick={() => addItemToInvoice()}>Add to invoice</button>
+                                <button onClick={() => {
+                                    setItemId(item.id);
+                                    addItemToInvoice();
+                                    removeFromCart(item)
+                                }}>Add to invoice</button>
                             }
                             <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
                         </div>))
