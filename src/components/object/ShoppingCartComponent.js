@@ -126,7 +126,8 @@ function ShoppingCartItem() {
         try {
             await axios.post("http://localhost:8080/iteminvoice", {
                 quantity: productAmount,
-                invoice:{"id":
+                invoice:
+                    {"id":
                         (lastInvoice-1)
                 },
                 item: {"id": itemId}

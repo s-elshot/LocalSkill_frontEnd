@@ -41,7 +41,7 @@ function MobileNavigation() {
                         </li>
 
                         <li className={styles.mobNavUl}>
-                            <NavLink to="/signUp" activeClassName="active-link">
+                            <NavLink to="/signUpCustomer" activeClassName="active-link">
                                 <img className={styles.image} src={account} alt={account}/>
                                 <div className={styles.navText}>SIGNUP</div>
                             </NavLink>

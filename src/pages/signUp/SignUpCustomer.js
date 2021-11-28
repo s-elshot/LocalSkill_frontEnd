@@ -1,10 +1,12 @@
 import React, { useState} from 'react';
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
 import styles from "./SignUpForm.module.css";
 import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
 import FormInputComponent from "../../components/forms/FormInputComponent";
+
+
 
 
 function SignUpCustomer() {
@@ -60,7 +62,20 @@ function SignUpCustomer() {
                   className={styles.signUpFormBase}>
 
                 <fieldset className={styles.signUpForm}>
-                    <h2 className={styles.formHeader}>SIGN UP</h2>
+                    <h2 className={styles.formHeader}>SIGN UP CUSTOMER</h2>
+
+
+                    <div className={styles.container}>
+                            <NavLink className={styles.button} to="/signUp">SIGN UP AS GUILDER ?</NavLink>
+                    </div>
+
+
+                    {/*<article className="styles.container">*/}
+                    {/*    <h3 className={styles.title}></h3>*/}
+                    {/*    <button className={styles.button}>*/}
+                    {/*        <NavLink to={link} activeClassName="overviewLink">{linkText}</NavLink>*/}
+                    {/*    </button>*/}
+                    {/*</article>*/}
 
                     {/*<label htmlFor="formItems">*/}
                     {/*    <select name="customerGuild" {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>*/}
