@@ -1,0 +1,108 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundImage {
+    height: auto;
+    width: auto;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.enterText {
+    font-family: "Segoe UI", sans-serif;
+    color: #ffffff;
+    position: absolute;
+    top: 100px;
+    /*position: fixed;*/
+    opacity: 80%;
+    align-self: center;
+    z-index: 10;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    align-content: space-around;
+}
+
+.formHeader {
+    font-family: "Segoe UI", sans-serif;
+    color: #ffffff;
+    position: absolute;
+    top: 250px;
+    z-index: 10;
+    left: 7%;
+    font-weight: bolder;
+    font-size: 40px;
+    opacity: 0.9;
+}
+
+.input {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    color: #868484;
+}
+
+.select {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 300ms ease-out;
+    color: #868484;
+    width: 95%;
+}
+
+.button {
+    border: none;
+    background: #797373;
+    font-weight: bold;
+    color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.button:hover {
+    transform: scale(1.03);
+    background-color: #000000;
+    transition: transform 300ms ease-out;
+}
+
+.img {
+    width: 4%;
+    height: auto;
+}
+
+.searchElement {
+    display: flex;
+    position: absolute;
+    opacity: 0.9;
+    top: 330px;
+    flex-direction: column;
+    align-self: center;
+    align-content: center;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    left: 5%;
+    right: 5%;
+    border: none;
+    padding: 15px;
+    margin: 10px;
+    z-index: 10;
+}
+
+.errors {
+    color: #f16767;
+    font-size: x-small;
+    font-family: "Segoe UI Semilight", sans-serif;
+}

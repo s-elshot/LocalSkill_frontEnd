@@ -7,7 +7,6 @@ import {UserContext} from "../../context/UserContext";
 
 function Favorites (){
     const {
-        // count,
         favorite,
         addToCart,
         favoriteTotal,

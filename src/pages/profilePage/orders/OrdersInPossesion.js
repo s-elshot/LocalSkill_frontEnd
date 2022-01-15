@@ -11,16 +11,12 @@ function ItemsInPossession() {
         error,
         loading,
         userLogIn
-
     } = useContext(UserContext)
-
 
     const val = users.find(user => {
         return user.username === userLogIn
     })
 
-    console.log(val.invoices)
-    console.log(val.invoices.length)
     return (
         <Fragment>
             <div className={styles.container}>
@@ -40,9 +36,9 @@ function ItemsInPossession() {
 
                     {(users && val.invoices && val.invoices.length === 0 ?
 
-                                <article className={styles.orderCard}>
-                                    You don't have any orders yet
-                                </article>
+                            <article className={styles.orderCard}>
+                                You don't have any orders yet
+                            </article>
                             :
 
                             <div>{val.invoices.map((order, index) => {
@@ -52,51 +48,29 @@ function ItemsInPossession() {
 
                                     {order.itemsOnInvoice.length === 0 ?
 
-                                            <article className={styles.orderCard}>
-                                                No items are placed on the order, Please contact the supplier
-                                            </article>
+                                        <article className={styles.orderCard}>
+                                            No items are placed on the order, Please contact the supplier
+                                        </article>
 
                                         :
 
-                                    <>
-                                        <h4>Items :</h4>
-                                        <div>{order.itemsOnInvoice.map((item, index) => {
-                                            return < article key={index}>
+                                        <>
+                                            <h4>Items :</h4>
+                                            <div>{order.itemsOnInvoice.map((item, index) => {
+                                                return < article key={index}>
 
-                                                <fieldset className={styles.orderedItemCard}>
-                                                    <h3>{item.name}</h3>
-                                                    <p className={styles.listItem}>
-                                                        <li>Description: {item.description}</li>
-                                                        <li>Type: {item.itemType}</li>
-                                                        <li>Price: €{item.price}</li>
-                                                    </p>
-                                                </fieldset>
+                                                    <fieldset className={styles.orderedItemCard}>
+                                                        <h3>{item.name}</h3>
+                                                        <p className={styles.listItem}>
+                                                            <li>Description: {item.description}</li>
+                                                            <li>Type: {item.itemType}</li>
+                                                            <li>Price: €{item.price}</li>
+                                                        </p>
+                                                    </fieldset>
+                                                </article>
 
-                                                {/*{users && users.map((val, key) => {*/}
-                                                {/*    */}
-                                                {/*    */}
-                                                {/*    return <>*/}
-                                                {/*        <div id={key}>{val.emailAdress}*/}
-                                                {/*            <div>{val.items.map((item, key)=>{*/}
-                                                {/*                return<>*/}
-                                                {/*                <p>{item.name}</p>*/}
-                                                {/*                </>*/}
-                                                {/*            })}</div>*/}
-                                                {/*        </div>*/}
-                                                {/*    /!*<ul>{val.items((sub)=>*!/*/}
-                                                {/*    /!*<li>*!/*/}
-                                                {/*    /!*    {sub.name}*!/*/}
-                                                {/*    /!*</li>*!/*/}
-                                                {/*    /!*)}*!/*/}
-                                                {/*    /!*</ul>*!/*/}
-                                                {/*    </>*/}
-                                                {/*})*/}
-                                                {/*}*/}
-
-                                            </article>
-
-                                        })}</div>
-                                    </>
+                                            })}</div>
+                                        </>
                                     }
 
                                     {val.message != null &&

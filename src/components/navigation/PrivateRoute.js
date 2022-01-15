@@ -4,16 +4,15 @@ import {UserContext} from "../../context/UserContext";
 
 function PrivateRoute({children, toggleSignedIn, ...rest}) {
 
-    // zou overbodig moeten zijn
     const {signedIn} = useContext(UserContext)
 
     return (
         <Route {...rest}>
             <Route {...rest}>
-                {signedIn ? children : <Redirect to="/homePage" />}
+                {signedIn ? children : <Redirect to="/homePage"/>}
             </Route>
-            </Route>
-                )
-            }
+        </Route>
+    )
+}
 
 export default PrivateRoute

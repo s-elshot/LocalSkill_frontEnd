@@ -1,12 +1,10 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
 import styles from "./SignUpForm.module.css";
 import womenWithGlasses from "../../assets/mobileIcons/pexels-photo-5915140.png";
 import FormInputComponent from "../../components/forms/FormInputComponent";
-
-
 
 
 function SignUpCustomer() {
@@ -18,7 +16,6 @@ function SignUpCustomer() {
     const history = useHistory();
 
     async function onSubmit(data) {
-        console.log(data)
         toggleLoading(true)
         try {
             await axios.post(
@@ -56,7 +53,6 @@ function SignUpCustomer() {
     return (
         <div className={styles.container}>
 
-            {/*<img className="signUpBackground" src={lampMan} alt="lampMan"/>*/}
             <img className={styles.backgroundImage} src={womenWithGlasses} alt={womenWithGlasses}/>
             <form onSubmit={handleSubmit(onSubmit)}
                   className={styles.signUpFormBase}>
@@ -64,61 +60,9 @@ function SignUpCustomer() {
                 <fieldset className={styles.signUpForm}>
                     <h2 className={styles.formHeader}>SIGN UP CUSTOMER</h2>
 
-
                     <div className={styles.container}>
-                            <NavLink className={styles.button} to="/signUp">SIGN UP AS GUILDER ?</NavLink>
+                        <NavLink className={styles.button} to="/signUp">SIGN UP AS GUILDER ?</NavLink>
                     </div>
-
-
-                    {/*<article className="styles.container">*/}
-                    {/*    <h3 className={styles.title}></h3>*/}
-                    {/*    <button className={styles.button}>*/}
-                    {/*        <NavLink to={link} activeClassName="overviewLink">{linkText}</NavLink>*/}
-                    {/*    </button>*/}
-                    {/*</article>*/}
-
-                    {/*<label htmlFor="formItems">*/}
-                    {/*    <select name="customerGuild" {...register("customerGuild",{ validate: (value) => value !== ""})} className={styles.select}>*/}
-                    {/*        <option value="">Please choose an Guild....</option>*/}
-                    {/*        <option value="FINANCE">Finance</option>*/}
-                    {/*        <option value="CONSTRUCTION">Construction</option>*/}
-                    {/*        <option value="CREATIVE_DESIGN">Creative design</option>*/}
-                    {/*        <option value="LEISURE">Leisure</option>*/}
-                    {/*        <option value="MEDIA">Media</option>*/}
-                    {/*        <option value="SECURITY">Security</option>*/}
-                    {/*        <option value="HEALTHCARE">Healthcare</option>*/}
-                    {/*        <option value="IT">IT</option>*/}
-                    {/*        <option value="BEAUTY">Beauty</option>*/}
-                    {/*        <option value="SPORT">Sport</option>*/}
-                    {/*        <option value="FOOD">Food</option>*/}
-                    {/*        <option value="HOBBY">Hobby</option>*/}
-                    {/*        <option value="SALES">Sales</option>*/}
-                    {/*        <option value="EDUCATION">Education</option>*/}
-                    {/*        <option value="LOGISTICS">Logistics</option>*/}
-                    {/*        <option value="LEGAL">Legal</option>*/}
-                    {/*        <option value="HUMAN_RESOURCES">Human resources</option>*/}
-                    {/*        <option value="IT">IT</option>*/}
-                    {/*        <option value="BEAUTY">Beauty</option>*/}
-                    {/*        <option value="SPORT">Sport</option>*/}
-                    {/*        <option value="FOOD">Food</option>*/}
-                    {/*        <option value="HOBBY">Hobby</option>*/}
-                    {/*        <option value="SALES">Sales</option>*/}
-                    {/*        <option value="EDUCATION">Education</option>*/}
-                    {/*        <option value="HEALTHCARE">Healthcare</option>*/}
-                    {/*    </select>*/}
-                    {/*    {errors.customerGuild  && <span className={styles.errors}>Please specify an input..</span>}*/}
-                    {/*</label>*/}
-
-
-                    {/*<label>*/}
-                    {/*    <select id="userRole" {...register("userRole",{ validate: (value) => value !== ""})} className={styles.select} >*/}
-                    {/*        <option value="">Please choose between an Customer Account or Guilder Account....</option>*/}
-                    {/*        <option value="CUSTOMER">Customer</option>*/}
-                    {/*        <option value="GUILDER">Guilder</option>*/}
-                    {/*    </select>*/}
-                    {/*    {errors.userRole && <span className={styles.errors}>Please choose an role..</span>}*/}
-                    {/*</label>*/}
-
 
                     <FormInputComponent
                         type="text"
@@ -187,7 +131,6 @@ function SignUpCustomer() {
                     />
 
 
-
                     <FormInputComponent
                         type="text"
                         className={styles.signUpField}
@@ -246,30 +189,6 @@ function SignUpCustomer() {
                         errors={errors}
                     />
 
-
-                    {/*<FormInputComponent*/}
-                    {/*    type="text"*/}
-                    {/*    className={styles.signUpField}*/}
-                    {/*    name="guild"*/}
-                    {/*    placeHolder="Choose your guild"*/}
-                    {/*    fieldRef={register('guild', {*/}
-                    {/*        required: {*/}
-                    {/*            value: true,*/}
-                    {/*            message: 'This field must have input',*/}
-                    {/*        },*/}
-                    {/*        minLength: {*/}
-                    {/*            value: 2,*/}
-                    {/*            message: 'At least 2 characters must be used to define the last name',*/}
-                    {/*        },*/}
-                    {/*        maxLength: {*/}
-                    {/*            value: 25,*/}
-                    {/*            message: 'At most 25 characters can be used to define the last name',*/}
-                    {/*        },*/}
-                    {/*    })}*/}
-                    {/*    errors={errors}*/}
-                    {/*/>*/}
-
-
                     <FormInputComponent
                         type="password"
                         className={styles.signUpField}
@@ -291,28 +210,6 @@ function SignUpCustomer() {
                         })}
                         errors={errors}
                     />
-
-                    {/*<FormInputComponent*/}
-                    {/*    type="text"*/}
-                    {/*    className="signUpField"*/}
-                    {/*    name="repeatedPassword"*/}
-                    {/*    placeHolder="Please repeat your password"*/}
-                    {/*    fieldRef={register('repeatedPassword', {*/}
-                    {/*        required: {*/}
-                    {/*            value: true,*/}
-                    {/*            message: 'This field must have input',*/}
-                    {/*        },*/}
-                    {/*        minLength: {*/}
-                    {/*            value: 2,*/}
-                    {/*            message: 'At least 2 characters must be used to define the last name',*/}
-                    {/*        },*/}
-                    {/*        maxLength: {*/}
-                    {/*            value: 25,*/}
-                    {/*            message: 'At most 25 characters can be used to define the last name',*/}
-                    {/*        },*/}
-                    {/*    })}*/}
-                    {/*    errors={errors}*/}
-                    {/*/>*/}
 
                     {loading === true &&
                     <span>

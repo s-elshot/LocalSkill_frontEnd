@@ -9,11 +9,7 @@ import {NavLink} from "react-router-dom";
 import './SingleItemComponent.css'
 
 
-function SingleItemComponent({index, item, addToCart, removeFromCart
-                                 ,addToFavorite
-}) {
-
-
+function SingleItemComponent({index, item, addToCart, removeFromCart, addToFavorite}) {
 
     return (
         <Fragment>
@@ -27,16 +23,14 @@ function SingleItemComponent({index, item, addToCart, removeFromCart
                     </NavLink>
                     <p>description: {item.description}</p>
                     <h4>price: €{item.price}</h4>
-                    {/*<p>Kind of product:{item.itemType}</p>*/}
                     <div className="buttonLayOut">
-                    <button className="buttonElement" onClick={() => addToCart(item)}>add to cart</button>
-                    <button className="buttonElement" onClick={() => removeFromCart(item)}>remove from cart</button>
-                    <button className="buttonElement" onClick={() => addToFavorite(item)}>
-                    <img src={favorite} alt={favorite} className="buttonElement"/>
-                    </button>
+                        <button className="buttonElement" onClick={() => addToCart(item)}>add to cart</button>
+                        <button className="buttonElement" onClick={() => removeFromCart(item)}>remove from cart</button>
+                        <button className="buttonElement" onClick={() => addToFavorite(item)}>
+                            <img src={favorite} alt={favorite} className="buttonElement"/>
+                        </button>
                     </div>
                 </div>
-                    {/*<button onClick={() => addToFavorite(item)}>favorite</button>*/}
 
             </article>
         </Fragment>

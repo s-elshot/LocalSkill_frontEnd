@@ -1,14 +1,9 @@
-
 import React, {Fragment, useContext} from 'react';
 import styles from "./Profile.module.css";
 import {NavLink} from "react-router-dom";
 import guy from "../../../src/assets/desktop/backgrounds/pexels-photo-statueFace.png"
 import {UserContext} from "../../context/UserContext";
 import FilesUpload from "./FileUpload/FilesUpload";
-
-
-
-
 
 
 function Profile() {
@@ -23,8 +18,6 @@ function Profile() {
         return user.username === userLogIn
     })
 
-
-
     return (
         <Fragment>
 
@@ -35,7 +28,6 @@ function Profile() {
 
                 <fieldset className={styles.profileOutline}>
                     <FilesUpload/>
-
                     {users &&
                     val
                     &&
@@ -55,13 +47,13 @@ function Profile() {
                             <li className={styles.listItem}><b>Type account:</b> {val.userRole} </li>
 
                             <div className={styles.navContainer}>
-                                <NavLink to={"/profile/itemsInPossession"}
-                                         activeClassName={styles.entranceLinkContainer}>
-                                    {val.guild === null ?
-                                        <p className={styles.entranceLink}>PREVIOUSLY BOUGHT ITEMS</p> :
+                                {val.userRole === "GUILDER" && <>
+                                    <NavLink to={"/profile/itemsInPossession"}
+                                             activeClassName={styles.entranceLinkContainer}>
                                         <p className={styles.entranceLink}>ITEMS IN POSSESSION</p>
-                                    }
-                                </NavLink>
+                                    </NavLink>
+                                </>
+                                }
 
                                 <NavLink to={"/profile/orders"} activeClassName={styles.entranceLinkContainer}>
                                     <p className={styles.entranceLink}>YOUR ORDERS</p>
@@ -70,10 +62,6 @@ function Profile() {
                                 <NavLink to="/profile/userDetails" activeClassName={styles.entranceLinkContainer}>
                                     <p className={styles.entranceLink}>EDIT YOUR ACCOUNT</p>
                                 </NavLink>
-
-                                {/*<NavLink to="/profile/deleteAccount" activeClassName={styles.entranceLinkContainer}>*/}
-                                {/*    <p className={styles.entranceLink}>DELETE YOUR ACCOUNT</p>*/}
-                                {/*</NavLink>*/}
 
                             </div>
 

@@ -22,8 +22,8 @@ function UserContextProvider({children}) {
     const [userDetail, setUserDetail] = useState({
         username: "",
         firstName: "",
-        lastName:"",
-        id:"",
+        lastName: "",
+        id: "",
     });
 
     const itemLocation = "http://localhost:8080/item"
@@ -31,11 +31,9 @@ function UserContextProvider({children}) {
 
 
     useEffect(() => {
-
         async function getAllItems() {
             toggleLoading(true)
             setError(false)
-
             try {
                 const {data} = await axios.get(itemLocation);
                 setItems(data);
@@ -66,29 +64,20 @@ function UserContextProvider({children}) {
             }
             toggleLoading(false);
         }
+
         getAllUsers()
     }, [
         // users,
         userLocation]);
 
 
-    //
     //     fetch("http://localhost:8080/item")
     //         .then(res => {
     //             return res.json();
     //         }).then(data =>{
     //         setItems(data)
     //     }
-    //
     // },[])
-
-
-    // DO SOMETHING WITH HISTORY.PUSH?????
-    // REDIRECT COMPONENT NOT WORKING YET!!
-
-
-    // DO SOMETHING WITH HISTORY.PUSH?????
-    // REDIRECT COMPONENT NOT WORKING YET!!
 
     useEffect(() => {
         favoriteInvoiceSum();
@@ -108,14 +97,12 @@ function UserContextProvider({children}) {
         setFavorite([...favorite, item])
         for (let i = 0; i < favorite.length; i++) {
         }
-        console.log(favorite, favorite.length)
     }
 
     const removeFromFavorite = (item) => {
         let copyOfFavorite = [...favorite]
         copyOfFavorite = copyOfFavorite.filter(favoriteItem => favoriteItem.id !== item.id)
         setFavorite(copyOfFavorite)
-        // console.log(favorite, favorite.length)
     }
 
     const favoriteItems = favorite.map((item, index) => (
@@ -148,27 +135,7 @@ function UserContextProvider({children}) {
         setCartTotal(totalSum)
     }
 
-    // const addToCart = (item) => {
-    //     cart.find((cartItem, index) => {
-    //         if (cartItem.id === item.id) {
-    //             console.log('HIJ IS ER AL')
-    //             // als dit item hier al bestaat, kopieer dan de bestaande state array
-    //             const newCart = [...cart];
-    //             // op het indexnummer van het gevonden item, kijk daar naar wat voor getal er in de amount property staat en hoog dat op met 1
-    //             newCart[index].amount = newCart[index].amount + 1;
-    //             // zet die nieuwe array in de state ter vervanging van wat er stond
-    //             setCart(newCart);
-    //             return true;
-    //         }
-    //         // stond hij er niet al in? Voeg 'm dan gewoon toe
-    //         console.log('HIJ IS ER NIET')
-    //         setCart([...cart, item]);
-    //         return false;
-    //     });
-    // };
-
     const addToCart = (item) => {
-        // DIT ALLEEN OMDAT WE GEEN AMOUNT HEBBEN
         const itemForCart = {
             ...item,
             amount: 0,
@@ -190,7 +157,6 @@ function UserContextProvider({children}) {
             setCart(newCart);
             console.log('NIEUWE CART', newCart)
         } else {
-            // ALLEEN ITEMFORCART OMDAT WE GEEN AMAOUNT HEBBEN
             setCart([...cart, itemForCart])
         }
     }
@@ -199,7 +165,6 @@ function UserContextProvider({children}) {
         let copyOfCart = [...cart]
         copyOfCart = copyOfCart.filter(cartItem => cartItem.id !== item.id)
         setCart(copyOfCart)
-        // console.log(cart, cart.length)
     }
 
 
@@ -211,7 +176,6 @@ function UserContextProvider({children}) {
             <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
         </div>
     ))
-
 
 
     function changeState() {
@@ -265,8 +229,6 @@ function UserContextProvider({children}) {
         setCartTotal: setCartTotal,
         cartInvoiceSum: cartInvoiceSum,
         cartItems: cartItems,
-
-
     }
 
 

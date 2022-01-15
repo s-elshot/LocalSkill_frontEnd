@@ -2,11 +2,10 @@ import styles from "./home.module.css"
 import homePic from "../../assets/desktop/backgrounds/logIn.png";
 import React from "react";
 import find from "../../assets/mobileIcons/Icon awesome-search@2x.png";
-import OverviewComponent from "../../components/object/overviewComponent";
+import OverviewComponent from "../../components/object/OverviewComponent";
 import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import FormInputComponent from "../../components/forms/FormInputComponent";
-
 
 
 
@@ -17,13 +16,6 @@ function Home() {
 
 
     async function onSubmit(data) {
-        console.log(data)
-        console.log(errors)
-        console.log(data.areaCode)
-        console.log(data.customerGuild)
-        // console.log(data.firstName)
-        // console.log(data.itemType)
-        // history.push(`/overview/${data.itemType}/${data.areaCode}`)
         history.push(`/overview/${data.customerGuild}/${data.areaCode}`)
     }
 

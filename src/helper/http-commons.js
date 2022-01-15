@@ -4,6 +4,5 @@ export default axios.create({
     baseURL:'http://localhost:8080/file/upload',
     headers: {
         'content-type': 'application/json',
-        // Authorization: `Bearer ${localStorage.getItem('token')}`,
     }
 });

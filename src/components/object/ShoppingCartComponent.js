@@ -15,10 +15,7 @@ import guy from "../../assets/desktop/backgrounds/shopping  2.png";
 function ShoppingCartItem() {
 
     const [registerSucces, toggleRegisterSucces] = useState(false);
-    const [productAmount, setProductAmount] = useState(1);
-    const [itemId, setItemId] = useState("");
-
-
+    const [text, setText] = useState("");
 
 
     const {
@@ -32,6 +29,7 @@ function ShoppingCartItem() {
 
     const history = useHistory();
 
+    console.log(users)
 
     const val = users.find(user => {
         return user.username === userLogIn
@@ -40,42 +38,14 @@ function ShoppingCartItem() {
     const id = {}
     id.id = val.id
 
-    const lastArrayItem = val.invoices.length-1
-    const invoice = val.invoices
-
-
-    const lastInvoice=  invoice[lastArrayItem].id
-    console.log(lastInvoice)
-
-
     async function onSubmit() {
         toggleRegisterSucces(false)
+        console.log(cartTotal)
         try {
             await axios.post("http://localhost:8080/invoice", {
-                description: 'Standard order',
+                description: text,
                 customer: id,
                 totalPrice: cartTotal,
-                // ,
-                //     invoiceItems:
-                //      [{id:4 },{id:3}]
-                // }
-                //     () => {
-                //     let cartIds = []
-                //     for (let i = 0; i < cart.length; i++) {
-                //         cartIds.push(cart[i].id)
-                //     }
-                //     return cartIds
-                // }
-
-                // }
-                // invoiceItems: () => {
-                //     let cartIds = []
-                //     for (let i = 0; i < cart.length; i++) {
-                //         cartIds.push(cart[i].id)
-                //     }
-                //     return cartIds
-                // },
-
             })
             console.log("Checkout succeeded")
             toggleRegisterSucces(true)
@@ -89,7 +59,7 @@ function ShoppingCartItem() {
             console.error(e)
         }
     }
-    // console.log(lastArrayItem)
+
 
 
     // async function oud() {
@@ -106,7 +76,6 @@ function ShoppingCartItem() {
     // }
 
 
-
     // function getCartIds(cart) {
     //     let cartIds = []
     //     for (let i = 0; i < cart.length; i++) {
@@ -120,57 +89,57 @@ function ShoppingCartItem() {
     //     })
     // }
 
-    async function addItemToInvoice() {
-        toggleRegisterSucces(false)
-        console.log(itemId)
-        try {
-            await axios.post("http://localhost:8080/iteminvoice", {
-                quantity: productAmount,
-                invoice:
-                    {"id":
-                        (lastInvoice-1)
-                },
-                item: {"id": itemId}
-                // item: {"id": 24}
-
-                // ,
-                //     invoiceItems:
-                //      [{id:4 },{id:3}]
-                // }
-                //     () => {
-                //     let cartIds = []
-                //     for (let i = 0; i < cart.length; i++) {
-                //         cartIds.push(cart[i].id)
-                //     }
-                //     return cartIds
-                // }
-
-                // }
-                // invoiceItems: () => {
-                //     let cartIds = []
-                //     for (let i = 0; i < cart.length; i++) {
-                //         cartIds.push(cart[i].id)
-                //     }
-                //     return cartIds
-                // },
-
-            })
-
-            console.log("Item added")
-
-
-            toggleRegisterSucces(true)
-            // eslint-disable-next-line no-unused-expressions
-            // setCart([])
-
-            setTimeout(() => {
-                // history.push("/profile");
-            }, 2000)
-
-        } catch (e) {
-            console.error(e)
-        }
-    }
+    // async function addItemToInvoice() {
+    //     toggleRegisterSucces(false)
+    //     console.log(itemId)
+    //     try {
+    //         await axios.post("http://localhost:8080/iteminvoice", {
+    //             quantity: productAmount,
+    //             // invoice:
+    //             //     {"id":
+    //             //         (lastInvoice-1)
+    //             // },
+    //             item: {"id": itemId}
+    //             // item: {"id": 24}
+    //
+    //             // ,
+    //             //     invoiceItems:
+    //             //      [{id:4 },{id:3}]
+    //             // }
+    //             //     () => {
+    //             //     let cartIds = []
+    //             //     for (let i = 0; i < cart.length; i++) {
+    //             //         cartIds.push(cart[i].id)
+    //             //     }
+    //             //     return cartIds
+    //             // }
+    //
+    //             // }
+    //             // invoiceItems: () => {
+    //             //     let cartIds = []
+    //             //     for (let i = 0; i < cart.length; i++) {
+    //             //         cartIds.push(cart[i].id)
+    //             //     }
+    //             //     return cartIds
+    //             // },
+    //
+    //         })
+    //
+    //         console.log("Item added")
+    //
+    //
+    //         toggleRegisterSucces(true)
+    //         // eslint-disable-next-line no-unused-expressions
+    //         // setCart([])
+    //
+    //         setTimeout(() => {
+    //             // history.push("/profile");
+    //         }, 2000)
+    //
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // }
 
 
     // async function onSubmit() {
@@ -204,22 +173,18 @@ function ShoppingCartItem() {
             .then(res => {
                 return res.json();
             }).then(data => {
-            // console.log(data)
-            // console.log(data[0].items[1].name)
         })
     }, [users])
 
-    useEffect(() => {
-        fetch("http://localhost:8080/invoice")
-            .then(res => {
-                return res.json();
-            }).then(data => {
-            // console.log(data)
-            // console.log(data[0].items[1].name)
-        })
-    }, [invoice])
-
-
+    // useEffect(() => {
+    //     fetch("http://localhost:8080/invoice")
+    //         .then(res => {
+    //             return res.json();
+    //         }).then(data => {
+    //         // console.log(data)
+    //         // console.log(data[0].items[1].name)
+    //     })
+    // }, [invoice])
 
 
     return (
@@ -239,32 +204,20 @@ function ShoppingCartItem() {
 
                             <h4>{item.name}</h4>
                             <h4>{item.id}</h4>
-                            <input type="number" placeholder="Number"
-                                   onChange={event => {
-                                       setProductAmount(event.target.value)
-                                   }}/>
-
-                                <p>description: {item.description}</p>
+                            <p>description: {item.description}</p>
                             <p>price: €{item.price}</p>
-                            {
-                                <button onClick={() => {
-                                    setItemId(item.id);
-                                    addItemToInvoice();
-                                    removeFromCart(item)
-                                }}>Add to invoice</button>
-                            }
                             <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
                         </div>))
                     }
                     {cart.length > 0 && <>
                         <h4>currently in your cart:({cart.length} items)</h4>
                         <h4>Message to Seller</h4>
-                        <textarea placeholder= "Send a message"
-                        />
-
+                        <textarea placeholder="Send a message"
+                                  onChange={event => {
+                                      setText(event.target.value)
+                                  }}/>
                         <h2>TOTAL AMOUNT: €{cartTotal}</h2>
                         <button type="submit" className={styles.confirmButton} onClick={onSubmit}>CHECK OUT</button>
-
                     </>
                     }
                     {registerSucces === true &&

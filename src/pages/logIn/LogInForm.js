@@ -5,7 +5,6 @@ import FormInputComponent from "../../components/forms/FormInputComponent";
 import guy from "../../assets/desktop/backgrounds/logIn.png";
 import axios from "axios";
 import {UserContext} from "../../context/UserContext";
-// import LogInButton from "../../components/logIn/LoginButton";
 import {useHistory} from "react-router-dom";
 
 function LogInForm() {
@@ -14,49 +13,41 @@ function LogInForm() {
     const [registerSucces, toggleRegisterSucces] = useState(false);
     const history = useHistory();
     const {toggleSignedIn, setUserLogIn} = useContext(UserContext)
-
+    const [loginFail, toggleLoginFail] = useState(false);
 
     async function onSubmit(data) {
-        console.log(data)
-        // console.log(data.username)
         setUserLogIn(data.username)
+        toggleLoginFail(false)
         toggleSignedIn(false)
+
         try {
-             // await axios.post("http://localhost:3000/login",data)
-            await axios.post("http://localhost:8080/api/auth/signin",data)
-
-            // logIn(result.data.accessToken)
-            // place jwt in local storage
-
+            await axios.post("http://localhost:8080/api/auth/signin", data)
             toggleRegisterSucces(true)
             setTimeout(() => {
                 history.push("homepage");
             }, 1000)
-
-            // no time-out: redirect immediately to new page
-            // place jwt in local storage
             toggleSignedIn(true)
         } catch (e) {
             console.error(e)
+            toggleLoginFail(true)
         }
-
-
     }
 
     return (
         <div className={styles.container}>
+
             <img className={styles.signUpBackGround} src={guy} alt={guy}/>
+
             <form onSubmit={handleSubmit(onSubmit)} className={styles.logInFormBase}>
-
                 <fieldset className={styles.formField}>
-                    <h2 className={styles.formHeader}>LOG IN</h2>
 
+                    <h2 className={styles.formHeader}>LOG IN</h2>
                     <FormInputComponent
                         type="text"
                         name="username"
                         className={styles.logInField}
                         placeHolder="Username"
-                        fieldRef= {register('username', {
+                        fieldRef={register('username', {
                             required: {
                                 value: true,
                                 message: 'This field must have input',
@@ -68,14 +59,12 @@ function LogInForm() {
                         })}
                         errors={errors}
                     />
-
-
                     <FormInputComponent
                         type="password"
                         name="password"
                         className={styles.logInField}
                         placeHolder="Password"
-                        fieldRef= {register('password', {
+                        fieldRef={register('password', {
                             required: {
                                 value: true,
                                 message: 'This field must have input',
@@ -98,14 +87,18 @@ function LogInForm() {
                         id="confirmButton"
                         name="submitButton"
                         disabled={pristine}> LOG IN
+                        {loginFail === true &&
+                        <p>LOG IN FAILED DUE TO BAD CREDENTIALS , PLEASE TRY AGAIN</p>
+                        }
+                        {registerSucces === true &&
+                        <p>LOG IN SUCCEEDED, REDIRECTING TO HOME</p>
+                        }
                     </button>
-                    {registerSucces === true &&
-                    <p>INLOG SUCCEEDED, REDIRECTING TO HOME</p>
-                    }
 
                 </fieldset>
+
             </form>
-            {/*<LogInButton/>*/}
+
         </div>
     )
 }

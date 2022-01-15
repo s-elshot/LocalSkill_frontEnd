@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import UploadService from "./FileUploadService";
 
 
 const UploadFiles = () => {
     const [selectedFiles, setSelectedFiles] = useState(undefined);
-    const [progressInfos, setProgressInfos] = useState({ val: [] });
+    const [progressInfos, setProgressInfos] = useState({val: []});
     const [message, setMessage] = useState([]);
     const [fileInfos, setFileInfos] = useState([]);
     const progressInfosRef = useRef(null)
@@ -17,7 +17,7 @@ const UploadFiles = () => {
 
     const selectFiles = (event) => {
         setSelectedFiles(event.target.files);
-        setProgressInfos({ val: [] });
+        setProgressInfos({val: []});
     };
 
     const upload = (idx, file) => {
@@ -26,17 +26,16 @@ const UploadFiles = () => {
             _progressInfos[idx].percentage = Math.round(
                 (100 * event.loaded) / event.total
             );
-            setProgressInfos({ val: _progressInfos });
+            setProgressInfos({val: _progressInfos});
         })
             .then(() => {
                 setMessage((prevMessage) => ([
                     ...prevMessage,
-                    "Uploaded the file successfully: " + file.name,
                 ]));
             })
             .catch(() => {
                 _progressInfos[idx].percentage = 0;
-                setProgressInfos({ val: _progressInfos });
+                setProgressInfos({val: _progressInfos});
 
                 setMessage((prevMessage) => ([
                     ...prevMessage,
@@ -48,7 +47,7 @@ const UploadFiles = () => {
     const uploadFiles = () => {
         const files = Array.from(selectedFiles);
 
-        let _progressInfos = files.map(file => ({ percentage: 0, fileName: file.name }));
+        let _progressInfos = files.map(file => ({percentage: 0, fileName: file.name}));
 
         progressInfosRef.current = {
             val: _progressInfos,
@@ -78,7 +77,7 @@ const UploadFiles = () => {
                             aria-valuenow={progressInfo.percentage}
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            style={{ width: progressInfo.percentage + "%" }}
+                            style={{width: progressInfo.percentage + "%"}}
                         >
                             {progressInfo.percentage}%
                         </div>
@@ -89,7 +88,7 @@ const UploadFiles = () => {
             <div className="row my-3">
                 <div className="col-8">
                     <label className="btn btn-default p-0">
-                        <input type="file" multiple onChange={selectFiles} />
+                        <input type="file" multiple onChange={selectFiles}/>
                     </label>
                 </div>
 
@@ -115,16 +114,14 @@ const UploadFiles = () => {
             )}
 
             <div className="card">
-                {/*<div className="card-header">List of Files</div>*/}
-                <ul className="list-group list-group-flush">
+                <div className="list-group list-group-flush">
                     {fileInfos &&
                     fileInfos.map((file, index) => (
-                        <li className="list-group-item" key={index}>
+                        <div className="list-group-item" key={index}>
                             <img src={file.url} alt="profile"/>
-                            {/*<a href={file.url}>{file.name}</a>*/}
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );

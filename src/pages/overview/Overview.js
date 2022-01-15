@@ -1,6 +1,5 @@
 import React, {
     useContext, useState
-    // , useState
 } from 'react';
 
 import styles from "./Overview.module.css"
@@ -13,24 +12,6 @@ import homePic from "../../assets/desktop/backgrounds/noFilter.png";
 import SingleItemComponent from "../../components/object/SingleItemComponent";
 import buildFilter from "../../helper/buildFilter";
 
-
-
-
-
-// @todo: helperfunctie declaratie, deze mag in een apart bestand uiteindelijk!
-// we filteren de properties met lege arrays erin, eruit!
-// function buildFilter(filter) {
-//     let activeFilters = {};
-//     for (let keys in filter) {
-//         if (filter[keys].length > 0) {
-//             activeFilters[keys] = filter[keys];
-//         }
-//     }
-//     return activeFilters;
-// }
-
-
-
 function Overview() {
     const {
         users,
@@ -38,6 +19,7 @@ function Overview() {
         removeFromCart,
         addToFavorite
     } = useContext(UserContext);
+
     const [displayedItems, setDisplayedItems] = useState([]);
     const {handleSubmit, register, pristine, formState: {errors}} = useForm({mode: "onBlur"});
 
@@ -48,38 +30,21 @@ function Overview() {
             customerGuild: (data.customerGuild && [data.customerGuild]) || [],
         }
 
-        console.log(userFilters);
-
         const itemFilters = {
-            itemName: (data.itemName && [data.itemName]) || [],
-            itemType: (data.itemName && [data.itemType]) || [],
+            name: (data.name && [data.name]) || [],
+            itemType: (data.itemType && [data.itemType]) || [],
         }
-
-        console.log(itemFilters);
-
-        // hier maken we de arrays met filters die ook daadwerkelijk togepast moeten worden
         const activeUserFilters = buildFilter(userFilters);
         const activeItemFilters = buildFilter(itemFilters);
 
-        console.log(activeUserFilters, activeItemFilters);
-
-        // Maak alvast een lege array voor alle toekomstige items
         let items = [];
 
-
-
-        // FILTER EERST DE USERS OP BASIS VAN DYNAMISCHE FILTERS
         users.filter((user) => {
             for (let key in activeUserFilters) {
                 if (user[key] === undefined || !activeUserFilters[key].includes(user[key])) {
                     return false;
                 }
             }
-            // dit willen we niet!
-            // items = [[.., ..,..], [..,..,..]];
-
-            // als deze gebruiker aan de filters voldoet
-            // map dan over al zijn items heen en zet die in de variabele ITEMS
             user.items.map((item) => {
                 return items.push(item)
             });
@@ -87,7 +52,6 @@ function Overview() {
         });
         console.log(items);
 
-        // FILTER DAARNA DE ITEMS OP BASIS VAN DYNAMISCHE FILTERS
         const filteredItems = items.filter((item) => {
             for (let key in activeItemFilters) {
                 if (item[key] === undefined || !activeItemFilters[key].includes(item[key])) {
@@ -96,11 +60,8 @@ function Overview() {
             }
             return true;
         });
-        // zet de items in de state zodat we ze kunnen weergeven op de pagina!
         setDisplayedItems(filteredItems);
-        console.log(filteredItems);
     }
-
 
     return (
         <div className={styles.container}>
@@ -112,8 +73,7 @@ function Overview() {
 
 
                 <label htmlFor="formItems">
-                    <select name="customerGuild" {...register("customerGuild", {
-                    })} className={styles.select}>
+                    <select name="customerGuild" {...register("customerGuild", {})} className={styles.select}>
                         <option value="NONE">Please choose an Guild....</option>
                         <option value="FINANCE">Finance</option>
                         <option value="CONSTRUCTION">Construction</option>
@@ -158,67 +118,34 @@ function Overview() {
                     </select>
                 </label>
 
-
                 <FormInputComponent
                     type="text"
-                    name="itemName"
+                    name="name"
                     className={styles.select}
                     placeHolder="What kind of product/service are you searching?"
-                    fieldRef={register('itemName')}
+                    fieldRef={register('name')}
                     errors={errors}
                 />
                 <button className={styles.button} type="submit" disabled={pristine}>
                     Filter <img className={styles.img} src={find} alt={find}/>
                 </button>
+                {users && displayedItems.length > 0 ? displayedItems.map((item, index) => {
+                    return <SingleItemComponent
+                        key={index}
+                        index={index}
+                        item={item}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                        addToFavorite={addToFavorite}
+                    />
+                }) : <p>NO RECORDS FOUND</p>
+                }
+
             </form>
 
+        </div>
+    );
 
-            {users && displayedItems && displayedItems.map((item, index) => {
-                return <SingleItemComponent
-                    key={index}
-                    index={index}
-                    item={item}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    addToFavorite={addToFavorite}
-                />
-            })}
-
-
-            {/*{(users && findUsers.length === 0 ?*/}
-            {/*        <>*/}
-            {/*            <p className={styles.noSearchContainer}>*/}
-            {/*                <div className={styles.noSearch}>NO SEARCH RESULTS</div>*/}
-            {/*            </p>*/}
-            {/*        </> :*/}
-
-            {/*        <div>{findUsers.map((user, index) => {*/}
-            {/*            return <article key={index}>*/}
-
-            {/*                {user.items.length != null &&*/}
-            {/*                <>*/}
-            {/*                    <div>{user.items.map((item, index) => {*/}
-            {/*                        return <SingleItemComponent*/}
-            {/*                            key={index}*/}
-            {/*                            index={index}*/}
-            {/*                            item={item}*/}
-            {/*                            addToCart={addToCart}*/}
-            {/*                            removeFromCart={removeFromCart}*/}
-            {/*                            addToFavorite={addToFavorite}*/}
-            {/*                        />*/}
-
-            {/*                    })}</div>*/}
-            {/*                        </>*/}
-            {/*                    }*/}
-
-            {/*                    </article>*/}
-            {/*                    })}</div>*/}
-            {/*            )}*/}
-
-            {/*<Item/>*/}
-                    </div>
-            );
-
-            }
+}
 
 export default Overview;

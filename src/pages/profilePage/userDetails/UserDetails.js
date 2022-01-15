@@ -36,13 +36,11 @@ function UserDetails() {
         console.log(data)
         toggleLoading(true)
         try {
-            // await axios.put(`http://localhost:8080/customer/${val.id}`,
                 await axios.put(`http://localhost:8080/customer/${val.id}`,
                     {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify,
-                // const result = await axios.post("http://localhost:8080/customer",
                 firstName: data.firstName,
                 lastName: data.lastName,
                 age: data.age,
@@ -51,9 +49,7 @@ function UserDetails() {
                         role: ["user"],
                 city: data.city,
                 userRole:"CUSTOMER",
-                password: data.password,
                 customerGuild: data.customerGuild
-
             }).then(() => {
                 console.log("Customer edited")
 

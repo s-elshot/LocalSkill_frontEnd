@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./FormInputComponent.module.css"
-function FormInputComponent({type,step, name, placeHolder,fieldRef, className, errors,}) {
+
+function FormInputComponent({type, step, name, placeHolder, fieldRef, className, errors,}) {
 
     return (
         <>

@@ -9,14 +9,12 @@ const upload = (file, onUploadProgress) => {
         headers: {
             "Content-Type": "multipart/form-data",
         },
-            body: JSON.stringify,
-            item:{id:3}
+        body: JSON.stringify,
+        item: {id: 3}
         ,
-
         onUploadProgress,
     });
 };
-
 
 const getFiles = () => {
     return http.get("/files");

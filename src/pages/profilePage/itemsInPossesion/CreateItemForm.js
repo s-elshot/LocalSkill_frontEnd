@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {useForm} from "react-hook-form";
 import styles from './CreateItemForm.module.css';
 import axios from "axios";
-
 import FormInputComponent from "../../../components/forms/FormInputComponent";
 import {useHistory} from "react-router-dom";
 import guy from "../../../assets/desktop/backgrounds/pexels-profile.png";
@@ -20,15 +19,10 @@ function CreateItemForm() {
     const val = users.find(user => {
         return user.username === userLogIn
     })
-
     const id = {}
     id.id = val.id
 
-
     async function onSubmit(data) {
-        console.log(data)
-        console.log(val)
-
         toggleLoading(true)
         try {
             await axios.post("http://localhost:8080/item", {
@@ -41,7 +35,6 @@ function CreateItemForm() {
                 description: data.description,
                 count: data.count,
                 customer: id
-
             }).then(() => {
                 console.log("New item added")
             })
@@ -65,14 +58,15 @@ function CreateItemForm() {
                         <h2 className={styles.formHeader}>CREATE ITEM / SERVICE</h2>
 
                         <label>
-                            <select {...register("itemType",{ validate: (value) => value !== ""})} className={styles.select}>
+                            <select {...register("itemType", {validate: (value) => value !== ""})}
+                                    className={styles.select}>
                                 <option value="">Please choose between an item or service....</option>
                                 <option value="PRODUCT">Product</option>
                                 <option value="SERVICE">Service</option>
                             </select>
-                            {errors.itemType && <span className={styles.errors}>Please choose between an item or service..</span>}
+                            {errors.itemType &&
+                            <span className={styles.errors}>Please choose between an item or service..</span>}
                         </label>
-                        
 
                         <FormInputComponent
                             type="text"
